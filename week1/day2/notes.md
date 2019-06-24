@@ -29,7 +29,7 @@ Questions?
 
 ---
 
-# Incremental coding
+# Incremental coding 👣
 
 ![steps](https://raw.githubusercontent.com/tborsa/lectures/master/week1/day2/assets/steps.jpg)
 
@@ -139,25 +139,41 @@ __Push__: Updates the remote git reposity with any new changes in the local git 
 ![bugs](https://raw.githubusercontent.com/tborsa/lectures/master/week1/day2/assets/debugging.png)
 
 Problem solving tips
+
 - Errors are your friend, but you have to try and understand what they are saying and not guess
+
 - Typical week1 research path:
     1. Google for a question (how do you phrase it?)
     2. Stackoverflow is first hit, shows an approach, is it valid?
     3. I've never seen this weird arrow function syntax before that is in the approved answer!?!🤬  What does that mean? How do I interpret that?
 
-- Going to MDN to check for other examples.
-- At what point should I ask for mentor support? How should the question be formulated?
+---
+
+__Tips__
+- What type of error is it 📝 parsing/run-time error? (error message) or a 🤖 logical error? (code runs but doesn't do what it is supposed to)
+1. 🤖 For loggical errors use conosle.logs, and debugger to understand why?
+    - Do a dry run of the code in your head
+2. 📝 For parsing errors look for syntax errors, and do some research.
+    - Practice reading error messages, before copy pasting into google.
+    - Go to MDN to check for other examples.
+    - Experiment with how you are googling questions
+        - Have you included relevant information?
+        - If a mentor googles for problem solving pay attention to what they search. 
+- Evaluate if you need mentor support?
 
 ---
 
-## Remember
+## Mentor Reminders
 
-- ⏰ 15m rule 
+![mentor](https://raw.githubusercontent.com/tborsa/lectures/master/week1/day2/assets/mentor.jpg)
+
+- ⏳ 15m rule 
 - ❌ don't just say "it's not working" to a mentor; explain first what you're trying to solve and where you are stuck. Even asking for help properly is a skill that will take some time for you to acquire, we don't expect it to be perfect on D2 but we expect you to work towards improving it. 
-- 💻 Code reviews arer important
+- 💻 Code reviews are important
 
+---
 
-# Tools
+# Tools 🔧
 
 - JS [Tutor](http://pythontutor.com/javascript.html#mode=edit)
 - Node Debugger  
@@ -170,4 +186,5 @@ Today you will be continuing with Lotide but not all the assignments will have t
 
 # Activities
 
-Non git remote dry run with paper
+- Non git remote dry run with paper
+- PBJ coding
