@@ -1,57 +1,173 @@
 
-- Welcome to bootcamp WOOT WOOT !
 
-# TOPICS
-Curriculum overview
-Writing code incrementally
-Problem solving tips
-Basic git workflow (init -> add -> commit -> push)
+# Welcome to bootcamp 👢⛺ WOOT WOOT ! 
+![confetti](https://raw.githubusercontent.com/tborsa/lectures/master/week1/day2/assets/confeti.gif)
+
+---
+
+## me?
 
 
-# Curiculum
-curriculum (curriculum outline, expectations and evaluation).
+---
+
+# TOPICS 📢
+
+- Curriculum overview
+- Writing code incrementally
+- Basic git workflow
+- Problem solving tips/Debugging
+
+---
+
+# Curiculum 📚
+
 [Overview](https://docs.google.com/presentation/d/1m3R_aN4S5YoCBmXRbjaZQGatygWyZXYLcN-fkcP_HWA)
 
+---
+
+Questions?
+
+---
 
 # Incremental coding
-- The goal is not "what is the solution?", but rather "how do we build towards the solution in an ideal manner?"
 
-Mention to the students that when it comes to live coding, they should not be trying to replicate the same code on their screen and instead be paying attention and collaborating/questioning the code that's being written on screen.
+![steps](https://raw.githubusercontent.com/tborsa/lectures/master/week1/day2/assets/steps.jpg)
 
-Take notes on important topics or things to remember
+When programming we want to breakdown problems into smaller easier to understand steps. 
 
-This discussion is meant to facilitate a deeper learning of the coding concepts, where as a simple "repeat after me" lecture would not have students discussing the concepts presented in depth.
+If we can slice bread 🍞, open peanutbutter/jam jars🍯, and use a butter knife 🗡 then we can make a PB&J 🥪.
+
+Easier to isolate errors.
+
+🧠 Can refactor/improve code as we go.
+
+---
+
 
 ## DEMO
+
+vagrant 
+GOAL:
 >Write a node program that takes in an unlimited number of command line arguments, goes through each and prints out the sum of them. If any argument is not a whole number, skip it. Do support negative numbers though.
 
-## What Did We notice about the approach of the demo?
+---
 
-Approach:
--Break your solution into functions as you go
-- Write in small (smallest possible executable program) steps
-Don't get hung up on "how does ARGV work?" type questions. Not the focus of the lecture. Tell them this but also try to give them a summary and explain that 
-- lecture isn't the best way to learn what ARGV is. Reading about, playing with, and speaking with mentors about ARGV is the best way.
-- Run linter at some point?
-- Use node debug with debugger and cover next vs continue vs step in/out
-- More importantly, go over thinking behind HOW and WHEN/WHERE to use this.
+# Live coding?
 
-- intending code as you go
-- Avoid copy/pasting anything
 
-# Problem solving/ Debugging
-![bugs](debugging.png)
+![steps](https://raw.githubusercontent.com/tborsa/lectures/master/week1/day2/assets/matrix.gif)
+
+Coding doesn't have to look like this. 
+
+With lectures at lighthouse labs, instructors will often live code to demonstrate course concepts. 
+
+You shoulden't try to code along or replicate the code but instead pay attention to what is happening collaborate and give feedback to the lecturer.
+
+They will ask for suggestions, and can run into errors it can be a collective coding experience. 
+
+Use live coding as an opportunity to take notes 📔, and ask questions 🙋. 
+
+You will not always understand everything a lecturer codes, this is inevitable. 
+Instead try to leave lecture with a general understanding of what the code was supposed to accomplish and do further research/ activities to better understand the specifics. 
+
+
+
+---
+
+# git 💾⌚
+![git](https://raw.githubusercontent.com/tborsa/lectures/master/week1/day2/assets/git.png)
+
+- Repository: System for tracking changes in source code during software development.
+
+- Remebers the history of our code
+
+- Documents changes with commit messages, listing the author of the changes
+
+- Can use a remote git repository to back up our data
+
+- We can undo changes we make
+
+- Makes it easy to collaborate with others on code
+
+- And much more!
+
+---
+
+# Git Gud
+
+![stage](https://raw.githubusercontent.com/tborsa/lectures/master/week1/day2/assets/gitstage.png)
+
+__Init__: initializes a git repository for the current directory/folder.
+
+__Add__: Adds the specified files to the staging area for future commits.
+
+__Commit__: Saves the staged files to the local git repository. (commit often)
+
+__Remote__: Adds a remote repository
+
+__Push__: Updates the remote git reposity with any new changes in the local git repository. 
+
+---
+
+## Basic git workflow:
+
+```
+ 📂 init -> 📥 add -> 📩 commit -> 📨 push
+```
+
+---
+
+# Back to Coding..
+
+---
+
+## How Did We?
+
+
+---
+
+- 🎊 Break your solution into functions as you go
+- 👣 Write in small steps (smallest possible executable program)
+- 🎽 Lint your code as you go
+    - indenting code as you go
+- ✀ Avoid copy/pasting anything
+- 📥 Commit often 
+- 📣 console log to understand data
+- 🐛 Use node debug with debugger
+
+# Problem solving/ Debugging 🐛
+![bugs](https://raw.githubusercontent.com/tborsa/lectures/master/week1/day2/assets/debugging.png)
+
 Problem solving tips
 - Errors are your friend, but you have to try and understand what they are saying and not guess
 - Typical week1 research path:
-    - Google for a question (how do you phrase it?)
-    - Stackoverflow is first hit, shows an approach, is it valid?
-- I've never seen this weird arrow function syntax before that is in the approved answer, wtf. What does that mean? How do I interpret that?
+    1. Google for a question (how do you phrase it?)
+    2. Stackoverflow is first hit, shows an approach, is it valid?
+    3. I've never seen this weird arrow function syntax before that is in the approved answer!?!🤬  What does that mean? How do I interpret that?
+
 - Going to MDN to check for other examples.
 - At what point should I ask for mentor support? How should the question be formulated?
-- Reemphasize: 15m rule (explained on D1 but must reiterate here)
-- Reemphasize: don't just say "it's not working" to a mentor; explain first what you're trying to solve and where you are stuck. Even asking for help properly is a skill that will take some time for you to acquire, we don't expect it to be perfect on D2 but we expect you to work towards improving it. -Reemphasize: Code reviews and their importance
+
+---
+
+## Remember
+
+- ⏰ 15m rule 
+- ❌ don't just say "it's not working" to a mentor; explain first what you're trying to solve and where you are stuck. Even asking for help properly is a skill that will take some time for you to acquire, we don't expect it to be perfect on D2 but we expect you to work towards improving it. 
+- 💻 Code reviews arer important
 
 
-# git
-Basic git workflow (init -> add -> commit -> push)
+# Tools
+
+- JS [Tutor](http://pythontutor.com/javascript.html#mode=edit)
+- Node Debugger  
+
+---
+
+## Lotide 🌊
+
+Today you will be continuing with Lotide but not all the assignments will have to do with lotide.
+
+# Activities
+
+Non git remote dry run with paper
