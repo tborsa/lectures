@@ -24,6 +24,8 @@ min-height: 100%;
 }
 </style>
 
+[Lecture notes and code](https://github.com/tborsa/lectures/tree/master/week1/day2)
+
 ---
 
 ## me?
@@ -127,6 +129,8 @@ _Repository_: System for tracking changes in source code during software develop
 # Git Gud
 
 ![stage](https://raw.githubusercontent.com/tborsa/lectures/master/week1/day2/assets/gitstage.png)
+
+---
 
 __Init__: initializes a git repository for the current directory/folder.
 
