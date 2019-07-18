@@ -77,6 +77,7 @@ Easier to isolate errors.
 ## DEMO
 
 GOAL:
+
 >Write a node program that takes in an unlimited number of command line arguments, goes through each and prints out the sum of them. If any argument is not a whole number, skip it. Do support negative numbers though.
 
 ---
@@ -162,13 +163,21 @@ __Push__: Updates the remote git repository with any new changes in the local gi
 ---
 
 - 🎊 Break your solution into functions as you go
+
 - 👣 Write in small steps (smallest possible executable program)
+
 - 🎽 Lint your code as you go
+
    - indenting code as you go
+
 - ✀ Avoid copy/pasting anything
+
 - 📥 Commit often
+
 - 📣 console log to understand data
+
 - 🐛 Use node debug with debugger
+
 
 ---
 
@@ -179,24 +188,24 @@ Problem solving tips
 
 - Errors are your friend, but you have to try and understand what they are saying and not guess
 
-- Typical week1 research path:
-   1. Google for a question (how do you phrase it?)
-   2. Stackoverflow is first hit, shows an approach, is it valid?
-   3. I've never seen this weird arrow function syntax before that is in the approved answer!?!🤬  What does that mean? How do I interpret that?
+- Typical week1 research path:  
+   1. Google for a question (how do you phrase it?)  
+   2. Stackoverflow is first hit, shows an approach, is it valid?  
+   3. I've never seen this weird arrow function syntax before that is in the approved answer!?!🤬  What does that mean? How do I interpret that?  
 
 ---
 
 __Tips__
-- What type of error is it 📝 parsing/run-time error? (error message) or a 🤖 logical error? (code runs but doesn't do what it is supposed to)
-1. 🤖 For logical errors use console.logs, and debugger to understand why?
+- What type of error is it 📝 parsing/run-time error? (error message) or a 🤖 logical error? (code runs but doesn't do what it is supposed to)  
+1. 🤖 For logical errors use console.logs, and debugger to understand why?  
    - Do a dry run of the code in your head
-2. 📝 For parsing errors look for syntax errors, and do some research.
-   - Practice reading error messages, before copy pasting into google.
-   - Go to MDN to check for other examples.
-   - Experiment with how you are googling questions
-       - Have you included relevant information?
-       - If a mentor googles for problem solving pay attention to what they search.
-- Evaluate if you need mentor support?
+2. 📝 For parsing errors look for syntax errors, and do some research.  
+   - Practice reading error messages, before copy pasting into google.  
+   - Go to MDN to check for other examples.  
+   - Experiment with how you are googling questions  
+       - Have you included relevant information?  
+       - If a mentor googles for problem solving pay attention to what they search.  
+- Evaluate if you need mentor support?  
 
 ---
 
@@ -206,15 +215,15 @@ __Tips__
 
 ---
 
-- ⏳ 15m rule
-- ❌ don't just say "it's not working" to a mentor; explain first what you're trying to solve and where you are stuck. Even asking for help properly is a skill that will take some time for you to acquire, we don't expect it to be perfect on D2 but we expect you to work towards improving it.
+- ⏳ 15m rule  
+- ❌ don't just say "it's not working" to a mentor; explain first what you're trying to solve and where you are stuck. Even asking for help properly is a skill that will take some time for you to acquire, we don't expect it to be perfect on D2 but we expect you to work towards improving it.  
 - 💻 Code reviews are important
 
 ---
 
 # Tools 🔧
 
-- JS [Tutor](http://pythontutor.com/javascript.html#mode=edit)
+- JS [Tutor](http://pythontutor.com/javascript.html#mode=edit)  
 - Node Debugger 
 
 ---
@@ -227,7 +236,7 @@ Today you will be continuing with Lotide but not all the assignments will have t
 
 # Activities
 
-- Non git remote dry run with paper
+- Non git remote dry run with paper  
 - PBJ coding
 
 
