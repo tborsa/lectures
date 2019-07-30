@@ -2,9 +2,10 @@
 ![flow](https://raw.githubusercontent.com/tborsa/lectures/master/week2/day2/assets/flow.gif)
 
 # Topics 📢
+- Asynchronous and Synchronous
 - Asynchronous control flow
-- setTimeout and setInterval functions
-- Filesystem functions and their async nature
+  - setTimeout and setInterval functions
+  - Filesystem functions and their async nature
 - Events and event handling
 
 # Callbacks Review 
@@ -23,13 +24,19 @@ __Synchronous:__ is often refered to as blocking execution. When a task cannot b
 __Asynchronous:__ is often refered to as non-blocking execution. When a task cannot be executed immediately the program will continue on to other things and return to the task later when it is complete.
 
 A synchronous waiter would take an order froma customer deliver it to the cooks and then wait for the food to finish before taking another order.  
+
 A more typical waiter is asynchronous. They take a customers order, deliver it to the chef then continue to take orders until the food finishes, at which point they give the meal to the customer.  
 
 # JS Asynchronous
 
-JavaScript is an asynchronous langauge. Just like a typical waiter when it has to wait for something, it will continue to do the tasks that it can do. 
+JavaScript is an asynchronous langauge. Just like a typical waiter when it has to wait for something, it will continue to do tasks that it can progress on.
+
+Javascript started as a browser language. It needed to be asynchronous to handle all of the different UI events at the same time. 
 
 The things that Javascript often has to wait for are Input/Output actions or IO for short. 
+
+To deal with asynchronous code Javascript uses callbacks. 
+The callback of an asynchronous function will only be executed once the asynchronous task has been completed. 
 
 ```javascript
 console.log('BEFORE CALL');
@@ -41,9 +48,11 @@ console.log('AFTER CALL');
 ## SetTimeout ⏰ SetInteval ⏱
 Settimeout and SetInterval are functions that force a wait / force async behavior.
 
-SetTimeout: specifies a function to be called once after a specified time.
+__SetTimeout:__ specifies a function to be called once after a specified time.
 
-SetInterval: specifies a function to be called repeatedly given the specified interval.
+__SetInterval:__ specifies a function to be called repeatedly given the specified interval.
+
+Both are asynchronous functions. Instead of waiting for the time to elapse JS continues executing code. 
 
 # Event Queue
 ![queue](https://raw.githubusercontent.com/tborsa/lectures/master/week2/day2/assets/queue.jpg)
@@ -51,6 +60,8 @@ SetInterval: specifies a function to be called repeatedly given the specified in
 In JavaScript code that can't be run right away gets put in a queue for later execution. 
 
 First a program will execute all of the main source code then it will loop through all of the asychronous tasks checking if any are finished.  
+
+If one of the IO/asynchronous things is done it's callback will be execute. 
 
 # Scope 🔭
 
@@ -79,7 +90,7 @@ Because it is a module we have to include it at the begining of a file in order 
 ```javascript
 var fs = require('fs');
 ```
-It takes some time(relatively) to complete operations on files, so these actions are executed asynchronously. 
+It takes some time(relatively) to complete operations on files, so these actions are executed asynchronously. (filesystem operations fall under IO)
 
 ### Read 📖
 
@@ -87,7 +98,7 @@ Reading files and writing files takes time
 
 ```Javascript
 var fs = require('fs');
-fs.readFile('demofile1.html', function(err, data) {
+fs.readFile('demofile1.html', 'utf8', function(err, data) {
   console.log(data);
 });
 ```
@@ -160,7 +171,7 @@ We could use stdin as event code.
 ```javascript
 process.stdin.setEncoding('utf8');
 
-process.stdin.on('readable', () => {
+process.stdin.on('readable', 'utf8', () => {
   let chunk;
   // Use a loop to make sure we read all available data.
   while ((chunk = process.stdin.read()) !== null) {

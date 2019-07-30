@@ -23,7 +23,7 @@ console.log('AFTER CALL', x);
 //Readfile example
 
 var fs = require('fs');
-fs.readFile('demofile1.html', function(err, data) {
+fs.readFile('demofile.html','utf8',  function(err, data) {
   console.log(data);
 });
 // then add

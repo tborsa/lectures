@@ -1,20 +1,19 @@
 const fs = require('fs');
 
 process.stdin.setEncoding('utf8');
-
 console.clear();
-console.log("Typewrite sim");
-
+console.log("typewriter sym");
 process.stdin.on('data', (data)=>{
     console.clear();
-    fs.appendFile('output.txt', data, (err)=>{
-        console.log('Ping!');
+    fs.appendFile('output.js', data, (err)=>{
+        console.log("ping!");
         setTimeout(()=>{
             console.clear();
-        }, 500);
+        
+        }, 500)
     })
-})
+});
 
 process.stdin.on('end', ()=>{
-    console.log(' work saved ');
+    console.log(' work saved');
 })
