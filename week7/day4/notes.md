@@ -1,19 +1,45 @@
-# Complex State Management
+# Complex State Management  & Web Sockets
+
+![reducer](https://raw.githubusercontent.com/tborsa/lectures/tree/master/week7/day4/assets/chat.gif)
+
+
+# Topics📢
+
+- Reducers
+  - Pure Functions
+  - Static & Type Reducers
+  - Reducer Hook
+- Websockets
+  - History
+  - Client
+  - Server
+  - React
 
 # Reducers
- A programming pattern to reduce data structures down 
 
- For loop to turn an array into a sum 
+![reducer](https://raw.githubusercontent.com/tborsa/lectures/tree/master/week7/day4/assets/blender.gif)
 
- array.prototype.reduce
+A programming pattern to reduce data structures down.
 
- let arr = [1,2,3,4];
- arr.reduce((accumulator, value)=>{accumulator+value}, 0)
+Reducers are pure functions, meaning their output is determined solely by their input values. 
 
+We have probably used a reducer pattern in code that we have written up to this point.
+- For loop to turn an array into a sum 
+
+There is a built in reduce pattern with arrays in JavaScript.
+array.prototype.reduce
+
+```javascript
+
+let arr = [1,2,3,4];
+arr.reduce((accumulator, value)=>{accumulator+value}, 0)
+```
+The accumulator represents the value being carried over from each loop of the reducer. 
+Value is the current element from the array. 
 
 # Complexity to reducer 
 
- Using nested objects within an array you can be more precise on how you are reducing 
+ By using nested objects within an array you can be more precise on how you are consolidating the input data.  
 
  ```js
  [
@@ -30,37 +56,124 @@
 }, 0);
 ```
 
-Approach
-Start by talking about the concept of reducers in Javascript. The example in the activity shows the transition from a normal sum reducer to one that uses an object with a type property that can direct the behaviour of the reducer.
+With this pattern we are not restricted to the same behavior for each element in the array. 
 
-With reducers, we can describe every state change as an action. It is important to show that reducers are pure and state can be reproduced predictably given a list of actions.
+# Why is this important?
+
+Reducers are helpful for modifying data in general, but are particularly helpful with React.
+
+So far we have used the hook __useState__ for setting state data.
+(Data that our components depend on)
+
+Another hook that we can use to manage state is  __useReducer__
+useReducer is similar to useState but with reducers.  
+
+# useReducer
+
+useReducer takes two parameters, a reducer function and the initial state to use. 
+It outputs the current value of the state, and a dispatcher.
+
+The dispatcher calls the reducer function with the current state and the action passed by the user. 
+
+```javascript
+
+const reduceUsers = (state, action) {
+  if(action.type==='add'){
+    return state + action.value;
+  }else if(action.type === 'subtract'){
+    return state - action.value;
+  }else if(action.type === 'reset){
+    return 0;
+  }else{
+    return state;
+  }
+}
+
+let [count,dispatchCount] = useReducer(reduceCount, 0);
+
+dispatchCount({type: 'subtract', value: 6});
+
+```
+
+demo counter
+
+
+# useReducer Contd..
+
+useReducer allows us to modify and update our state in more complex and managable ways.
+We can define state changes as specific actions (add, subtract, reset) 
+Especially if your state is complex (ie. objects, arrays) useReducer makes it easier to handle.
+
+We have some options on how we create the reducer part of use reducer.
+
+### if/else
+```javascript
+const reduceUsers = (state, action) {
+  if(action.type==='add'){
+    return state + action.value;
+  }else if(action.type === 'subtract'){
+    return state - action.value;
+  }else if(action.type === 'reset){
+    return 0;
+  }else{
+    return state;
+  }
+}
+```
+
+### switch
+```javascript
+const reduceUsers = (state, action)=> {
+  switch(action.type){
+    case 'add':
+      return state + action.value;
+    break;
+    case 'subtract':
+      return state - action.value;
+    break;
+    case 'reset':
+      return 0;
+    break;
+    default:
+      return state;
+  }
+}
+```
+### lookup
+
+```javascript
+const userLookup = {
+  add: (state, value) => {
+    return state + value;
+  },
+  subtract: (state, value) => {
+    return state - value;
+  },
+  reste: (state, value) => {
+    return 0;
+  }
+}
+const reduceUsers = (state, action) => {
+  return userLookup[action.type](state, action.value);
+}
+```
+
+What are the advantages of each?
+
 
 
 # WebSockets
 
-WebSockets are a big topic for a single lecture. Focus on the important parts:
-
-Why were WebSockets introduced?
-What techniques were used before the introduction of WebSockets to emulate real-time communication?
-How do we use WebSockets in the browser?
-Build an application that uses WebSockets to dispatch actions. Although a chat application may be too obvious, it provides an excellent reference for students. The lecturer should choose something that is realtime and of similar scope.
-
-Demo
-During the demonstration, we should discuss the following topics.
-
-Sockets are confusing to set up because there is a browser implementation and libraries for the client and server.
-Installation and configuration of the web sockets on the server and client.
-Deciding which actions to use for a data model.
-Defining action types as constants with a comparison of pros and cons.
-How does the useReducer Hook differ from the useState Hook?
-Which pattern to choose for the reducer. Switch/case, if/else or a lookup object.
-Do we have to declare the reducer where we use it? What are the benefits of exporting a reducer from a separate module?
+![sockets](https://raw.githubusercontent.com/tborsa/lectures/tree/master/week7/day4/assets/socket.gif)
 
 
-- WebSocket History  
-- web sockets with react  
-- socket io
+WebSockets is a web protocol that allows for real time communication. 
 
+Realtime? 
+
+Examples:
+http://powerline.io/
+http://web-demo.adaptivecluster.com/
 
 # History of Sockets
 ![history](https://raw.githubusercontent.com/tborsa/LighthouseLabs/master/lectures/Week6/Day4/Lecture/assets/history.jpg)
@@ -87,7 +200,20 @@ Websockets was created out of a want/need for open real-time communication.
 
 # Websockets as a Protocol
 
-websockets is a protocol there are many options for socket servers
+Websockets are full duplex communication over a single TCP connection.
+Websocket protocol is distinct from http but is compatible with it. 
+
+websockets as a protocol is supported by modern browsers. As such there is websocket implementation built into the client. (no libraries required!) 
+
+__Client__
+
+- WebSocket  
+ - WebSocket protocol is natively supported by browsers  
+ - Built in client api  
+- Socket.io  
+ - Wraps WebSocket ApI with some additional features  
+ 
+Node does not have a native implementation of websockest so a library is required. There are many options for socket servers.
 
 __Server__
 - websockets  
@@ -104,145 +230,44 @@ __Server__
   - parses incoming data to JSON  
   - message types  
 
-__Client__
-
-- WebSocket  
- - WebSocket protocol is natively supported by browsers  
- - Built in client api  
-- Socket.io  
- - Wraps WebSocket ApI with some additional features  
 
 # React and Websockets
 
-__Server__  
-- Generic setup  
-
-
-__Client__  
-
-```JavaScript
-import React, { Component } from 'react'
-const URL = 'ws://localhost:3000'
-
-class Chat extends Component {
- state = {
-   name: 'Travis',
-   messages: [],
- }
-
-
- componentDidMount() {
-   this.ws = new WebSocket(URL)
-   this.ws.onopen = () => {
-     // event listener for connection
-     console.log('connected')
-      this.ws.onmessage = evt => {
-        // on incoming message, add it to the list of messages
-        const message = JSON.parse(evt.data)
-        this.setState({
-          messages: [...this.state.messages, message]
-        })
-      }
-   }
-   //Could add connection on close
-
- }
- .
- .
- .
- submitMessage = messageString => {
-   // on submitting the ChatInput form, send the message, add it to the list and reset the input
-   const message = { name: this.state.name, message: messageString }
-   this.ws.send(JSON.stringify(message))
-   this.setState({
-     messages: [...this.state.messages, message]
-   })
- }
-
-Render(){
-  return(
-    <Message socket={this.sockt}/ socketHandlerFunction={this.handlePost} ></Message>
-    <Notification socket={this.socket}></Notification>
-  )
-}
-
+```javascript
+//create socket connection
+const socket = new WebSocket('ws://localhost:8080');
+//listen to socket events
+socket.onopen = ()=>{
+  console.log('socket successfully connected');
+};
+socket.onmessage = (message)=>{
+  console.log('Message Recieved: ', message);
+};
+//send socket messages
+ socket.send('hello socket!');
 ```
+
+# DEMO
+
 Socket as State?  
 Props?
 
 When to initiate?
 
-in constructor?
-componentDidMount?
-
-this.ws = thing
+inside component function?
+outside component function?
 
 methods down
 keep render as simple as possible
 
 
-# Socket.io
+Demo
+During the demonstration, we should discuss the following topics.
 
-![Socketio](https://raw.githubusercontent.com/tborsa/LighthouseLabs/master/lectures/Week6/Day4/Lecture/assets/socketio.jpg)
-
-[Docs](https://socket.io/docs/)
-
-Socket.io is websockets wrapped with additional protocol.
-
-A WebSocket client will not be able to successfully connect to a Socket.io server, and a Socket.io client will not be able to connect to a WebSocket server.
-
-
-Adds more features!
-
-__Custom Events__
-
-```Javascript
-socket.on('my other event', function (data) {
-   console.log(data);
- });
-```
-
-__Server or Socket Emits__
-
-```Javascript
-io.emit('this', { will: 'be received by everyone'});
-socket.emit('this', {will: 'be received by one socket' })
-```
-
-__Broadcast__
-
-Send a message to all sockets except the sending socket
-
-```Javascript
-socket.broadcast.emit('this', {will: 'be received by all but the calling socket' });
-```
-
-__Rooms__
-
-Join a specific room
-
-```Javascript
-io.on('connection', function(socket){
- socket.join('some room');
-});
-```
-emit only to those in a specific room
-
-```Javascript
-io.to('some room').emit('some event');
-```
-
-
-
-
-# Battle
-
-![battle](https://raw.githubusercontent.com/tborsa/LighthouseLabs/master/lectures/Week6/Day4/Lecture/assets/battle.jpg)
-
-- add health numbers  
-- add socket battle  
-- pass attack function down  
-- add broadcast when one pokemon wins  
-- Battle rooms?  
-- ????  
-- Profit  
+Sockets are confusing to set up because there is a browser implementation and libraries for the client and server.
+Installation and configuration of the web sockets on the server and client.
+Deciding which actions to use for a data model.
+Defining action types as constants with a comparison of pros and cons.
+How does the useReducer Hook differ from the useState Hook?
+Which pattern to choose for the reducer. Switch/case, if/else or a lookup object.
+Do we have to declare the reducer where we use it? What are the benefits of exporting a reducer from a separate module?

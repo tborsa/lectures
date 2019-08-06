@@ -1,22 +1,25 @@
 # Asynchronous Control Flow
 ![flow](https://raw.githubusercontent.com/tborsa/lectures/master/week2/day2/assets/flow.gif)
 
+Notes and code can be found [Here](https://github.com/tborsa/lectures/tree/master/week2/day2)
+
 # Topics 📢
-- Asynchronous and Synchronous
-- Asynchronous control flow
- - setTimeout and setInterval functions
- - Filesystem functions and their async nature
-- Events and event handling
+- Asynchronous and Synchronous  
+- Asynchronous control flow  
+  - setTimeout and setInterval functions  
+  - Filesystem functions and their async nature  
+- Events and event handling  
 
 # Callbacks Review
+
 ![callbacks](https://raw.githubusercontent.com/tborsa/lectures/master/week2/day2/assets/callbacks.jpg)
+
 What are callbacks?
 
 What is a higher order function?
 
-Review Example
 
-# What is Asynchronous vs What is Synchronous
+# What is Asynchronous vs What is Synchronous  
 ![waiter](https://raw.githubusercontent.com/tborsa/lectures/master/week2/day2/assets/waiter.jpg)
 
 __Synchronous:__ is often referred to as blocking execution. When a task cannot be executed immediately the program will wait for it to finish before continuing on to other things.
@@ -38,14 +41,15 @@ The things that Javascript often has to wait for are Input/Output actions or IO 
 To deal with asynchronous code Javascript uses callbacks.
 The callback of an asynchronous function will only be executed once the asynchronous task has been completed.
 
-```javascript
+```javascript  
 console.log('BEFORE CALL');
 
 setTimeout(() => console.log('INSIDE CALL'), 1000);
 
 console.log('AFTER CALL');
 ```
-## SetTimeout ⏰ SetInterval ⏱
+
+## SetTimeout ⏰ SetInterval ⏱  
 Settimeout and SetInterval are functions that force a wait / force async behavior.
 
 __SetTimeout:__ specifies a function to be called once after a specified time.
@@ -54,7 +58,7 @@ __SetInterval:__ specifies a function to be called repeatedly given the specifie
 
 Both are asynchronous functions. Instead of waiting for the time to elapse JS continues executing code.
 
-# Event Queue
+# Event Queue  
 ![queue](https://raw.githubusercontent.com/tborsa/lectures/master/week2/day2/assets/queue.jpg)
 
 In JavaScript code that can't be run right away gets put in a queue for later execution.
@@ -79,6 +83,7 @@ setTimeout(() => {
 
 console.log('AFTER CALL', x);
 ```
+
 An asynchronous function/callback will retain the scope that it was originally called in.
 
 
@@ -90,6 +95,7 @@ Because it is a module we have to include it at the beginning of a file in order
 ```javascript
 var fs = require('fs');
 ```
+
 It takes some time(relatively) to complete operations on files, so these actions are executed asynchronously. (filesystem operations fall under IO)
 
 ### Read 📖
@@ -104,6 +110,7 @@ fs.readFile('demofile1.html', 'utf8', function(err, data) {
 ```
 
 ### Write 📝
+
 There are different methods for writing data to files with fs. One is.
 ```javascript
 var fs = require('fs');
@@ -119,14 +126,14 @@ writefile replaces the specified file with the specified content.
 
 ## Examples
 
-- What will each output show?
-- What will result be equal to?
-- How do we get the updated data back? Can we just return it?
-- When does higherOrderFunc "end" (finish running) ?
-- Since higherOrderFunc finishes "running" before our setTimeout fires, how can the setTimeout callback modify the data local variable?
+- What will each output show?  
+- What will result be equal to?  
+- How do we get the updated data back? Can we just return it?  
+- When does higherOrderFunc "end" (finish running) ?  
+- Since higherOrderFunc finishes "running" before our setTimeout fires, how can the setTimeout callback modify the data local variable?  
 
 
-```javascript
+```javascript  
 const higherOrderFunc = function(callback) {
  const data = { initials: "YV" };
 
@@ -147,8 +154,8 @@ console.log('BEFORE MAIN CALL');
 const result = higherOrderFunc(() => {
  console.log('INSIDE CALLBACK');
 })
-console.log('AFTER MAIN CALL');
-```
+console.log('AFTER MAIN CALL');  
+```  
 
 
 ## Events?
@@ -168,11 +175,11 @@ FS has events, another example of an event is command line input.
 
 To get command line input we use stdin to listed for the event.
 
-```javascript
+```javascript  
 process.stdin.setEncoding('utf8');
 
 process.stdin.on('data', 'utf8', (data) => {
-   process.stdout.write(`data: ${data}`);
+   console.log(data);
  }
 });
 
@@ -187,7 +194,7 @@ process.stdin.on('end', () => {
 # Sleep sort?
 
 
-```javascript
+```javascript   
 const numbers = [900, 310, 1006, 0, 2, 3630, 1, 52, 603, 59, 81, -500, -50];
 
 // yes yes, I know... this doesn't _return_ the numbers and instead outputs them to console. This isn't meant to be production code!
@@ -198,5 +205,5 @@ const sleepSort = function(nums) {
 }
 
 sleepSort(numbers);
-```
+```  
 
