@@ -1,6 +1,6 @@
 # Complex State Management  & Web Sockets
 
-![reducer](https://raw.githubusercontent.com/tborsa/lectures/tree/master/week7/day4/assets/chat.gif)
+![reducer](https://raw.githubusercontent.com/tborsa/lectures/master/week7/day4/assets/chat.gif)
 
 
 # Topics📢
@@ -17,7 +17,7 @@
 
 # Reducers
 
-![reducer](https://raw.githubusercontent.com/tborsa/lectures/tree/master/week7/day4/assets/blender.gif)
+![reducer](https://raw.githubusercontent.com/tborsa/lectures/master/week7/day4/assets/blender.gif)
 
 A programming pattern to reduce data structures down.
 
@@ -32,7 +32,7 @@ array.prototype.reduce
 ```javascript
 
 let arr = [1,2,3,4];
-arr.reduce((accumulator, value)=>{accumulator+value}, 0)
+let res = arr.reduce((accumulator, value)=>{accumulator+value}, 0)
 ```
 The accumulator represents the value being carried over from each loop of the reducer. 
 Value is the current element from the array. 
@@ -82,7 +82,7 @@ const reduceUsers = (state, action) {
     return state + action.value;
   }else if(action.type === 'subtract'){
     return state - action.value;
-  }else if(action.type === 'reset){
+  }else if(action.type === 'reset'){
     return 0;
   }else{
     return state;
@@ -113,7 +113,7 @@ const reduceUsers = (state, action) {
     return state + action.value;
   }else if(action.type === 'subtract'){
     return state - action.value;
-  }else if(action.type === 'reset){
+  }else if(action.type === 'reset'){
     return 0;
   }else{
     return state;
@@ -154,25 +154,27 @@ const userLookup = {
   }
 }
 const reduceUsers = (state, action) => {
-  return userLookup[action.type](state, action.value);
+  return userLookup[action.type](state, action.value)||state;
 }
 ```
 
 What are the advantages of each?
 
+#Immutable patterns
+
 
 
 # WebSockets
 
-![sockets](https://raw.githubusercontent.com/tborsa/lectures/tree/master/week7/day4/assets/socket.gif)
+![sockets](https://raw.githubusercontent.com/tborsa/lectures/master/week7/day4/assets/socket.gif)
 
 
 WebSockets is a web protocol that allows for real time communication. 
 
 Realtime? 
 
-Examples:
-http://powerline.io/
+Examples:  
+http://powerline.io/  
 http://web-demo.adaptivecluster.com/
 
 # History of Sockets
@@ -203,9 +205,10 @@ Websockets was created out of a want/need for open real-time communication.
 Websockets are full duplex communication over a single TCP connection.
 Websocket protocol is distinct from http but is compatible with it. 
 
-websockets as a protocol is supported by modern browsers. As such there is websocket implementation built into the client. (no libraries required!) 
 
 __Client__
+
+websockets as a protocol is supported by modern browsers. As such there is websocket implementation built into the client. (no libraries required!) 
 
 - WebSocket  
  - WebSocket protocol is natively supported by browsers  
@@ -213,9 +216,11 @@ __Client__
 - Socket.io  
  - Wraps WebSocket ApI with some additional features  
  
-Node does not have a native implementation of websockest so a library is required. There are many options for socket servers.
 
 __Server__
+
+Node does not have a native implementation of websockest so a library is required. There are many options for socket servers.
+
 - websockets  
   - Barebones almost pure JS implementation of WebSocket protocol  
     - client uses native websocket object  
