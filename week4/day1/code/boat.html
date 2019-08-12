@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="float.css">
+    </head>
+    <h1>Floating...</h1>
+    <div class="ocean">
+        <div class="boat left"></div><div class="boat left"></div><div class="boat left"></div>
+        <div class="clear"></div>
+        <div class="ship">Float allows inline items to wrap around them, and they do not take up vertical space in a div so they float atop block elements.</div>
+      </div>
+    <div class="ocean">
+        <div class="boat left"></div><div class="boat left"></div><div class="boat right"></div>
+        <div class="ship">You can float elements left and right and the text will wrap both. </div>
+        <div class="boat left"></div>
+      </div>
+    <div class="ocean">    
+        <div class="boat inblock"></div><div class="boat inblock"></div><div class="boat inblock"></div>
+            <div class="ship">Alternitively you can use display: inline-block to allow multiple boats to take up a row, while also taking up vertical space.</div>
+            <div class="boat left"></div>
+            <div class="clear"></div>
+            <div class="ship">Alternitively you can use display: inline-block to allow multiple boats to take up a row, while also taking up vertical space.</div>
+    </div>
+
+</html>

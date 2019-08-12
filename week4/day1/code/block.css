@@ -1,0 +1,13 @@
+*{
+    font-family: 'Roboto', Helvetica, sans-serif;
+    font-size: 80px;
+    font-weight: 700;
+    color: slateblue;
+}
+
+div{
+  width: 400px;
+  height: 400px;
+  background-image: url("block.png");
+  background-size: contain;
+}

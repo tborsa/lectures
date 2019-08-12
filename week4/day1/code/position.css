@@ -1,0 +1,39 @@
+*{
+    font-family: 'Roboto', Helvetica, sans-serif;
+    font-size: 80px;
+    margin:20px;
+    font-weight: 700;
+    color: slateblue;
+}
+.container{
+    border: 5px solid slategray;
+    margin-top: 100px;  
+    height: 1000px;
+    position:relative;
+}
+div.relative{
+    position: relative;
+    top: 100px;
+    left: 100px;
+}
+.absolute{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.fixed{
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+.sticky{
+    position: sticky;
+    bottom:0;
+}
+.box{
+    background-image:url("box.png");
+    background-size: contain;
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+}

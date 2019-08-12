@@ -1,0 +1,33 @@
+*{
+    font-family: 'Roboto', Helvetica, sans-serif;
+    font-size: 80px;
+    margin:20px;
+    font-weight: 700;
+    color: slateblue;
+}
+.ocean{
+    background-color: aqua;
+}
+
+.ship{
+    background-color: lightblue;
+}
+.boat{
+  width: 200px;
+  height: 200px;
+  background-image: url("boat.png");
+  background-size: contain;
+}
+
+.left{
+  float: left;
+}
+.right{
+  float: right;
+}
+.inblock{
+  display: inline-block;
+}
+.clear{
+  clear: both;
+}
