@@ -4,7 +4,7 @@
 
 ![Ruby](https://raw.githubusercontent.com/tborsa/LighthouseLabs/master/lectures/Week7/Day1/Lecture/assets/ruby.jpg)
 
-Notes and code [here](https://github.com/tborsa/LighthouseLabs/tree/master/lectures/Week7/Day1/Lecture)
+Notes and code [here](https://github.com/tborsa/lectures/tree/master/week8/day4)
 
 lecture going through ruby basics
 with a brief intro into OOP
@@ -378,6 +378,8 @@ say_something = -> (thing) { puts "This is a lambda" }
 ```
 *run a lambda using lambda_name.call() 
 You can pass lambdas around
+
+A deeper dive [here](https://www.rubyguides.com/2016/02/ruby-procs-and-lambdas/)
 
 # Scoping
 
