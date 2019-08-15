@@ -4,7 +4,7 @@
 
 ![css](https://raw.githubusercontent.com/tborsa/LighthouseLabs/master/lectures/Week3/Day1/Lecture/assets/css.gif)
 
-Notes and code [here](https://github.com/tborsa/LighthouseLabs/tree/master/lectures/Week3/Day1/Lecture)
+Notes and code [here](https://github.com/tborsa/lectures/tree/master/week4/day1)
 
 
 ---
