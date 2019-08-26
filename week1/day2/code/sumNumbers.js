@@ -5,6 +5,7 @@ const getArguments = function() {
   const userArgs = process.argv.slice(2);
   return userArgs;
 };
+const test =0;
 
 //Check if input is a whole number
 //If its not a whole number skip it
@@ -24,6 +25,7 @@ const addWholeNumbers = function(numArr) {
   for (let element of numArr) {
     sum += checkWholesomeness(element);
   }
+  debugger;
   return sum;
 };
 
