@@ -4,10 +4,15 @@
     font-weight: 700;
     color: slateblue;
 }
-
+span{
+  display: block;
+  height: 200px;
+  width: 200px;
+  background-color: wheat;
+}
 div{
-  width: 400px;
-  height: 400px;
-  background-image: url("block.png");
+  height: 300px;
+  width: 300px;
+  background-image: url("./block.png");
   background-size: contain;
 }

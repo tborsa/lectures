@@ -11,6 +11,7 @@ div {
 
 .two{
     background-color: cornflowerblue;
+    border: 2px solid pink;
 }
 
 .three{

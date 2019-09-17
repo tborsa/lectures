@@ -31,3 +31,9 @@
 .clear{
   clear: both;
 }
+div.box.left{
+  color: red;
+ }
+div.box{
+  color: blue;
+}

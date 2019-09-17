@@ -121,16 +121,6 @@ Cascading Style Sheets
 
 The cascading algorithm determines how to find the value(style) to apply for each property for each document element.
 
-
----
-# Syntax
-
-```CSS
-selector list{
-   property: value,
-}
-```
-
 ---
 
 ## Applying Styles
@@ -164,8 +154,73 @@ DEMO
 
 * Embedded and External style sheets are applied in the order that they appear in the HTML document. You should think about the order that you want things applied. Sort of
 
+
+---
+# Syntax
+
+```CSS
+selector list{
+   property: value,
+}
+```
 ---
 
+## IDs Vs Classes 🔖
+
+🎣 Hooks to grab elements in order to apply style to them.
+
+When to use IDs vs Classes
+
+Classes
+- Same class on multiple elements
+- Multiple classes on one element
+
+```HTML
+<div class="shaman"></div>
+<div class="rogue"></div>
+```
+
+IDs are unique
+- each element can have at most one ID
+- You should have only one element with a particular ID
+- secret browser power url#idname
+
+```HTML
+<div id="introduction"></div>
+```
+
+
+** Elements can have both classes and ID's
+
+There is nothing you can do with a class in css that you can do with an ID and vise versa
+
+*** However classes and ID's are different to JS
+
+---
+
+# Selectors
+
+Way we use tags, ID's, Classes to apply CSS to them.
+
+``` CSS
+div, .primary {
+
+}
+```
+``` CSS
+div.primary {
+
+}
+```
+```CSS
+div .primary {
+
+}
+```
+
+https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Combinators_and_multiple_selectors
+
+---
 
 # Reset / Normalize
 
@@ -378,64 +433,6 @@ The position property specifies the type of positioning method used for an eleme
   - TRBL is set relative to the viewport so the element stays in the same position even when content is scrolled.
 
 - sticky
-
----
-
-
-## IDs Vs Classes 🔖
-
-🎣 Hooks to grab elements in order to apply style to them.
-
-When to use IDs vs Classes
-
-Classes
-- Same class on multiple elements
-- Multiple classes on one element
-
-```HTML
-<div class="shaman"></div>
-<div class="rogue"></div>
-```
-
-IDs are unique
-- each element can have at most one ID
-- You should have only one element with a particular ID
-- secret browser power url#idname
-
-```HTML
-<div id="introduction"></div>
-```
-
-
-** Elements can have both classes and ID's
-
-There is nothing you can do with a class in css that you can do with an ID and vise versa
-
-*** However classes and ID's are different to JS
-
----
-
-# Selectors
-
-Way we use tags, ID's, Classes to apply CSS to them.
-
-``` CSS
-div, .primary {
-
-}
-```
-``` CSS
-div.primary {
-
-}
-```
-```CSS
-div .primary {
-
-}
-```
-
-https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Combinators_and_multiple_selectors
 
 ---
 

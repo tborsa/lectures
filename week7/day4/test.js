@@ -1,32 +1,26 @@
-
-
-let arr = [
-    {type: "add", value: 1},
-    {type: "subtract", value: 5},
-    {type: "add", value: 3},
-    {type: "multiply", value: 2}
+const arr = [
+  {type: "add", value: 1},
+  {type: "divide", value: 5},
+  {type: "multiply", value: 6},
+  {type: "subtract", value: 3}
 ];
 
-const lookup = {
-    add: (accumulator, value)=>{
-        return accumulator + value;
-    },
-    subtract: (accumulator, value) =>{
-        return accumulator - value;
-    },
-    multiply: (accumulator, value) =>{
-        return accumulator * value;
-    }
-}
-console.log(lookup["divide"](12, 2))
-let total = arr.reduce((accumulator, action)=>{
-    console.log(accumulator);
-    if(lookup[action.type]){
-        return lookup[action.type](accumulator, action.value);
-    }else{
-        return accumulator;
-    }
-},0 )
+const mathsLookup = {
+  add: (accumulator, action)=>{
+    return accumulator + action.value;
+  },
+  divide: (accumulator, action)=>{
+    return accumulator / action.value;
+  },
+  multiply: (accumulator, action)=>{
+    return accumulator * action.value;
+  },
+  subtract: (accumulator, action)=>{
+    return accumulator - action.value;
+  }
+};
 
-
-console.log(total);
+const result = arr.reduce((accumulator, action)=>{
+  return mathsLookup[action.type](accumulator, action);
+},0);
+console.log(result);
