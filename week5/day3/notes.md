@@ -1,51 +1,82 @@
 # W05D03 SQL from our Apps
 
-Hi everyone!
+Notes and code can be found [Here](https://github.com/tborsa/lectures/tree/master/week5/day3)
 
-Today we talked about how to access a Postgres database from our JavaScript code. We started by running SQL queries inside the psql terminal. We then created a command line tool that took in various arguments and executed the queries using the node package pg. Finally we covered getting the data from the database into an ejs template and rendering it for the user in a browser.
+# Summary 
 
-We also demonstrated an SQL injection attack and successfully deleted the villains table by giving our command line app some unexpected input. Always sanitize any data that you get from outside your application (eg. users, another api, etc).
+Today we built a pokedex web application with a focus on how to connect and integrate our app with a postgres database.
 
-I have completed the Express app with Edit, Add, and Delete functionality for you to look at. The repo has getting started instructions if you want to clone the repo and get it running on your machine.
+We tried to modularize our application so that the code was separated by different functionality. 
 
-As always, feel free to reach out to me on Slack if you have any questions.
+As such we had modules for:
 
-Thanks and have a great day!
+The database connection: database-connection.js
+Database query functions: data-helpers.js
+Backend routes: pokemon-routes.js
 
-[Repo](https://github.com/andydlindsay/12weekW5D3)
+Initially, we delivered the data to our client as JSON, but towards the end, we made some EJS templates to better display the information.
 
-### To Do
-- [x] Create a database and query it using `psql` terminal
-- [x] Perform `BREAD` actions on database from command line
-- [x] Perform `BREAD` actions on database from the browser
+We demonstrated an SQL injection attack using only the browser to drop the entire pokemon table, demonstrating why we have to be extra careful when receiving data from the user.
 
-### node-postgres
+We then looked at how to protect against such an attack.
 
-We are going to use node-postgres (`pg`) node package to interact with our database.
+Always sanitize any data that you get from outside your application (eg. users, another API, etc).
 
-In order to connect with our database, we pass configuration options to the `pg` client:
+### code-snippits
 
-```js
-const pg = require('pg');
-
-const config = {
-    user: '<user name>',
-    password: '<password>',
-    database: '<db>',
-    host: '<host>'
-};
-
-const client = new pg.Client(config);
-```
-
-Then we tell our client to connect to the database and we execute queries using the client:
+In order to connect with our database, we passed configuration options to the `pg` client using eviornment variables accesssed with dotenv:
 
 ```js
+const {Client} = require('pg');
+require('dotenv').config();
+
+const client = new Client({
+  host: process.env.DATABASE_HOST,
+  user: process.env.DATABASE_USER,
+  database: process.env.DATABASE_NAME
+});
+
 client.connect();
-client.query('SELECT * FROM <table>', (err, result) => console.log(err, result));
 ```
 
-**NOTE:** `pg` uses "error first" callbacks meaning that the first argument will always be the error (if any) or null and the second argument will be the return value from our query.
+Then we used that connection in a data-helpers module to create a function for the different queries we needed.
+
+```js
+module.exports = (db) =>{
+  const getAllPokemon = () =>{
+    return db.query(`SELECT * FROM pokemons;`)
+      .then((response)=>{
+        return response.rows;
+      });
+  };
+  return {
+    getAllPokemon
+  };
+};
+```
+
+Finally, we gave access to these function to our route handler.
+
+```js
+const express = require('express');
+const router = express.Router();
+
+module.exports = (dataHelpers) =>{
+  router.get('/',(req, res)=>{
+    //get a list of all pokemon
+    dataHelpers.getAllPokemon()
+      .then((pokemons)=>{
+        res.render('index', {pokemons: pokemons});
+      });
+  });
+
+  return router;
+};
+```
+
+
+* Thanks to (Andy)[https://github.com/andydlindsay/12weekW5D3] for the notes below
+
 
 ### SQL Syntax Review
 
