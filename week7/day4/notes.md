@@ -13,14 +13,11 @@ I have also included the information on sockets if you wanted to learn more abou
 # Topics📢
 
 - Reducers 
- - Pure Functions 
- - Static & Type Reducers 
- - Reducer Hook 
+  - Pure Functions 
+  - Static & Type Reducers 
+  - Reducer Hook 
 - Websockets 
- - History 
- - Client 
- - Server 
- - React 
+
 
 # Reducers
 
