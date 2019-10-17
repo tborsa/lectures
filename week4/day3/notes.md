@@ -5,7 +5,7 @@
 ![ajax](https://raw.githubusercontent.com/tborsa/lectures/master/week4/day3/assets/ajax.jpg)
 
 
-Notes and code [here](https://github.com/tborsa/lectures/tree/master/week4/day1)
+Notes and code [here](https://github.com/tborsa/lectures/tree/master/week4/day3)
 
 
 ---
@@ -23,18 +23,18 @@ Notes and code [here](https://github.com/tborsa/lectures/tree/master/week4/day1)
 ---
 
 
-## What is AJAX?
+# What is AJAX? 🎊
 
 ![jax](https://raw.githubusercontent.com/tborsa/lectures/master/week4/day3/assets/jax.jpg)
 
 AJAX stands for Asynchronous JavaScript and XML.
 
-- It allows you to Send and recieve data from a server asynchronously.
+- It allows you to send and receive data from a server asynchronously.
 - Practically this means you can change content dynamically without reloading the page!
 
-AJAX is a the combination of a browser XMLHTTPRequest object and client side js and html.
+AJAX is the combination of the browser XMLHTTPRequest object and client-side js and HTML.
 
-AJAX requests can be done in pure Javascript, but for our purposes we will look at AJAX with JQuery. 
+AJAX requests can be done in pure Javascript, but for our purposes, we will look at AJAX with JQuery. 
 
 ---
 
@@ -42,7 +42,7 @@ AJAX requests can be done in pure Javascript, but for our purposes we will look 
 
 ---
 
-## The Browser and AJAX
+# The Browser and AJAX 🖼
 
 ![history](https://raw.githubusercontent.com/tborsa/lectures/master/week4/day3/assets/browsers.jpg)
 
@@ -57,7 +57,7 @@ Using AJAX you lose:
 
  Pros Cons
 
-However browsers provide a history api that you can use to interact with the 
+However, browsers provide a history API that you can use to interact with the 
 Browser history.
 
 The history object is part of the window object and is accessed through the window.history property.
@@ -66,7 +66,7 @@ https://css-tricks.com/using-the-html5-history-api
 
 ---
 
-## Why use AJAX 🐦
+# Why use AJAX 🤷‍
 
 ![ajax](https://raw.githubusercontent.com/tborsa/lectures/master/week4/day3/assets/ajaxinfo.jpg)
 
@@ -76,20 +76,20 @@ PROS?
 
  - SPA's
  - Performance?
-   - front loaded resource loads, or spread throughout application
- - User does not get a noticible page reload
+   - front-weighted resource loads, or spread throughout the application
+ - User does not get a noticeable page to reload
 
 CONS?
 
 - Accessibility and dynamic content is tricky
 - Asynchronous programming patterns are more complex to code
-- It requries js and XMLHTTPRequest support
+- It requires js and XMLHTTPRequest support
 - History is not automatically updated 
 
 
 ---
 
-## Fallbacks? 🔬
+# Fallbacks? 📼
 
 AJAX is dependent both on Javascript and the XMLHttpRequest browser object. 
 
@@ -101,9 +101,9 @@ But!
 https://caniuse.com/#search=XMLHttpRequest
 https://caniuse.com/#search=fetch
 
-Ussers disable javascript sometimes for...
+Users disable javascript sometimes for...
 - Speed and bandwidth
-- Usability & Accessability
+- Usability & Accessibility
 - Old Compatibility issues
 - Security
    - what can js do?
@@ -112,7 +112,7 @@ Ussers disable javascript sometimes for...
 
 ---
 
-## Ajax response ❌🔬
+# Ajax response 📬
 
 What can AJAX return?
 
@@ -125,24 +125,24 @@ AJAX response data doesn't have to be JSON, in many apps it's rendered HTML
 
 ---
 
-## CORS
+# CORS 📥📤
 
 ![Cors](https://raw.githubusercontent.com/tborsa/lectures/master/week4/day3/assets/cors.png)
 
 Cross-Origin Resource Sharing
 
-# Cross Origin Request:
+## Cross-Origin Request:
 
-An http request to a server that did not serve the original webpage.
+An HTTP request to a server that did not serve the original webpage.
 
-If the original GET request to host:port/path is to server A, than any request from the client to a server that is not server A is a Cross Origin request
+If the original GET request to host:port/path is to server A, then any request from the client to a server that is not server A is a Cross-Origin request
 
-CORS makes up a set of Browser/server enforced standards to restrict (or allow) Cross origin requests.
+CORS makes up a set of Browser/server enforced standards to restrict (or allow) Cross-origin requests.
 CORS uses request headers to communicate authorization. 
 
 "The CORS standard describes new HTTP headers which provide browsers a way to request remote URLs only when they have permission. Although some validation and authorization can be performed by the server, it is generally the browser's responsibility to support these headers and honor the restrictions they impose."
 
-This can make it harder to request different API's client side but can often be solved by setting the correct headers. 
+This can make it harder to request different API's client-side but can often be solved by setting the correct headers. 
 ```
 headers: {'Access-Control-Allow-Origin': '*'}
 ```

@@ -1,35 +1,22 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <title>mini blog</title>
-    <!-- CSS -->
-    <link href="style.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Arvo:400,400i,700,700i&display=swap" rel="stylesheet">
-    <script defer
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous"></script>
+    <script defer 
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
     <script defer src="app.js"></script>
+    <link href="style.css" rel="stylesheet">
   </head>
   <body>
-    <main>
-      <div class="caught">
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"></img>
-      </div>
-      <div class="pokedex unidentified">
-        <header>
-          <h1> POKEDEX </h1>
-          <form id="find">
-            <input type='text' id="search"></input>
-            <input type='submit'></input>
-          </form>
-        </header>
-        <div class="screen">
-          <img id="image" src=""></img>
-        </div>
-        <h1 id='name' > ????? </h1>
-        <p id='description' > unknown </p>
-      </div>
-    </main>
+    <div class="pokedex unidentified">
+      <h1>Pokedex</h1>
+      <form class="find">
+        <input id="search" type="text"></input>
+        <input type="submit"></input> 
+      </form>
+      <img class="image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/88.png">
+      <h2 class="name" >????</h2>
+      <p class="description" >unknown</p>
+    </div>
   </body>
 </html>

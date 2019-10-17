@@ -16,7 +16,7 @@ Backend routes: pokemon-routes.js
 
 Initially, we delivered the data to our client as JSON, but towards the end, we made some EJS templates to better display the information.
 
-We demonstrated an SQL injection attack using only the browser to drop the entire pokemon table, demonstrating why we have to be extra careful when receiving data from the user.
+We demonstrated an SQL injectin attack using only the browser to drop the entire pokemon table, demonstrating why we have to be extra careful when receiving data from the user.
 
 We then looked at how to protect against such an attack.
 
@@ -43,14 +43,14 @@ Then we used that connection in a data-helpers module to create a function for t
 
 ```js
 module.exports = (db) =>{
-  const getAllPokemon = () =>{
+  const getAllCats = () =>{
     return db.query(`SELECT * FROM pokemons;`)
       .then((response)=>{
         return response.rows;
       });
   };
   return {
-    getAllPokemon
+    getAllCats
   };
 };
 ```
@@ -64,9 +64,9 @@ const router = express.Router();
 module.exports = (dataHelpers) =>{
   router.get('/',(req, res)=>{
     //get a list of all pokemon
-    dataHelpers.getAllPokemon()
-      .then((pokemons)=>{
-        res.render('index', {pokemons: pokemons});
+    dataHelpers.getAllCats()
+      .then((cats)=>{
+        res.render('index', {cats: cats});
       });
   });
 
