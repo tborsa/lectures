@@ -1,53 +1,82 @@
-let http = require('http');
-
-// define app constants
+const http = require('http');
 const PORT = 8080;
+const say = require('say');
 
-// create a server with a responder function
-let server = http.createServer(function respondToRequests (request, response) {
-  // respond to all requests in this function
-  response.end('Hello from the other siiiiiiide!');
+const server = http.createServer(function respondToRequests(req, res) {
+  //first
+  res.end("This is the super secret spy debriefing server, make a get requst to /mission to recieve your mission.");
+  //later
+  if (req.method in routes && req.url in routes[req.method]) {
+    routes[req.method][req.url](req,res);
+  } else {
+    routes["DEFAULT"](req,res);
+  }
 });
 
-// start the server
-server.listen(PORT, function onServerStart() {
-  console.log("Server listening on: http://localhost:%s", PORT);
+server.listen(PORT, () => {
+  console.log("server listening on PORT " + PORT);
 });
 
+const routes = {
+  GET:{
+    '/': function (req, res) {
+      res.end("This is the super secret spy debriefing server, make a get requst to /mission to recieve your mission.");
+    },
+    '/mission': function (req, res) {
+      res.end("your mission should you choose to accept, what is the anser to (23+56*4)");
+    },
+    [`/${23+56*4}`]: function (req, res) {
+      say.speak('Congragulations agent mission success');
+      res.end("Congragulations agent mission success");
+    }
+  },
+  DEFAULT: function (req, res) {
+    res.end("This is the super secret spy debriefing server, make a get requst to /mission to recieve your mission.");
+  }
+};
 
-//=================>
 
-'use strict';
+//===EXPRESS SERVER =================>
 
-let express = require('express');
 
-// define app constants
-const PORT = 9000;
 
-let server = express();
+const express = require('express');
+const PORT = 8080;
+const bodyParser = require('body-parser');
+const question1 = require('../questions/1.json');
 
-// ex_01 ==> define a simple middleware function that logs all requests
-server.use(function(req, res, next){
-    console.log(`New Request: ${req.method} ${req.url}`);
-    // go to next step in middleware chain
-    next();
+const server = express();
+
+//set ejs
+server.set('view engine', 'ejs');
+
+//Middleware
+server.use(bodyParser.urlencoded());
+server.use((req,res,next) => {
+  console.log("New agent.");
+  next();
 });
 
-// ex_02 ==> allow the loading of static files from server
-//                   only for the `public` folder
-server.use(express.static('public'));
+server.use('/public', express.static('public'));
 
-
-// define the routes that you'd like the server to respond to
-server.get('/', function(req, res){
-    res.send("Just got a GET request to '/'");
+//ROUTES
+server.get('/', (req, res) => {
+  res.render('index');
 });
 
-server.get('/users', function(req, res){
-    res.send("Just got a GET request to '/users'");
+server.get('/mission', (req, res) => {
+  const templateVars = {name: "1", content: question1.question};
+  res.render('mission', templateVars);
 });
 
-// start the server
-server.listen(PORT, function onServerStart(){
-    console.log("Server listening on: http://localhost:%s", PORT);
+server.post('/answer', (req, res) => {
+  if (req.body.answer.toLowerCase() === question1.answer) {
+    res.send('for your reward go to ' + question1.reward);
+  } else {
+    res.send('Try again');
+  }
+});
+
+server.listen(PORT, () => {
+  console.log('Server Listening on ' + PORT);
 });

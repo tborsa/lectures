@@ -59,7 +59,7 @@ HTTP is a resource based protocol. So when you make HTTP requests keep in mind t
 
 # Intro to Web Servers
 
-![webserver](https://raw.githubusercontent.com/tborsa/lectures/master/week3/day1/assets/web-server.png)
+![webserver](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpmTJYUfjQOz7d9Cz8xDXGQYQFKBRG1dzMzGpNPpGFbQUUK9EO)
 
 A web server is:
 - a program that is configured to recieve http requests!
