@@ -10,7 +10,26 @@ app.listen(PORT, () => {
 });
 
 // CREATE BASE DATA AND SQL FILE
+DROP TABLE IF EXISTS pokemons;
+DROP TABLE IF EXISTS regions;
+DROP TABLE IF EXISTS trainers;
 
+CREATE TABLE pokemons (
+  id SERIAL PRIMARY KEY,
+  type VARCHAR(32),
+  name VARCHAR(50),
+  region_id INTEGER, 
+  gender VARCHAR(20),
+  number INTEGER
+);
+
+INSERT INTO pokemons
+  (type, name, number)
+VALUES
+  ('grass', 'bulbasaur', 1),
+  ('rock', 'tyranitar', 241),
+  ('ice', 'Articuno', 144);
+  
 //============= add pg connection================//
 const db = require('./pg-connection.js');
 //other file

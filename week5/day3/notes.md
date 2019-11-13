@@ -43,7 +43,7 @@ Then we used that connection in a data-helpers module to create a function for t
 
 ```js
 module.exports = (db) =>{
-  const getAllCats = () =>{
+  const getAllPokemon=5 = () =>{
     return db.query(`SELECT * FROM pokemons;`)
       .then((response)=>{
         return response.rows;
@@ -115,6 +115,8 @@ DELETE FROM <table> WHERE id = <id>;
 We always want to sanitize any user-defined parameters in our SQL before running the query to prevent possible [SQL injections](https://en.wikipedia.org/wiki/SQL_injection).
 
 In `pg`, we use [prepared statements](https://en.wikipedia.org/wiki/Prepared_statement) and pass an array of values as the second argument to `client.query()`:
+
+--out comment
 
 ```js
 client.query('SELECT * FROM <table> WHERE id = $1', [<id>], (err, result) => console.log(err, result));

@@ -1,45 +1,53 @@
+$(document).ready(() => {
 
-$(document).ready(()=>{
-  //==> localhost:8080
-  const path = "https://pokeapi.co/api/v2/";
+  const url = 'https://pokeapi.co/api/v2/';
 
   const updatePokedex = (pokemon) => {
-    $(".name").text(pokemon.name);
-    $(".description").text(pokemon.description);
-    $(".image").attr('src', pokemon.image);
+    //{name: 'sadfsd', img: "image path", description: 'sdfsd'}
+    $('.pokedex img').attr('src', pokemon.image);
+    $('.pokedex h2').text(pokemon.name);
+    $('.pokedex p').text(pokemon.description);
   };
 
-  const getPokemon = (search) => {
-    console.log(search);
-    let pokemon = {name: 'MISSIG.NO', description: 'unknown', image: 'https://ih1.redbubble.net/image.16601072.6773/pp,650x642-pad,750x1000,f8f8f8.u2.jpg'};
-    if(isNaN(search)){
+  updatePokedex({name: 'eveee', image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png", description: "one fluffy guy"})
+
+  const getPokemon = (search) => { //search either a # or pokemon nam e
+    const pokemon = {name: 'missingNo.', description: "unknown", image: 'https://ih1.redbubble.net/image.16601072.6773/pp,650x642-pad,750x1000,f8f8f8.u2.jpg'}
+    //test if search is a number or a string
+    if (isNaN(search)) {
       $('.pokedex').removeClass('unidentified');
-    }else{
+    } else {
       $('.pokedex').addClass('unidentified');
     }
-    $.ajax({ url: `${path}pokemon/${search}`})
-      .then((res)=>{
-        if(isNaN(search)){
-          pokemon.name = res.name;
+    $.ajax({url: `${url}pokemon/${search}`})
+      .then((response) => {
+        console.log(response);
+        pokemon.image = response.sprites.front_default;
+        if (isNaN(search)) {
+          pokemon.name = response.name;
         }
-        pokemon.image = res.sprites.front_default;
-        return $.ajax({url: `${path}characteristic/${res.id}`})
+        //update pokemon
+        return $.ajax({url: `${url}characteristic/${response.id}`});
+
       })
-      .then((secondRes)=>{
-        pokemon.description = secondRes.descriptions[secondRes.descriptions.length - 1].description;
+      .then((characteristic) =>{
+        if (isNaN(search)) {
+          pokemon.description = characteristic.descriptions[characteristic.descriptions.length - 1].description;
+        }
         updatePokedex(pokemon);
       })
-      .fail((error) => {
+      .fail(() => {
         updatePokedex(pokemon);
       });
-
   };
-  $(".find").submit((event) => {
+
+  $('.pokedex form').submit((event) => {
+    //search for a pokemon with AJAX
     event.preventDefault();
     const search = $("#search").val();
+    console.log("HERE", search);
     getPokemon(search);
   });
 
-  getPokemon(12);
 
 });

@@ -1,29 +1,29 @@
-const arr = [{value: 5, type: 'add' } , {value: 3, type: 'subtract' }, {value: 8, type: 'multiply' }, {value: 2, type: 'divide' } ];
+const shoppingList = [
+  {action: 'subtotal', value: 0},
+  {cost: 12, quantity: 1, name: 'pumpkin'},
+  {cost: 3, quantity: 5, name: 'kit-kat'},
+  {cost: 6, quantity: 1, name: 'pillow case'}
+];
 
-const arr = [{value: 5, type: 'add' } , {value: 3, type: 'subtract' }, {value: 8, type: 'multiply' }, {value: 2, type: 'divide' } ];
+//total cost
+//subtotal
+// toal items
+//string list of item names
 
-const multiply = [{value: 6, type: 'multiply'}];
+let sum = 0;
 
-"add interviewer"
+// let [state, setState] =  useState({users: ['ted', 'sam'], appointments: [], })
 
-
-state
- => this add Array
- => object 
-
-
-let accumulator = 0;
-
-let result = arr.reduce( (accumulator, action) =>{
-  if(action.type === 'add'){
-    return accumulator + action.value;
-  }else if(action.type === 'subtract'){
-    return accumulator - action.value;
-  }else if(action.type == 'multiply'){
-    return accumulator * action.value;
-  }else{
-    return accumulator / action.value;
+const result = shoppingList.reduce((action, state) => {
+  if (action.action === 'total') {
+    return {action: 'total', value: action.value + (state.cost * state.quantity * 1.12) }
+  } else if (action.action === 'subtotal') {
+    return {action: 'subtotal', value: action.value + (state.cost * state.quantity) }
   }
-}, 0);
+});
+
+// for (let item of arr) {
+//   sum += item;
+// }
 
 console.log(result);

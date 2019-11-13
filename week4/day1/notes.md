@@ -194,7 +194,6 @@ IDs are unique
 
 There is nothing you can do with a class in css that you can do with an ID and vise versa
 
-*** However classes and ID's are different to JS
 
 ---
 
@@ -337,105 +336,6 @@ Block and Inline are display properties, and can be changed in CSS
 
 ---
 
-# Float ⛵
-
-![Magazine](https://raw.githubusercontent.com/tborsa/LighthouseLabs/master/lectures/Week3/Day1/Lecture/assets/magazine.jpg)
-
-Magazine layout => web layout
-
-```CSS
-   div{
-       float: left; //or left or right
-   }
-```
-
-DEMO
-
-clear floats 
-When we want our elements to start after an element that has been floated we have to *clear* the float.
-
-```CSS
-   div{
-       clear: both; //or left or right
-   }
-```
-
-Inline-Block  
-- Behaves like inline but you can set the width and height.
-- Like Block but does not add a line break after the element.
-
----
-
-# Looking into the Future/Present 🔭
-
-## Flexbox 💪🍱
-
-Aims to correct some of the frustrating parts of the box model by rewriting how we layout the page, but it is not yet universally adopted (sorta).
-
-Box Model is far more common as a layout engine, and is something you need to know.
-
-Flex box is widely supported: http://caniuse.com/#feat=flexbox
-
-Good to know the box-model and the evolution of CSS
-before flexbox.
-
----
-
-## CSS Grid 📰
-
-![CSS GRID](https://raw.githubusercontent.com/tborsa/LighthouseLabs/master/lectures/Week3/Day1/Lecture/assets/grid.png)
-
-It is even newer than Flexbox, but isn't well-adopted yet. It is something you can learn on your own (and it is recommended that you do so).
-
-https://caniuse.com/#search=css%20grid
-
----
-
-## Resources
-
-- MDN
-- CSS-Tricks is also great 
-Add MDN to all of your search queries in Google to get MDN-focused results
-
-### Topics 📢
-
-- Position
-- ID's & Classes
-- Selectors
-- Specificity
-- Frameworks
-
----
-
-## TRBL
-When using shorthand to set the style attribute of a top, right, bottom, left property the order is.
-
-TRBL
-
-```css
-div{
- margin: 15 10 15 10;
- padding: 5 10 5 10;
-}
-```
----
-
-# Position
-The position property specifies the type of positioning method used for an element
-- static  
-  - default
-  - cannot set top, right, bottom , or left
-- relative
-  - TRBL can be set to change position relative to where it would have been statically positioned.
-- absolute
-  - TRBL can be set to change position relative to the nearest positioned ancestor, or the html body.
-- fixed
-  - TRBL is set relative to the viewport so the element stays in the same position even when content is scrolled.
-
-- sticky
-
----
-
 # Specificity
 
 ![Specificity](https://raw.githubusercontent.com/tborsa/LighthouseLabs/master/lectures/Week3/Day1/Breakout/assets/specificity1.png)
@@ -450,7 +350,6 @@ div.box.left{
  color: blue;
 }
 ```
-
 
 # Selector battle
 
@@ -566,6 +465,105 @@ selector {
  key2: value;
 }
 ```
+
+---
+
+# Float ⛵
+
+![Magazine](https://raw.githubusercontent.com/tborsa/LighthouseLabs/master/lectures/Week3/Day1/Lecture/assets/magazine.jpg)
+
+Magazine layout => web layout
+
+```CSS
+   div{
+       float: left; //or left or right
+   }
+```
+
+DEMO
+
+clear floats 
+When we want our elements to start after an element that has been floated we have to *clear* the float.
+
+```CSS
+   div{
+       clear: both; //or left or right
+   }
+```
+
+Inline-Block  
+- Behaves like inline but you can set the width and height.
+- Like Block but does not add a line break after the element.
+
+---
+
+# Looking into the Future/Present 🔭
+
+## Flexbox 💪🍱
+
+Aims to correct some of the frustrating parts of the box model by rewriting how we layout the page, but it is not yet universally adopted (sorta).
+
+Box Model is far more common as a layout engine, and is something you need to know.
+
+Flex box is widely supported: http://caniuse.com/#feat=flexbox
+
+Good to know the box-model and the evolution of CSS
+before flexbox.
+
+---
+
+## CSS Grid 📰
+
+![CSS GRID](https://raw.githubusercontent.com/tborsa/LighthouseLabs/master/lectures/Week3/Day1/Lecture/assets/grid.png)
+
+It is even newer than Flexbox, but isn't well-adopted yet. It is something you can learn on your own (and it is recommended that you do so).
+
+https://caniuse.com/#search=css%20grid
+
+---
+
+## Resources
+
+- MDN
+- CSS-Tricks is also great 
+Add MDN to all of your search queries in Google to get MDN-focused results
+
+### Topics 📢
+
+- Position
+- ID's & Classes
+- Selectors
+- Specificity
+- Frameworks
+
+---
+
+## TRBL
+When using shorthand to set the style attribute of a top, right, bottom, left property the order is.
+
+TRBL
+
+```css
+div{
+ margin: 15 10 15 10;
+ padding: 5 10 5 10;
+}
+```
+---
+
+# Position
+The position property specifies the type of positioning method used for an element
+- static  
+  - default
+  - cannot set top, right, bottom , or left
+- relative
+  - TRBL can be set to change position relative to where it would have been statically positioned.
+- absolute
+  - TRBL can be set to change position relative to the nearest positioned ancestor, or the html body.
+- fixed
+  - TRBL is set relative to the viewport so the element stays in the same position even when content is scrolled.
+
+- sticky
 
 ---
 

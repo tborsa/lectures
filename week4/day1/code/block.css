@@ -5,9 +5,9 @@
     color: slateblue;
 }
 span{
-  display: block;
+  display: block; 
   height: 200px;
-  width: 200px;
+  width: 100%;
   background-color: wheat;
 }
 div{

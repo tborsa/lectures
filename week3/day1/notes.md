@@ -93,8 +93,11 @@ Express is good for:
 
 # What is "middleware?"
 ![Express](https://raw.githubusercontent.com/tborsa/lectures/master/week3/day1/assets/middle.jpg)
+
 Middleware
+
     - anything that needs to happen between the request and the response
+
     - e.g. 
         - parsing form data into easier-to-use formats
         - authenticating requests
@@ -134,7 +137,9 @@ app.get('/people/:id', function(req, res) {
 
 # view templates with EJS
 ![template](https://raw.githubusercontent.com/tborsa/lectures/master/week3/day1/assets/template.jpg)
+
 Often we'll want our web servers to return HTML pages containing informatin that might have been pulled from a database, another API, etc. 
+
 In these cases, we'd like to have a **"template"** system that lets us specify the general form of certain web pages (e.g. a profile page) which we can fill in with the required data.
     
     TEMPLATE ENGINE:

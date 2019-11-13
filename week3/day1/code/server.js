@@ -1,40 +1,73 @@
 const express = require('express');
-const PORT = 8080;
 const bodyParser = require('body-parser');
+const say = require('say');
 const question1 = require('../questions/1.json');
-
+const question2 = require('../questions/2.json');
+const question3 = require('../questions/3.json');
+const PORT = 8080;
 const server = express();
 
-//set ejs
+//templating engines
 server.set('view engine', 'ejs');
 
 //Middleware
 server.use(bodyParser.urlencoded());
-server.use((req,res,next) => {
-  console.log("New agent.");
+server.use('/public', express.static('public'));
+server.use(function(request, response, next) {
+  //authenticate user, log info, 
+  console.log("Incomming request!!!");
   next();
 });
 
-server.use('/public', express.static('public'));
-
-//ROUTES
-server.get('/', (req, res) => {
-  res.render('index');
+//routes
+server.get('/', function(request, response) {
+  //send msg back to the client
+  const data = {
+    test: "This is a super secret spy server get your missions at /mission",
+    thing: 1,
+    two: 2
+  };
+  response.render('index', data);
 });
 
-server.get('/mission', (req, res) => {
-  const templateVars = {name: "1", content: question1.question};
-  res.render('mission', templateVars);
-});
-
-server.post('/answer', (req, res) => {
-  if (req.body.answer.toLowerCase() === question1.answer) {
-    res.send('for your reward go to ' + question1.reward);
+server.get('/mission/:id', function(request, response) {
+  //send msg back to the client
+  console.log(request.params.id);
+  //get the param and deliver a differnt mission depending on the value
+  if (request.params.id == 1) {
+    response.render('missions', question1);
+  } else if (request.params.id == 2) {
+    response.render('missions', question2);
   } else {
-    res.send('Try again');
+    response.render('missions', question3);
   }
 });
 
-server.listen(PORT, () => {
-  console.log('Server Listening on ' + PORT);
+server.post('/answer/:id', function(request, response) {
+  //send msg back to the client
+  console.log('POST to ANSWER', request.body.answer);
+  const answer = request.body.answer;
+  let solution = '';
+  let reward = '';
+  if (request.params.id == 1) {
+    solution = question1.answer;
+    reward = question1.reward;
+  } else if (request.params.id == 2) {
+    solution = question2.answer;
+    reward = question2.reward;
+  } else {
+    solution = question3.answer;
+    reward = question3.reward;
+  }
+
+  if (answer == solution) {
+    say.speak('Congragulations');
+    response.send('congragulations your reward is at '+ reward);
+  } else {
+    response.send('try again');
+  }
+});
+
+server.listen(PORT, function() {
+  console.log('server listening on port ' + PORT);
 });

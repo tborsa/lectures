@@ -1,20 +1,16 @@
 .pokedex{
-  width: 50%;
-  max-width: 300px;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #eb4034;
+  max-width: 400px;
   border-radius: 20px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
+  padding: 20;
+  margin: auto;
+  background-color: #fc1703;
 }
 .pokedex img{
   width: 100%;
-  height: auto;
-  /* background-color: #94ffd2; */
+  height: auto; 
   border-radius: 10px;
 }
+
 .pokedex.unidentified img{
-  filter: brightness(0%);
+  filter: brightness(0);
 }
