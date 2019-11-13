@@ -1,0 +1,9 @@
+<h1> ALL THE BIRDZ</h1>
+<% for(let bird of birdz) { %>
+  <h2> <%= bird.name %> </h2>
+  <img style="max-width: 500px" src=<%= bird.image %> >
+  <audio controls>
+    <source src=<%= bird.call %> type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+<%}%>

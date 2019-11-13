@@ -1,0 +1,4 @@
+INSERT INTO birdz (name, size, call, image, sighting) VALUES
+('Albatross', 300, 'http://soundbible.com/mp3/cartoon-birds-2_daniel-simion.mp3', 'https://upload.wikimedia.org/wikipedia/commons/7/73/Short_tailed_Albatross1.jpg', point(2,3) ),
+('Jackdaw', 68 , 'http://soundbible.com/mp3/cartoon-birds-2_daniel-simion.mp3', 'https://www.audubon.org/sites/default/files/styles/hero_cover_bird_page/public/web_eurasian-jackdaw_adult4.jpg?itok=tR2AxKX6', point(2,3) ),
+('Osprey', 180, 'http://soundbible.com/mp3/cartoon-birds-2_daniel-simion.mp3', 'https://www.allaboutbirds.org/guide/assets/photo/60320531-480px.jpg', point(2,3) );

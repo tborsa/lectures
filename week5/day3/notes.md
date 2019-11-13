@@ -4,7 +4,7 @@ Notes and code can be found [Here](https://github.com/tborsa/lectures/tree/maste
 
 # Summary 
 
-Today we built a pokedex web application with a focus on how to connect and integrate our app with a postgres database.
+Today we built a Birdz web application with a focus on how to connect and integrate our app with a postgres database.
 
 We tried to modularize our application so that the code was separated by different functionality. 
 
@@ -12,11 +12,11 @@ As such we had modules for:
 
 The database connection: database-connection.js
 Database query functions: data-helpers.js
-Backend routes: pokemon-routes.js
+Backend routes: birdz-routes.js
 
 Initially, we delivered the data to our client as JSON, but towards the end, we made some EJS templates to better display the information.
 
-We demonstrated an SQL injectin attack using only the browser to drop the entire pokemon table, demonstrating why we have to be extra careful when receiving data from the user.
+We demonstrated an SQL injectin attack using only the browser to drop the entire birdz table, demonstrating why we have to be extra careful when receiving data from the user.
 
 We then looked at how to protect against such an attack.
 
@@ -43,14 +43,14 @@ Then we used that connection in a data-helpers module to create a function for t
 
 ```js
 module.exports = (db) =>{
-  const getAllPokemon=5 = () =>{
-    return db.query(`SELECT * FROM pokemons;`)
+  const getAllbirdz=5 = () =>{
+    return db.query(`SELECT * FROM birdz;`)
       .then((response)=>{
         return response.rows;
       });
   };
   return {
-    getAllCats
+    getAllbirdz
   };
 };
 ```
@@ -63,10 +63,10 @@ const router = express.Router();
 
 module.exports = (dataHelpers) =>{
   router.get('/',(req, res)=>{
-    //get a list of all pokemon
-    dataHelpers.getAllCats()
-      .then((cats)=>{
-        res.render('index', {cats: cats});
+    //get a list of all birdz
+    dataHelpers.getAllBirdz()
+      .then((birdz)=>{
+        res.render('index', {birdz: birdz});
       });
   });
 
