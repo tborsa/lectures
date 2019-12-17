@@ -3,6 +3,13 @@
 
 ![Side Effects](https://raw.githubusercontent.com/tborsa/lectures/master/week7/day2/assets/experiment.gif)
 
+Links to Sandboxes of our demos:
+
+[Use Effect with Dependencies](https://codesandbox.io/s/eager-swirles-o3ows)  
+[Use Effect with Cleanup](https://codesandbox.io/s/dank-field-46m6d)  
+[Use Effect with Functional setState](https://codesandbox.io/s/focused-kalam-2hdom)  
+[Use Effect with data fetching](https://codesandbox.io/s/react-axios-qosu3)  
+
 Our slick login form can be found [here](https://codesandbox.io/embed/angry-edison-x8o3l)
 
 # Topics📢
@@ -25,20 +32,17 @@ State as a concept: the remembered information about a system.
 State in React: the remembered information about a system + useState & Reacts conventions for tracking state. 
 
 A new value of state is created every time the component runs and renders.
-Each prop and state is for a particular render,  and they stay the same throughout that render. 
-
-
-Thinking in react reading 
+Each prop and state is for a particular functional component execution, and they remain the same throughout that render. 
 
 
 # Side Effects
 
 What are Pure functions?
 
-One that doesn't have any side effects. 
-It doesn't perform any mutations.
-  (changing the global state)
-Given the same input, returns the same output
+A Function that doesn't have any side effects.   
+It doesn't perform any mutations.  
+  (changing the global state)  
+Given the same input, returns the same output.  
 
 
 What are Side Effects?
@@ -54,16 +58,14 @@ Side effects can depend on the history of the application! (what happens before 
 
 Can be hard to debug!
 
-## code demo
-
 ## types of side-effects 
 
-- Setting timers or intervals
-- Modifying DOM elements not controlled by React
-- A network request
-- Connection to a socket server
-- Adding and removing event listeners
-- Logging to the console
+- Setting timers or intervals  
+- Modifying DOM elements not controlled by React  
+- A network request  
+- Connection to a socket server  
+- Adding and removing event listeners  
+- Logging to the console  
 
 # useEffect
 
@@ -81,23 +83,23 @@ useEffect lets you synchronize things outside of the React tree according to our
 
 What does handle properly mean?
 
-- side effects happen after the primary effect of returning JSX (that is painted to the dom)
-- synchronization of side effects between functional component calls
-  - only occurs when the result of the side effect will be different
-  - don't want redundent function calls
-  - also don't want to miss a potential new result of the side effect (miss a chance to update the effect)
-- Result of the SideEffect can be cleaned up when needed
+- side effects happen after the primary effect of returning JSX (that is painted to the dom)  
+- synchronization of side effects between functional component calls  
+  - only occurs when the result of the side effect will be different  
+  - don't want redundent function calls  
+  - also don't want to miss a potential new result of the side effect (miss a chance to update the effect)  
+- Result of the SideEffect can be cleaned up when needed  
 
 # How is useEffect called?
 
 Similar to State a new useEffect function is created every time the component runs,
-the component remembers it and then calls the effect after react paints the dom. 
+the component remembers it and then calls the effect after react paints the dom.  
 
 So effects don’t need to block screen updates!
 
 ### Conceptually Effects are part of the render result
 
-__React:__ Give me the UI when the state is 0.  
+__React:__ Give me the UI when the state is 0.    
 __Your component:__ Here’s the render result:  
 
 >You clicked 0 times  
@@ -107,7 +109,7 @@ __React:__ Sure. Updating the UI. Hey browser, I’m adding some stuff to the DO
 __Browser:__ Cool, I painted it to the screen.  
 __React:__ OK, now I’m going to run the effect you gave me.   
 
->Running () => { document.title = 'You clicked 0 times' }.
+>Running () => { document.title = 'You clicked 0 times' }.  
 
 all functions within a component have the props, state, and surrounding scope for that functional call baked into them. Snapshot in time. 
 
@@ -134,11 +136,12 @@ ANY value useEffect uses outside of the function should be included in the depen
     };
   });
 ```
+Order of cleanup:
 
-React renders UI for {id: 20}.
-The browser paints. We see the UI for {id: 20} on the screen.
-React cleans up the effect for {id: 10}.
-React runs the effect for {id: 20}.
+React renders UI for {id: 20}.  
+The browser paints. We see the UI for {id: 20} on the screen.  
+React cleans up the effect for {id: 10}.  
+React runs the effect for {id: 20}.  
 
 
 # Functional setState
@@ -165,4 +168,4 @@ useEffect(() => {
 }, []);
 ```
 
-minimize the information needed.
+minimize the information needed in a component & within useEffect.

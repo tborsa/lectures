@@ -6,8 +6,19 @@ div {
     line-height: 38px;
     font-family: 'Roboto', Helvetica, sans-serif;
 }
+* {
+    box-sizing: border-box;
+}
 .one{
     color: greenyellow;
+}
+
+.goodlink .box {
+    background-color: darkred;
+}
+
+#special {
+    font-size: 500px;
 }
 
 .two{

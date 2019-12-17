@@ -13,8 +13,6 @@
 }
 div.relative{
     position: relative;
-    top: 100px;
-    left: 100px;
 }
 div.relative:hover{
     background-color: red;

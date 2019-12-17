@@ -2,7 +2,9 @@
 
 ![reducer](https://raw.githubusercontent.com/tborsa/lectures/master/week7/day4/assets/chat.gif)
 
-Our slick login form can be found [here](https://codesandbox.io/embed/angry-edison-x8o3l)
+Our slick login form can be found [here](https://codesandbox.io/s/wispy-tree-hrv4i)
+
+The Reducer counter can be found [here](https://codesandbox.io/s/sweet-raman-z5ho8)
 
 LoudChat can be found [here](https://github.com/tborsa/loudchat)
 

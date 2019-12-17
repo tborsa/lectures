@@ -1,29 +1,26 @@
-const shoppingList = [
-  {action: 'subtotal', value: 0},
-  {cost: 12, quantity: 1, name: 'pumpkin'},
-  {cost: 3, quantity: 5, name: 'kit-kat'},
-  {cost: 6, quantity: 1, name: 'pillow case'}
-];
 
-//total cost
-//subtotal
-// toal items
-//string list of item names
 
-let sum = 0;
+const arr = [1, 3, 5, 6 ,7];
 
-// let [state, setState] =  useState({users: ['ted', 'sam'], appointments: [], })
-
-const result = shoppingList.reduce((action, state) => {
-  if (action.action === 'total') {
-    return {action: 'total', value: action.value + (state.cost * state.quantity * 1.12) }
-  } else if (action.action === 'subtotal') {
-    return {action: 'subtotal', value: action.value + (state.cost * state.quantity) }
-  }
-});
-
-// for (let item of arr) {
-//   sum += item;
+// let sum = 0;
+// for (let value of arr) {
+//   sum += value;
 // }
 
-console.log(result);
+// action + data => data
+// sum + arr => totalsum
+// diff + arr => totaldiff
+
+const reducer = (accumulator, currentValue) => { // 1 3 => 4 5
+  return accumulator + currentValue;
+};
+const diffReducer = (accumulator, currentValue) => { // 1 3 => 4 5
+  return accumulator - currentValue;
+};
+
+
+const sum = arr.reduce(reducer, 0);
+const diff = arr.reduce(diffReducer, 0);
+
+console.log(sum);
+console.log(diff);
