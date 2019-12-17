@@ -140,6 +140,3 @@ Current browser javascript API's are very consistent and are continually being i
 
 Library or framework? Why?
 
-# Jquery demos
-
-JQuery's documentation is great, use it!
