@@ -1,22 +1,26 @@
 <html>
   <head>
     <link rel="stylesheet" href="style.css">
-    <script defer
-    src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    <script
+    defer
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
     crossorigin="anonymous"></script>
-    <script defer src="app.js"></script>
+    <script defer src="pokedex.js"></script>
   </head>
   <body>
     <div class="pokedex">
-      <h1>Pokedex</h1>
+      <h1> Pokedex </h1>
       <form>
-        <input type="text" id="search" name="search"></input>
-        <input type="submit" value="search"></input>
+        <label name="search">Search</label>
+        <input id="search" type="text" name="search"></input>
+        <input type="submit"></input>
       </form>
-      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png">
-      <h2>????</h2>
-      <p>unknown</p>
+      <h2> Name </h2>
+      <div class="screen">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/258.png"></img>
+      </div>
+      <p>Description</p>
     </div>
   </body>
 </html>
