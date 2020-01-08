@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)http://sandbox.saeidmohadjer.com/video_vjs.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style class="darkreader darkreader--fallback" media="screen"></style><style class="darkreader darkreader--text" media="screen"></style><style class="darkreader darkreader--invert" media="screen"></style><style class="darkreader darkreader--inline" media="screen">[data-darkreader-inline-bgcolor] {
+  background-color: var(--darkreader-inline-bgcolor) !important;
+}
+[data-darkreader-inline-bgimage] {
+  background-image: var(--darkreader-inline-bgimage) !important;
+}
+[data-darkreader-inline-border] {
+  border-color: var(--darkreader-inline-border) !important;
+}
+[data-darkreader-inline-border-bottom] {
+  border-bottom-color: var(--darkreader-inline-border-bottom) !important;
+}
+[data-darkreader-inline-border-left] {
+  border-left-color: var(--darkreader-inline-border-left) !important;
+}
+[data-darkreader-inline-border-right] {
+  border-right-color: var(--darkreader-inline-border-right) !important;
+}
+[data-darkreader-inline-border-top] {
+  border-top-color: var(--darkreader-inline-border-top) !important;
+}
+[data-darkreader-inline-boxshadow] {
+  box-shadow: var(--darkreader-inline-boxshadow) !important;
+}
+[data-darkreader-inline-color] {
+  color: var(--darkreader-inline-color) !important;
+}
+[data-darkreader-inline-fill] {
+  fill: var(--darkreader-inline-fill) !important;
+}
+[data-darkreader-inline-stroke] {
+  stroke: var(--darkreader-inline-stroke) !important;
+}
+[data-darkreader-inline-outline] {
+  outline-color: var(--darkreader-inline-outline) !important;
+}</style><style class="darkreader darkreader--user-agent" media="screen">html {
+    background-color: #181a1b !important;
+}
+html, body, input, textarea, select, button {
+    background-color: #181a1b;
+}
+html, body, input, textarea, select, button {
+    border-color: #575757;
+    color: #e8e6e3;
+}
+a {
+    color: #3391ff;
+}
+table {
+    border-color: #4c4c4c;
+}
+::placeholder {
+    color: #bab5ab;
+}
+::selection {
+    background-color: #005ccc;
+    color: #ffffff;
+}
+::-moz-selection {
+    background-color: #005ccc;
+    color: #ffffff;
+}
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    background-color: #545b00 !important;
+    color: #e8e6e3 !important;
+}</style>
+        
+        <title>video.js</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="./video.js_files/jquery-1.10.1.min.js"></script><style class="darkreader darkreader--override" media="screen">.jfk-bubble {
+    background-color: #000000 !important;
+}
+.vimvixen-hint {
+    background-color: #7b5300 !important;
+    border-color: #d8b013 !important;
+    color: #f3e8c8 !important;
+}
+::placeholder {
+    opacity: 0.5 !important;
+}</style>
+		<link href="./video.js_files/video-js.css" rel="stylesheet">
+		<script src="./video.js_files/video.js"></script>
+		<script>
+			videojs.options.flash.swf = "resources/bower_components/video.js/dist/video-js.swf"
+		</script>
+
+		<script>
+			$(document).ready(function() {
+				var player;
+				var myVideo = $('#myVideo').clone();
+
+				$('button.test').on('click', function() {
+					player.play();
+				});
+
+				initVideo();
+
+				function initVideo() {
+					videojs("myVideo", {
+						fluid: true
+					}, function() {
+						player = this;
+
+						player.on('ended', function() {
+							console.log('video ended');
+							displayPoster();
+						});
+					});
+				}
+
+				function displayPoster() {
+					player.dispose();
+					$('.video-container').append(myVideo);
+					initVideo();
+				}
+			});
+		</script>
+		<style>
+		.video-container {
+			width: 100%;
+		}
+
+		@media screen and (min-width: 768px) {
+			.video-container {
+				width: 50%;
+			}
+		}
+
+		button.test {
+			padding: 10px;
+			cursor: pointer;
+		}
+		</style><style class="darkreader darkreader--sync" media="screen"></style>
+    </head>
+    <body style="">
+		<h1>video.js demo</h1>
+		<button class="test">Play Video</button>
+		<br>
+		<br>
+		<br>
+		<br>
+		<div class="video-container">
+			<video id="myVideo" class="video-js" controls="" preload="auto" poster="http://lorempixel.com/500/281/abstract/4">
+				<source src="http://techslides.com/sample-webm-ogg-and-mp4-video-files-for-html5" type="video/mp4">
+				
+			</video>
+		</div>
+    
+
+</body></html>

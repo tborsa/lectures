@@ -5,12 +5,7 @@
 # Topics
 - Primitive data types  
 - Objects Fundamentals  
- - Their advantages for data lookup vs arrays  
- - How they are passed to functions  
- - Functions as object methods  
-- value vs reference  
-- this  
-
+- Functions as object methods  
 
 # Live Coding  
 
@@ -30,10 +25,10 @@ An object is a structure for storing key value pairs
 ```ruby
            key           value
 --------------------------------------------
-phonebook: Name          phone number
+phonebook:  Name          phone number
 dictionary: Word          definition
-  mailbox: box number    box contents
-js Object: String        Any JS value
+mailbox:    box number    box contents
+js Object:  String        Any JS value
 
 ```
 
@@ -167,6 +162,11 @@ A function inside of an object is called a method.
 *It is important to understand how to set and get object data.
 I encourage you to play around in the console until you are very comfortable with doing so.
 
+# Why Objects
+
+Faster to 'lookup' a particular piece of data than arrays are, 
+key value pairs. 
+
 # Primitive types
 
 The variable is the value stored.
@@ -275,7 +275,7 @@ const myFunc = function(){
 // the value of this depends on where this code is
 ```
 
-If this is called outside of any object or function it will refer to the global object, in node applications this will be the module object.
+If this is called outside of any object it will refer to the global object, in node applications this will be the module object.
 
 ```javascript
 console.log(this);
@@ -289,8 +289,8 @@ Explain how it is tied to objects that functions are defined on:
 
 ``` javascript
 const famousPerson = {
- firstName: 'Shahrukh',
- lastName:  'Khan',
+ firstName: 'Kanye',
+ lastName:  'West',
 
  fullName: function() {
    return `${this.firstName} ${this.lastName}`;
