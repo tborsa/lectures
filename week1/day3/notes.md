@@ -116,6 +116,9 @@ obj.thing //=> null
 # Dynamic
 
 ```javascript
+const bank = {key1: '25$', key2: '30$', key3: '40$', }
+const box = 'key1';
+
 obj[box] //=> "monies"
 ```
 
@@ -245,7 +248,7 @@ This has different values depending on where it is used.
 
 This wants to refer to an owner object.
 
-If this is used in a method then it is happy and can refer to the object that method exists in.
+If this is used in a method then it is happy and can refer to the object that the method exists in.
 
 ```javascript
 const obj = {
@@ -264,9 +267,10 @@ If this is used in a normal function it will check what this was equal to where 
 .
 .
 console.log(this);
-
+//==> Whatever this equals here
 const myFunc = function(){
- console.log(this);
+   //==> Will be the same value of this here
+   console.log(this);
 }
 .
 .
