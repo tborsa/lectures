@@ -1,32 +1,36 @@
 const http = require('http');
-const say = require('say');
 const PORT = 8080;
-const routes = {
-  "GET": {
-    "/mission": function (request, response) {
-      response.end('What is 45+12*68+15?');
+const say = require('say');
+
+const routeLookup = {
+  'GET' : {
+    '/': (res) => {
+      res.end('This is the super secret spy server, await instructions, make a request to /missions');
     },
-    [`/${45+12*68+15}`]: function (request, response) {
-      say.speak("Congragulations!!!");
-      response.end("Congragulations you finished the mission!!!");
+    '/missions': (res) => {
+      res.end('Secret question what is  34*12/4 + 4');
+    },
+    [`/answer/${34*12/4 + 4}`]: (res) => {
+      say.speak("Help me i'm alive!");
+      res.end(' Congragulations you completed your MISSION!!! ');
     }
   },
-  "DEFAULT": function (request, response) {
-    response.end('This is a super secret spy server, directions to follow... make a GET request to /mission');
+  'POST': {
+
   }
 };
 
+const server = http.createServer((req, res) => {
+  console.log("a new request happened");
+  const {method, url}  = req;
 
-const server = http.createServer(function(request,response) {
-  console.log('url', request.url);
-  console.log('method', request.method);
-  if (routes[request.method] && routes[request.method][request.url]) {
-    routes[request.method][request.url](request, response);
+  if (method in routeLookup && url in routeLookup[method]) {
+    routeLookup[method][url](res);
   } else {
-    routes["DEFAULT"](request,response);
+    res.end("I could not find what you were looking for");
   }
 });
 
-server.listen(PORT, function() {
-  console.log("Server listening on port " + PORT);
+server.listen(PORT, () => {
+  console.log('Server listening on port: ', PORT);
 });
