@@ -19,7 +19,12 @@ Notes and code [here](https://github.com/tborsa/lectures/tree/master/week4/day1)
 - Box Model
 - Block level elements vs inline elements and their nesting
 - Float
+- ID's & Classes
+- Selectors
+- Specificity
+- Position
 - Modern CSS
+- Frameworks
 
 
 ---
@@ -165,6 +170,21 @@ selector list{
 ```
 ---
 
+# Stylin Style 😎
+
+Style of CSS should be:
+
+``` CSS
+selector {
+ /* 2 spaces for indentation, as with everything else */
+ key1: value;
+ key2: value;
+}
+```
+
+---
+
+
 ## IDs Vs Classes 🔖
 
 🎣 Hooks to grab elements in order to apply style to them.
@@ -176,7 +196,7 @@ Classes
 - Multiple classes on one element
 
 ```HTML
-<div class="shaman"></div>
+<div class="shaman rogue priest"></div>
 <div class="rogue"></div>
 ```
 
@@ -453,21 +473,6 @@ div{
 
 ---
 
-
-# Stylin Style 😎
-
-Style of CSS should be:
-
-``` CSS
-selector {
- /* 2 spaces for indentation, as with everything else */
- key1: value;
- key2: value;
-}
-```
-
----
-
 # Float ⛵
 
 ![Magazine](https://raw.githubusercontent.com/tborsa/LighthouseLabs/master/lectures/Week3/Day1/Lecture/assets/magazine.jpg)
@@ -494,47 +499,6 @@ When we want our elements to start after an element that has been floated we hav
 Inline-Block  
 - Behaves like inline but you can set the width and height.
 - Like Block but does not add a line break after the element.
-
----
-
-# Looking into the Future/Present 🔭
-
-## Flexbox 💪🍱
-
-Aims to correct some of the frustrating parts of the box model by rewriting how we layout the page, but it is not yet universally adopted (sorta).
-
-Box Model is far more common as a layout engine, and is something you need to know.
-
-Flex box is widely supported: http://caniuse.com/#feat=flexbox
-
-Good to know the box-model and the evolution of CSS
-before flexbox.
-
----
-
-## CSS Grid 📰
-
-![CSS GRID](https://raw.githubusercontent.com/tborsa/LighthouseLabs/master/lectures/Week3/Day1/Lecture/assets/grid.png)
-
-It is even newer than Flexbox, but isn't well-adopted yet. It is something you can learn on your own (and it is recommended that you do so).
-
-https://caniuse.com/#search=css%20grid
-
----
-
-## Resources
-
-- MDN
-- CSS-Tricks is also great 
-Add MDN to all of your search queries in Google to get MDN-focused results
-
-### Topics 📢
-
-- Position
-- ID's & Classes
-- Selectors
-- Specificity
-- Frameworks
 
 ---
 
@@ -567,6 +531,31 @@ The position property specifies the type of positioning method used for an eleme
 
 ---
 
+# Looking into the Future/Present 🔭
+
+## Flexbox 💪🍱
+
+Aims to correct some of the frustrating parts of the box model by rewriting how we layout the page, but it is not yet universally adopted (sorta).
+
+Box Model is far more common as a layout engine, and is something you need to know.
+
+Flex box is widely supported: http://caniuse.com/#feat=flexbox
+
+Good to know the box-model and the evolution of CSS
+before flexbox.
+
+---
+
+## CSS Grid 📰
+
+![CSS GRID](https://raw.githubusercontent.com/tborsa/LighthouseLabs/master/lectures/Week3/Day1/Lecture/assets/grid.png)
+
+It is even newer than Flexbox, but isn't well-adopted yet. It is something you can learn on your own (and it is recommended that you do so).
+
+https://caniuse.com/#search=css%20grid
+
+---
+
 # Frameworks
 
 
@@ -575,4 +564,8 @@ The position property specifies the type of positioning method used for an eleme
 - Materialize
 
 
+## Resources
 
+- MDN
+- CSS-Tricks is also great 
+Add MDN to all of your search queries in Google to get MDN-focused results

@@ -6,6 +6,10 @@
 
 # Topics📢
 
+Notes can be found [here](https://github.com/tborsa/lectures/tree/master/week7/day3)
+
+Code can be found [here](https://github.com/tborsa/react-week-playground)
+
 We can build components, and we can retrieve and store data. We need to learn how to organize the logic used to perform updates on our data. This lecture provides an overview of the process used to build and use custom Hooks.
 
 - Separating rendering from logic

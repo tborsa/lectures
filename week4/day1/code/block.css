@@ -14,3 +14,11 @@ div{
   background-image: url("./block.png");
   background-size: contain;
 }
+
+div.box.left{
+  color: red;
+ }
+
+div.box.left{
+  color: blue;
+}

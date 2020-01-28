@@ -11,6 +11,13 @@
     height: 1000px;
     position:relative;
 }
+.box{
+    background-image:url("box.png");
+    background-size: contain;
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+}
 div.relative{
     position: relative;
     top: 100px;
@@ -32,11 +39,4 @@ div.relative:hover{
 .sticky{
     position: sticky;
     bottom:0;
-}
-.box{
-    background-image:url("box.png");
-    background-size: contain;
-    width: 200px;
-    height: 200px;
-    margin: 20px;
 }
