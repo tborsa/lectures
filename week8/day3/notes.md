@@ -7,6 +7,10 @@
 
   - useContext 
 
+  - useRef
+  - useCallback
+  - useMemo
+
 - React component libraries/ react libraries
   - component libraries stylized UI
   - component libraries for functional specific things
