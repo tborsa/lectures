@@ -1,6 +1,7 @@
 
 # Objects in JS
 
+![objects](https://raw.githubusercontent.com/tborsa/lectures/master/week1/day3/assets/objects.jpg)
 
 # Topics
 - Primitive data types  
@@ -100,6 +101,8 @@ while if the key does exist it will replace it's value with a new value
 
 ## Dynamic keys
 
+![box](https://raw.githubusercontent.com/tborsa/lectures/master/week1/day3/assets/box.jpg)
+
 Why the different syntax for setting and getting?
 
 They are to allow for dynamic keys.
@@ -171,6 +174,8 @@ Faster to 'lookup' a particular piece of data than arrays are,
 key value pairs. 
 
 # Primitive types
+
+![primative](https://raw.githubusercontent.com/tborsa/lectures/master/week1/day3/assets/primative.png)
 
 The variable is the value stored.
 
