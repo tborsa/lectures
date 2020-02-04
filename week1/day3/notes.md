@@ -16,6 +16,8 @@ This discussion is meant to facilitate a deeper learning of the coding concepts,
 
 # Objects
 
+![phonebook](https://raw.githubusercontent.com/tborsa/lectures/master/week1/day3/assets/phonebook.jpg)
+
 Objects are a way of remembering/storing information in JavaScript.
 
 other names:  Associative array, map, dictionary, hash
