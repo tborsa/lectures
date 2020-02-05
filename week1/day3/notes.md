@@ -3,6 +3,8 @@
 
 ![objects](https://raw.githubusercontent.com/tborsa/lectures/master/week1/day3/assets/objects.jpg)
 
+[Lecture notes and code](https://github.com/tborsa/lectures/tree/master/week1/day3)
+
 # Topics
 - Primitive data types  
 - Objects Fundamentals  
@@ -273,12 +275,14 @@ If this is used in a normal function it will check what this was equal to where 
 .
 .
 .
-console.log(this);
-//==> Whatever this equals here
 const myFunc = function(){
-   //==> Will be the same value of this here
    console.log(this);
 }
+
+//==> Whatever this equals here
+console.log(this);
+
+myFunc() //===> will be the same value of this in myFunc
 .
 .
 .
@@ -295,8 +299,6 @@ console.log(this);
 
 In summary:
 > Context === this
-
-Explain how it is tied to objects that functions are defined on:
 
 ``` javascript
 const famousPerson = {
