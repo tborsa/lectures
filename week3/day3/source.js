@@ -4,12 +4,13 @@ let users = {
     password: 'ilikecats'
   }
 };
-
+const cookieParser = require('cookie-parser');
 //use cookie middleware 
-server.use(express.cookieParser());
+server.use(cookieParser());
 
 //register
 server.post('/register', (req, res) => {
+  console.log('register', req.body)
   if (req.body.username && req.body.password) {
     users[req.body.username] = {username: req.body.username, password: req.body.password};
     res.cookie('user', req.body.username);
@@ -24,6 +25,9 @@ server.post('/register', (req, res) => {
 server.post('/login', (req,res) => {
   if (users[req.body.username] && users[req.body.username].password === req.body.password) {
     res.cookie('user', req.body.username);
+    res.redirect('/me');
+  } else {
+    res.redirect('/login');
   }
 });
 
@@ -34,7 +38,7 @@ server.post('/logout', (req,res) => {
 });
 
 //me page
-server.post('/logout', (req,res) => {
+server.get('/me', (req,res) => {
   let user = users[req.cookies.user];
   if (user) {
     res.send(user);
