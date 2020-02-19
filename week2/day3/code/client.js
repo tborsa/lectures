@@ -1,32 +1,29 @@
 const net = require('net');
-const stdin = process.stdin
-stdin.resume()
 
-// interpret incoming data as text
-stdin.setEncoding('utf8'); 
-
+const stdin = process.stdin;
+stdin.setEncoding('utf8');
+stdin.resume();
 
 const client = net.createConnection({
-    host: 'tcp://0.tcp.ngrok.io',
-    port: 19836
-})
+  host: '192.168.88.239',
+  port: 1337
+});
 
 client.setEncoding('utf8');
 
-stdin.on('data', data => {
-    if (data === '\\q\n') {
-      client.end();
-      process.exit();
-    } // \q quitting
-
-    client.write(data)
-})
-
-
 client.on('connect', () => {
-    client.write('Hello world!')
-})
+  console.log('I have connected');
+  client.write('Whats up gammers!');
+});
 
 client.on('data', (data) => {
-    console.log(data)
-})
+  console.log(data);
+});
+
+stdin.on('data', (data) => {
+  if (data === '\\q\n') {
+    client.end();
+    process.exit();
+  }
+  client.write(data);
+});

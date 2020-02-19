@@ -1,94 +1,72 @@
 const express = require('express');
+const say = require('say');
 const PORT = 8080;
+const bodyParser = require('body-parser');
 const question1 = require('../questions/1.json');
 const question2 = require('../questions/2.json');
 const question3 = require('../questions/3.json');
-const bodyParser = require('body-parser');
-const say = require('say');
 
 const server = express();
 
-// views
 server.set('view engine', 'ejs');
 
-//Middleware
+//middleware
+// intercepting all incomming bodies and parsing them from
+// urlencoded to json. 
 server.use(bodyParser.urlencoded());
 server.use('/public', express.static('public'));
-
-server.use('/mission', (req, res, next) => {
-  console.log("i got a request");
+server.use((req, res, next) => {
+  console.log('first middle ware');
+  next();
+});
+server.use((req, res, next) => {
+  console.log('second middle ware');
   next();
 });
 
-server.use('/', (req, res, next) => {
-  console.log("next middleware");
-  next();
-});
-
-server.use('/mission', (req, res, next) => {
-  console.log("next middleware");
-  next();
-});
-
-//Routing
-
-//GET
-
-server.get('/mission', (req, res) => {
-  res.send('What is the answer to ');
-});
-
+//routes
 server.get('/', (req, res) => {
-  res.send('This is the super secret spy server go to /mission for your question.');
+  res.send('This is the super secret spy server, go to /question to get your first mission');
 });
 
-server.get('/question/all', (req, res) => {
-  res.send(`here are all the questions`);
+server.get('/question/info', (req, res) => {
+  res.send('This is the super secret spy server, go to /question/# to get your first mission, and then make a put request to /question/#');
 });
 
-server.get('/question/:questionNumber', (req, res) => {
-  if (req.params.questionNumber === '1') {
-    res.render('question', {question: question1});
-    // res.send(`Your question is: ${question1.question}`);
-
-  } else if (req.params.questionNumber === '2') {
-     res.render('question', {question: question2});
-    // res.send(`Your question is: ${question2.question}`);
-
+server.get('/question/:id', (req, res) => {
+  console.log(req.params.id);
+  let question;
+  if (req.params.id === '1') {
+    question = question1.question;
+  } else if (req.params.id === '2') {
+    question = question2.question;
   } else {
-     res.render('question', {question: question3});
-    // res.send(`Your question is: ${question3.question}`);
+    question = question3.question;
+  }
+  res.render('question', {question: question});
+  // res.send(`Your question should you choose to accept is: ${question}`);
+});
+
+server.put('/question/:id', (req, res) => {
+  // console.log('body', req.body);
+  let question;
+  if (req.params.id === '1') {
+    question = question1;
+  } else if (req.params.id === '2') {
+    question = question2;
+  } else {
+    question = question3;
+  }
+  if (req.body.answer && req.body.answer.toLowerCase() === question.answer) {
+    say.speak(`someone solved the riddle! ${question.question}`);
+    res.send(`Congragulations you are correct!!! Get your reward at ${question.reward}`);
+  } else {
+    res.send('incorrect answer posted try again.');
   }
 });
-
-
-//POST
-
-server.post('/answer/:questionNumber', (req,res) => {
-  let answer = '';
-  let reward = '';
-  if (req.params.questionNumber === '1') {
-    answer = question1.answer;
-    reward = question1.reward;
-  } else if (req.params.questionNumber === '2') {
-    answer = question2.answer;
-    reward = question2.reward;
-  } else {
-    answer = question3.answer;
-    reward = question3.reward;
-  }
-  console.log('user attempted to answer a question', req.body);
-  if (req.body.answer.toUpperCase() === answer.toUpperCase()) {
-    say.speak(`someone answered question ${req.params.questionNumber}`);
-    res.render('answer', {message: 'success', reward: reward});
-  } else {
-    res.send(' that was not the answer!!');
-  }
-});
-
 
 
 
 server.listen(PORT, () => {
-  console.log("server listening on port", PORT);
+  console.log('server listening on port, ', PORT);
 });
