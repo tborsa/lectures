@@ -5,6 +5,8 @@
 
 Notes and code can be found [Here](https://github.com/tborsa/lectures/tree/master/week3/day1)
 
+The other notes I mentioned on more auth and encryption [Here](https://github.com/tborsa/LighthouseLabs/blob/master/lectures/Week4/Day5/Lecture/notes.md)
+
 The notes that we wrote in class can be found in the `notes.md` file.
 
 
@@ -13,10 +15,10 @@ The notes that we wrote in class can be found in the `notes.md` file.
 ![goldfish](https://raw.githubusercontent.com/tborsa/lectures/master/week3/day1/assets/goldfish.webp)
 
 ```
-
-
-
-
+waiting for something to happen
+Forgets things that have happened.
+Not part of the protocol to record the state of transactions. 
+Include all the needed information in a http request
 
 
 
@@ -69,10 +71,9 @@ Our login has many security vulnerabilities.
 
 What are some of them?
 ```
-
-
-
-
+Passwords were plaintext
+Cookies are editable and viewable by the user
+User are rewritten on register
 
 
 
