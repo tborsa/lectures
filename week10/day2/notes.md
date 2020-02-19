@@ -1,4 +1,7 @@
-Today we discussed another aspect of automated testing. Feature/Integration testing allows us to simulate user behaviour to test the integration of the different parts of our software.
+We started the lecture with a review of all things testing, and ended it by looking at feature testing with Rails. 
+For our feature tests we used rspec + capybara + phantomJS
+
+The notes below are courtesy of Karl!
 
 Slides and notes are available at [https://github.com/jensen/rspec-notes/](https://github.com/jensen/rspec-notes/). The old lecture from monday has slides and notes as well [https://github.com/jensen/testing-notes](https://github.com/jensen/testing-notes).
 
