@@ -47,14 +47,14 @@ __How Do they work?__
 - Cookies are communicated between a user's browser and a server through http headers.
 - Every HTTP request contains all the user cookies for that webpage. 
 - The server can ask the browser to set or change a cookie in the HTTP response. 
-- name (key) value pairs, with aditional information like domain, path, expiration
+- name (key) value pairs, with additional information like domain, path, expiration
 - limited in number and size of cookies
 
 __How they solve the "state" problem?__
 
 - Used to remember information about a user.
-- Server is still stateless for a user. 
-- Browser remembers infomation and sends it with every request. 
+- The server is still stateless for a user. 
+- Browser remembers information and sends it with every request. 
 
 __How they could work for user logins?__
 
@@ -105,7 +105,7 @@ What are some of them?
 
 - One way algorithm
   - Cannot convert the hash back into the original data
-- Turns data into a unique* fixed length string
+- Turns data into a unique* fixed-length string
 
 With our express server we can use [bcrypt](https://www.npmjs.com/package/bcrypt). 
 
@@ -187,7 +187,7 @@ In our express server we can use [cookie-session](https://www.npmjs.com/package/
 - TLS has rules on how secure encrypted communication must happen.
   - Server and Client need to share a key
   - How can we securely share a key?
-    - Asymetric encryption (public & private keys)
+    - Asymmetric encryption (public & private keys)
     -  Diffie–Hellman Key exchange
 
 
@@ -196,8 +196,8 @@ In our express server we can use [cookie-session](https://www.npmjs.com/package/
 
 ### Server-side Session Storage
 
-- store session-id in cookie
-- some database on server with map from the id to values
+- store session-id in a cookie
+- some database on a server with map from the id to values
 - Does not have the size restrictions that client storage does, more data!
 - if you frequently change session data
 you want the ability to invalidate specific users' sessions
@@ -216,7 +216,7 @@ maybe for:
 
 encrypted cookies:
   - do this by default
-  - only store user_id (rest can go in database)
+  - only store user_id (rest can go in a database)
 
 server-side sessions
   - not worth hassle for small projects
