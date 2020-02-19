@@ -6,6 +6,8 @@
 
 ---
 
+Notes and code can be found [Here](https://github.com/tborsa/lectures/tree/master/week2/day3)
+
 
 ### Overview 📢
 
