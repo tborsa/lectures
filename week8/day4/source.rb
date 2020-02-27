@@ -49,7 +49,7 @@ top_five = { one: "dylan", two: "dylan", three: "dylan", four: "dylan", five: "d
 # blocks lambdas
 
 say_something = -> { puts "This is a lambda" }
-dogs.each  do &say_something
+dogs.each &say_something
 
 # multi-line
 l = lambda do |a, b|
