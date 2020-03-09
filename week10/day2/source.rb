@@ -1,7 +1,7 @@
 npm install -g phantomjs
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.5'
+  #add
   gem 'capybara'
   gem 'poltergeist'
   gem 'database_cleaner'
@@ -18,8 +18,16 @@ require "capybara/poltergeist" # Add this line to require poltergeist
 # that JS driver to :poltergeist
 Capybara.javascript_driver = :poltergeist
 
+# set to false
+config.use_transactional_fixtures = false
+
 #UNCOMMENT
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
+#This tells RSpec to also require all files within the spec/support folder. This folder presently does not exist.
+
+# mkdir spec/support
+# touch database_cleaner.rb
+# paste code from here https://github.com/DatabaseCleaner/database_cleaner#rspec-with-capybara-example
 
 # --- Previously
 # rails app:update:bin
@@ -29,8 +37,12 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 # bundle binstubs rspec-core
 
 # run tests
+
 rspec
 
+# bin/rails generate rspec:feature <feature_name>
+
+require 'rails_helper'
 
 RSpec.feature "Visitor orders a product", type: :feature, js: true do
 

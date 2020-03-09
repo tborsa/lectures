@@ -1,5 +1,50 @@
+
+
+## RSPEC
+
+## Capybara
+
+
+Capybara will wait up to two seconds for a UI action to occur. you can change the default wait with
+
+Capybara.default_max_wait_time = some_value
+
+New DSL!!
+
+__feature__: is equivalent to describe / context
+__Scenario__: equivalent to it / example.
+
+
+bin/rails generate rspec:feature <feature_name>
+
+with poltergeist save a screenshot with
+
+page.save_screenshot(full: true)
+
+saved to tmp/capybara
+
+
+Common Parameters:
+
+- kind (Symbol) — Optional selector type (:css, :xpath, :field, etc.). Defaults to default_selector.
+- locator (String) — The locator for the specified selector
+- options (Hash) — a customizable set of options
+
+## DatabaseCleaner
+https://github.com/DatabaseCleaner/database_cleaner#rspec-with-capybara-example
+
+
+
+
+
+
+
+
+
 We started the lecture with a review of all things testing, and ended it by looking at feature testing with Rails. 
 For our feature tests we used rspec + capybara + phantomJS
+
+https://github.com/DatabaseCleaner/database_cleaner#rspec-with-capybara-example
 
 The notes below are courtesy of Karl!
 
