@@ -1,52 +1,74 @@
+# Featrue testing w/ RSPEC 👊
 
+For feature/E2E tests we are using a combination of RSPEC,
+Capybara, PhantomJS, poltergeist, and database_cleaner. 
 
-## RSPEC
+# Capybara 🐭
+![capybara](https://raw.githubusercontent.com/tborsa/LighthouseLabs/master/lectures/Week10/Day2/Lecture/assets/capybara2.jpg)
 
-## Capybara
-
-
-Capybara will wait up to two seconds for a UI action to occur. you can change the default wait with
-
-Capybara.default_max_wait_time = some_value
+>"Capybara helps you test web applications by simulating how a real user would interact with your app. It is agnostic about the driver running your tests and comes with Rack::Test and Selenium support built in."
 
 New DSL!!
 
 __feature__: is equivalent to describe / context
 __Scenario__: equivalent to it / example.
 
++ Navigating, Interacting, Querying ... [more](https://github.com/teamcapybara/capybara#the-dsl)
 
+Common Parameters:
+
+- kind (Symbol) 
+  - Optional selector type (:css, :xpath, :field, etc.). Defaults to default_selector.
+- locator (String) 
+  - The locator for the specified selector
+- options (Hash) 
+  - a customizable set of options
+
+```
 bin/rails generate rspec:feature <feature_name>
+```
 
-with poltergeist save a screenshot with
+Capybara will wait up to two seconds for a UI action to occur. you can change the default wait with
 
-page.save_screenshot(full: true)
+Capybara.default_max_wait_time = some_value
+
+
+# PhantomJS 👻
+![phantom](https://raw.githubusercontent.com/tborsa/LighthouseLabs/master/lectures/Week10/Day2/Lecture/assets/phantom.jpeg)
+
+>A JS based headless web browser (driver) for testing. 
+
+Use instead of the default rack test which has [limitations](https://github.com/teamcapybara/capybara#racktest)
+
+# Poltergeist 👻
+![poltergeist](https://raw.githubusercontent.com/tborsa/LighthouseLabs/master/lectures/Week10/Day2/Lecture/assets/poltergeist.jpeg)
+
+>A gem to connect Capybara(ruby) to Phantom(JS)
+
+
+# DatabaseCleaner 🧼
+![cleaner](https://raw.githubusercontent.com/tborsa/LighthouseLabs/master/lectures/Week10/Day2/Lecture/assets/dbcleaner.png)
+>"Database Cleaner is a set of gems containing strategies for cleaning your database in Ruby. " 
+
+"The original use case was to ensure a clean state during tests."
+
+[setup](https://github.com/DatabaseCleaner/database_cleaner#rspec-with-capybara-example)
+
+# Debug 🐛🥊
+
+Unlike cypress we have less feedback into what our E2E tests are doing. 
+
+Use screenshots to get snapshots of your test prgress. 
+
+page.save_screenshot()
 
 saved to tmp/capybara
 
 
-Common Parameters:
-
-- kind (Symbol) — Optional selector type (:css, :xpath, :field, etc.). Defaults to default_selector.
-- locator (String) — The locator for the specified selector
-- options (Hash) — a customizable set of options
-
-## DatabaseCleaner
-https://github.com/DatabaseCleaner/database_cleaner#rspec-with-capybara-example
+---
 
 
-
-
-
-
-
-
-
-We started the lecture with a review of all things testing, and ended it by looking at feature testing with Rails. 
-For our feature tests we used rspec + capybara + phantomJS
-
-https://github.com/DatabaseCleaner/database_cleaner#rspec-with-capybara-example
-
-The notes below are courtesy of Karl!
+Here are some more detailed notes on general testing courtesy of Karl!
 
 Slides and notes are available at [https://github.com/jensen/rspec-notes/](https://github.com/jensen/rspec-notes/). The old lecture from monday has slides and notes as well [https://github.com/jensen/testing-notes](https://github.com/jensen/testing-notes).
 
