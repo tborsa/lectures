@@ -4,7 +4,8 @@ For feature/E2E tests we are using a combination of RSPEC,
 Capybara, PhantomJS, poltergeist, and database_cleaner. 
 
 # Capybara 🐭
-![capybara](https://raw.githubusercontent.com/tborsa/LighthouseLabs/master/lectures/Week10/Day2/Lecture/assets/capybara2.jpg)
+
+![capybara](https://raw.githubusercontent.com/tborsa/lectures/master/week10/day2/assets/capybara2.jpg)
 
 >"Capybara helps you test web applications by simulating how a real user would interact with your app. It is agnostic about the driver running your tests and comes with Rack::Test and Selenium support built in."
 
@@ -34,20 +35,20 @@ Capybara.default_max_wait_time = some_value
 
 
 # PhantomJS 👻
-![phantom](https://raw.githubusercontent.com/tborsa/LighthouseLabs/master/lectures/Week10/Day2/Lecture/assets/phantom.jpeg)
+![phantom](https://raw.githubusercontent.com/tborsa/lectures/master/week10/day2/assets/phantom.jpeg)
 
 >A JS based headless web browser (driver) for testing. 
 
 Use instead of the default rack test which has [limitations](https://github.com/teamcapybara/capybara#racktest)
 
 # Poltergeist 👻
-![poltergeist](https://raw.githubusercontent.com/tborsa/LighthouseLabs/master/lectures/Week10/Day2/Lecture/assets/poltergeist.jpeg)
+![poltergeist](https://raw.githubusercontent.com/tborsa/lectures/master/week10/day2/assets/poltergeist.jpeg)
 
 >A gem to connect Capybara(ruby) to Phantom(JS)
 
 
 # DatabaseCleaner 🧼
-![cleaner](https://raw.githubusercontent.com/tborsa/LighthouseLabs/master/lectures/Week10/Day2/Lecture/assets/dbcleaner.png)
+![cleaner](https://raw.githubusercontent.com/tborsa/lectures/master/week10/day2/assets/dbcleaner.png)
 >"Database Cleaner is a set of gems containing strategies for cleaning your database in Ruby. " 
 
 "The original use case was to ensure a clean state during tests."
