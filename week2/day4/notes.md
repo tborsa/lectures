@@ -52,7 +52,7 @@ Why?
 
 - Flexible, modular code
 
-W2D4 with KV - Promises
+KV's notes below
 ====
 
 More about Asynchronous Flow through Promises. We will also spent some time talking about error handling (with promises at least).
