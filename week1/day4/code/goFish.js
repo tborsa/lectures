@@ -6,6 +6,10 @@ const randomNumber = (range) => {
   return Math.floor(Math.random() * range);
 };
 
+// const distributedRandomNumber = (range) => {
+//   return Math.floor((randomNumber(range) + randomNumber(range)) / 2);
+// }
+
 const printFish = (number) => {
   const fish = fishOptions[number];
   fishInWater.push(fish);

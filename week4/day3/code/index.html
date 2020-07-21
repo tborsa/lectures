@@ -1,26 +1,24 @@
 <html>
   <head>
-    <link rel="stylesheet" href="style.css">
-    <script
-    defer
-    src="https://code.jquery.com/jquery-3.4.1.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-    crossorigin="anonymous"></script>
-    <script defer src="pokedex.js"></script>
+    <link rel="stylesheet" href="./style.css"/>
+    <script defer src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script defer src="./script.js"></script>
   </head>
   <body>
     <div class="pokedex">
-      <h1> Pokedex </h1>
-      <form>
-        <label name="search">Search</label>
-        <input id="search" type="text" name="search"></input>
-        <input type="submit"></input>
-      </form>
-      <h2> Name </h2>
+      <header>
+        <h1>Pokemon Name</h1>
+        <form id="search-form">
+          <input id="search-field">
+          <input type="submit" value="search">
+        </form>
+      </header>
       <div class="screen">
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/258.png"></img>
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/340.png" alt="pokemon image"/>
       </div>
-      <p>Description</p>
+      <footer>
+        <p> description</p>
+      </footer>
     </div>
   </body>
 </html>

@@ -50,7 +50,7 @@ let obj = {
 }
 ```
 
-An object can have many key value pairs, and each value can be anything.
+An object can have many key value pairs, and each value can be any javascript value.
 
 ```javascript
 let obj = {
@@ -62,7 +62,8 @@ let obj = {
 
 For our object to be useful we need:  
 - A way of adding new data(key value pairs).  
-- A way of retrieving current data.  
+- A way of retrieving current data.
+- A way of editing/changing existinig key value pairs.
 
 ## Getting
 

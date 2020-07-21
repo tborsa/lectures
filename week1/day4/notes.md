@@ -1,6 +1,6 @@
 # Callbacks
 
-
+![callbacks](https://raw.githubusercontent.com/tborsa/lectures/master/week1/day4/assets/phone-ring.gif)
 
 # Topics
 - Functions are values
@@ -11,7 +11,8 @@
 - Callback functions and Higher order functions
 
 # Values
-Yesterday you looked at variables by value vs by reference. 
+Yesterday you looked at variables and how javascript stores values. 
+Javascipt values can be stored as a primitive type or by reference. 
 How are functions stored?
 
 We have been creating and using functions
@@ -24,6 +25,7 @@ function howdy(){
 howdy();
 ```
 But functions are a value as well, the value of the function itself can also be accessed with.
+
 ```javascript
 howdy;
 ```
@@ -43,6 +45,7 @@ Because it has no name we don't have a way to call the function in the above exa
 We can however give an anonymous function a name so we can use it. 
 
 # Functional Expression vs Declaration
+
 You can create a function as a declaration or as an expression.
 
 A functional declaration is:
@@ -81,90 +84,100 @@ const howdy = function(){
 ```
 
 
-Why they exist
+# Arrow Functions (and their common use for callback functions)
+![arrow](https://raw.githubusercontent.com/tborsa/lectures/master/week1/day4/assets/arrow.gif)
+
+Another way to declare a function is using the arrow function syntax.
+
+```javascript
+const howdy = () => {
+  console.log("hey there pardner");
+}
+```
+
+There are some differences, involving more complex programming patterns that we will look at later, between using an arrow function and the `function` keyword. For now we can think of arrow functions as a cleaner way to declare functions. 
+
+# Callbacks
+
+A Callback is a function passed as a parameter (object) to another function.
+
+ex.
+
+```javascript
+let classes = [
+  {name: 'wizard', primaryAbility: 'intelligence'}, 
+  {name: 'barbarian', primaryAbility: 'strength'}, 
+  {name: 'bard', primaryAbility: 'charisma'}, 
+  {name: 'rogue', primaryAbility: 'dexterity'}, 
+  {name: 'druid', primaryAbility: 'wisdom'}
+];
+
+let printClassDetials = (class) => {
+  console.log(class.name + ' primary ability is ' + class.primaryAbility);
+};
+
+classes.forEach(printClassDetails);
+
+```
+
+# DEMO Why they exist
 Implementing our own forEach and/or our own filter
 
-Arrow Functions (and their common use for callback functions)
-Nested scope and "scope chainy"
-Teacher Notes
-sync functions such as Array.map.
 
-Functions as callbacks
-Talk about callbacks and functions that take callbacks.
-
-An example narrative of taking code that does two things, and splitting it into two single-purpose functions.
-
-const array = [1, 2, 3];
-for (const item of items) {
-  console.log(item);
-};
-
-// can be rewritten as:
-
-const logEach = function(items) {
-  for (const item of items) {
-    console.log(item);
-  }
-};
-
-// but if we want something more abstract and single-purpose
-
-const forEach = function(items, action) {
-  for (const item of items) {
-    action(item);
-  }
-};
-forEach is therefore a Higher-Order function. Talk about how Array has forEach built in which does exactly that.
-
-
-Mention to students that while it's nice to be able to label things, remembering keywords / buzz words like "Higher-Order Function" is not the most important part.
-
-Arrow Functions
-Today students get introduced to Arrow functions. Feel free to introduce and use them part way through lecture.
-
-Exercise (live-code)
-Live code a forEachInReverse that does reverse iteration on an array and takes a cb much like forEach would.
-
-const forEachInReverse = function(items, func) {
-  for (let i = items.length - 1; i >= 0; i--) {
-    func(items[i]);
-  }
-};
-
-forEachInReverse(['hello', 'Lighthouse Labs', 'and', 'world'], (word) => {
-  console.log(word);
-});
-Once implemented, add a second parameter to the callback to support index passing (i).
-
-const forEachInReverse = function(items, func) {
-  for (let i = items.length - 1; i >= 0; i--) {
-    func(items[i], i);
-  }
-};
-
-forEachInReverse(['hello', 'lighthouse labs', 'and', 'world'], (word, index) => {
-  console.log(`The word at index ${index} is "${word}"`);
-});
-Important scope review: talk about the two different i vars there. Change one of them to demo how they don't need to be the same variable name.
-
-Why write Higher-order functions? What's the rationale?
-
-Important to explain and emphasize Single Responsibility Principle:
-
-These two functions (the callback vs the higher-order function) now each have a single, more concise responsibility, instead of doing both things. This is the most important reason for creating HO functions.
+# Single Responsibility Principle:
+![assemblyline](https://raw.githubusercontent.com/tborsa/lectures/master/week1/day4/assets/assemblyline.gif)
 
 A function should have a sole reason to exist, and delegate other responsibilities to other functions as needed.
 
-Scope chain (nested scope)
-Technical definition (taken from this popular resource):
+These two functions (the callback vs the higher-order function) now each have a single, more concise responsibility, instead of doing both things. This is the most important reason for creating HO functions.
+
+
+# Nested scope and "scope chain"
+
+We can think of 'scope' as the set of variables accessable from a function or block of code.
+
+```javascript
+  let weather = 'sunny';
+  let indoorActivity = 'play starcraft';
+  let outdoorActivity = 'climb';
+
+  if (weather === 'sunny') {
+    // Fo this code the variables in scope are [weather, indoorActivity, outdoorActivity]
+    console.log("you should " + outdoorActivity);
+  } else {
+    console.log("you should " + indoorActivity);
+  }
+
+```
+
+Every variable that we declare has either local or global scope.
+
+Global scoped variables are defined in the root of a documdent, outside of any function and can be accessed/used by all of the code in the file. 
+
+Local scoped variables are defined within a function, and can be used by any code inside of that function. 
+
+```javascript
+  let weather = 'sunny'; // global scope
+
+  const decideWhatToDo = (weather) => {
+    let indoorActivity = 'play starcraft'; // local scope
+    let outdoorActivity = 'climb'; // local scope
+    if (weather === 'sunny') {
+      console.log("you should " + outdoorActivity);
+    } else {
+      console.log("you should " + indoorActivity);
+    }
+  };
+
+  decideWhatToDo(weather);
+
+```
+
+To find the 'scope' for a certain line of code we have to look at all the local sopes that the code has access to + the global scope. This is sometimes referred to as a scope chain (localScope + localScope + ... + globalScope).
+
+
+// For the execution of goFish what is the scope for randomNumber
+
 
 To put it simply, each time you attempt to access a variable within a function’s execution context, the look-up process will always begin with its own variable object. If the identifier is not found in the variable object, the search continues into the scope chain. It will climb up the scope chain examining the variable object of every execution context looking for a match to the variable name.
 
-The example there is good enough. Roll with it or roll your own.
-
-TIP: Tech jargon isn't the main focus here. Most experienced devs don't even know the difference between "Context" (this), "Execution Context", and "Variable Object".
-
-Out Of Scope
-Closures (this used to be core, but is now stretch for today)
-Asynchronous Control Flow or Functions (like setTimeout, etc.)
-Arrow functions and this (there is mention of this today, but you don't need to emphasize it now)
