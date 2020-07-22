@@ -1,20 +1,25 @@
-const changeReference = function(obj) {
-  //overwritting the pointer with a primative
-  //stays the same
-  return obj = 5;
+
+// had no change to the parameter
+// const changeReference = function(value) {
+//   value = 1000;
+// };
+
+const changeReference = function(value) {
+  // console.log('this is value a copy of ref', value);
+  value.animal = "gorilla";
+  // console.log('this is value after gorilla', value);
+  // value = 'another thing';
+  // console.log('this is value after reassignment', value);
 };
 
-const changeValue = function(obj) {
-  obj[0] = 5;
-  obj = 10;
-};
-
-let myObj = {one: 1, two:2};
-
-let copy = myObj;
+let primative = 5;
+let ref = {animal: 'frog'};
 
 
-console.log(myObj);
-changeValue(myObj);
-console.log(myObj);
+// console.log("primative value", primative); // 5
+// changeReference(primative);
+// console.log("primative value", primative); // 
 
+console.log("ref value", ref); //{animal: 'frog'}
+changeReference(ref);
+console.log("ref value", ref); //{animal: 'gorilla'}
