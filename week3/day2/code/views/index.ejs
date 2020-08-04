@@ -1,0 +1,17 @@
+<h3>
+  Why no jokes :( <a href="/jokes/new">add joke?</a>
+</h3>
+
+<section>
+  <% for (const jokeID in ourJokes) { %>
+      <% const joke = ourJokes[jokeID] %>
+  <article class="article-summary">
+      <p class="text"><%= joke.text %></p>
+      <footer>
+          <a href="/jokes/<%= jokeID %>">View</a>
+          <a href="/jokes/<%= jokeID %>/edit">Edit</a>
+          <button>Delete</button>
+      </footer>
+  </article>
+ <% } %>
+</section>

@@ -2,6 +2,8 @@
 
 ![callbacks](https://raw.githubusercontent.com/tborsa/lectures/master/week1/day4/assets/phone-ring.gif)
 
+[Lecture notes and code](https://github.com/tborsa/lectures/tree/master/week1/day4)
+
 # Topics
 - Functions are values
 - Function declaration vs function expression
@@ -16,6 +18,7 @@ Javascipt values can be stored as a primitive type or by reference.
 How are functions stored?
 
 We have been creating and using functions
+
 ```javascript
 //create a function
 function howdy(){
@@ -24,6 +27,7 @@ function howdy(){
 //use it
 howdy();
 ```
+
 But functions are a value as well, the value of the function itself can also be accessed with.
 
 ```javascript
@@ -176,8 +180,5 @@ Local scoped variables are defined within a function, and can be used by any cod
 To find the 'scope' for a certain line of code we have to look at all the local sopes that the code has access to + the global scope. This is sometimes referred to as a scope chain (localScope + localScope + ... + globalScope).
 
 
-// For the execution of goFish what is the scope for randomNumber
-
-
-To put it simply, each time you attempt to access a variable within a function’s execution context, the look-up process will always begin with its own variable object. If the identifier is not found in the variable object, the search continues into the scope chain. It will climb up the scope chain examining the variable object of every execution context looking for a match to the variable name.
+Each time you attempt to access a variable within a function’s execution context, the look-up process will always begin with its own variable object. If the identifier is not found in the variable object, the search continues into the scope chain. It will climb up the scope chain examining the variable object of every execution context looking for a match to the variable name.
 

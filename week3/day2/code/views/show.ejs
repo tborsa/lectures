@@ -1,0 +1,16 @@
+<%- include('partials/_styles.ejs') %>
+
+<h1>THE JOKE SHOW PAGE</h1>
+<article class="article">
+  <img src="<%= joke.image %>" alt="" class="image">
+  <p class="text"><%= joke.text %></p>
+
+  <em><%= getComments(joke.id).length %> comments</em>
+
+  <h5><em>jovially by: <%= users[joke.userID] %></em></h5>
+  
+  <footer>
+      <a href="/jokes/<%= joke.id %>/edit">Edit</a>
+      <button>Delete</button>
+  </footer>
+</article>

@@ -5,11 +5,11 @@
 // };
 
 const changeReference = function(value) {
-  // console.log('this is value a copy of ref', value);
+  console.log('this is value a copy of ref', value);
   value.animal = "gorilla";
-  // console.log('this is value after gorilla', value);
-  // value = 'another thing';
-  // console.log('this is value after reassignment', value);
+  console.log('this is value after gorilla', value);
+  value = 'another thing';
+  console.log('this is value after reassignment', value);
 };
 
 let primative = 5;

@@ -11,10 +11,10 @@ Capybara, PhantomJS, poltergeist, and database_cleaner.
 
 New DSL!!
 
-__feature__: is equivalent to describe / context
+__feature__: is equivalent to describe / context  
 __Scenario__: equivalent to it / example.
 
-+ Navigating, Interacting, Querying ... [more](https://github.com/teamcapybara/capybara#the-dsl)
+### Navigating, Interacting, Querying ... [more](https://github.com/teamcapybara/capybara#the-dsl)
 
 Common Parameters:
 

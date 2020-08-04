@@ -1,24 +1,26 @@
 const net = require('net');
+const request = require('request');
 
 const server = net.createServer();
-const PORT = 3000;
+
+// I/O
 
 const connections = [];
 
 server.on('connection', (conn) => {
   conn.setEncoding('utf8');
-  conn.on('data',(msg) => {
-    console.log(msg);
+  connections.push(conn);
+  conn.on('data', (data) => {
+    console.log(data);
     for (let connection of connections) {
-      try {
-        connection.write(msg);
-      } catch (err) {
-        console.log('something went wrong', err);
-      }
+      connection.write(data);
     }
   });
-  connections.push(conn);
-  console.log("Someone connected");
+  conn.write("You have connected to the super secret chat server.");
+  console.log("Someone has connected");
 });
 
-server.listen(PORT);
+const port = 1337;
+
+console.log("listening on port " + port);
+server.listen(port);

@@ -1,15 +1,28 @@
 const fs = require('fs').promises;
 
-const lyrics = [];
 
 // new Promise((resolve, reject) => {
-//   //stuff that takes time
-//   resolve(5);
-//   reject();
-// });
-
-// console.log('my promise,', myPromise);
-
+  //   //stuff that takes time
+  //   resolve(5);
+  //   reject();
+  // });
+  
+  // console.log('my promise,', myPromise);
+  
+  // promises
+  // 1. Promises are going to avoid callback hell if we need to do 
+  // many asynchronous things synchronously
+  // 2. a single error handling with catch
+  // 3. have to use callback bc of the function we are using
+  // 4. more maintainable
+  // 5. 
+  
+  // callbacks
+  // 1. we have to declare less functions 
+  // 2. simpler to understand* (for single async things)
+  // 3. memory used is less
+  
+const lyrics = [];
 const p1 = fs.readFile('./verse1.txt', /* inline */ 'utf8')//1
   .then((data) => {//2
     lyrics.push(data);

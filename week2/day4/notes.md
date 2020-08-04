@@ -52,9 +52,6 @@ Why?
 
 - Flexible, modular code
 
-KV's notes below
-====
-
 More about Asynchronous Flow through Promises. We will also spent some time talking about error handling (with promises at least).
 
 ### 1. Disclaimer: DON'T PANIC
@@ -73,11 +70,9 @@ Hopefully you will start to understand and appreciate them, but you will be seei
 
 We reviewed the [Profile Generator](https://web.compass.lighthouselabs.ca/c583c1da-f7c8-478b-81a9-9497579a8ac2) which was our first introduction to callback hell.
 
-As another example problem, we want to read the [Agile manifesto](https://agilemanifesto.org/) from disk, which, for us is broken into four parts / files: p1.txt, p2.txt, p3.txt, and p4.txt.
+As another example problem, we want to read lyrics of a song from disk, which, for us is broken into four parts / files: p1.txt, p2.txt, p3.txt, and p4.txt.
 
-![](https://www.digitalcrafts.com/sites/default/files/Screen%20Shot%202017-07-31%20at%2011.04.40%20AM.png)
-
-See file `1_callbacks.js` for the solution.
+See file `lyric_reader_promises.js` for the solution.
 
 ### 3. Sync flow using Async tasks (with Promises)
 

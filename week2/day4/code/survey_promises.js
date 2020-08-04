@@ -5,41 +5,65 @@ const rlp = readline.createInterface({
   output: process.stdout
 });
 
+// Promise?
+// agreement to do something later
+// element of time to it
+// fufill a promise or break a promise
+
+const travisNewCoolPromises = {
+  one: 1,
+  two: 2,
+  then: () => {return 5},
+  catch: () => {},
+};
+
 const answers = [];
 
-// r.q('q1').then(() => { }).then().then()
-
-rlp.questionAsync('What do you think of Node.js? ')
-  .then((answer) => {
-    answers.push(answer);
-    return rlp.questionAsync('What\'s your name? ');
+rlp.questionAsync('what\'s an activity you like doing?') //Returns a promise #1
+  .then((res) => { // returns a promise #2
+    // console.log('response one', res);
+    answers.push(res);
+    return rlp.questionAsync('what is your name?');//Returns a promise
   })
-  .then((answer) => {
-    answers.push(answer);
-    return rlp.questionAsync('What\'s your favourite activity? ');
+  .then(res => {
+    answers.push(res);
+    return rlp.questionAsync('what do you listen to while doing that? ');//Returns a promise
   })
-  .then((answer) => {
-    answers.push(answer);
-    return rlp.questionAsync('What do you listen to while doing that? ');
+  .then(res => {
+    answers.push(res);
+    return rlp.questionAsync('which meal is your favourite(dinner, brunch)? ');//Returns a promise
   })
-  .then((answer) => {
-    answers.push(answer);
-    return rlp.questionAsync('Which meal is your favourite? ');
+  .then(res => {
+    answers.push(res);
+    return rlp.questionAsync('whats your fav thing to eat for that meal?');//Returns a promise
   })
-  .then((answer) => {
-    answers.push(answer);
-    return rlp.questionAsync('What\'s your favourite thing to eat for that meal? ');
+  .then(res => {
+    answers.push(res);
+    console.log("all the users answers are: ", answers);
   })
-  .then((answer) => {
-    answers.push(answer);
-    return rlp.questionAsync('Which sport is your absolute favourite? ');
-  })
-  .then((answer) => {
-    answers.push(answer);
-    rlp.close();
-    const [node, name, activity, music, meal, food, sport] = answers;
-
-    console.log();
-    console.log('Your profile is ready!!');
-    console.log(`My name is ${name} and I really like ${activity}! I listen to ${music} while eating ${food} during ${meal} and playing ${sport}... and I think Node is ${node}!!`);
+  .catch((err) => { // will run if async thing failed
+    console.log("something went wrong");
   });
+
+// Promise .then()
+
+// // recursive call
+// rl.question('what\'s an activity you like doing? ', (two) => {
+
+//   rl.question('what do you listen to while doing that? ', (three) => {
+        
+//     rl.question('which meal is your favourite(dinner, brunch)? ', (four) => {
+
+//       rl.question('whats your fav thing to eat for that meal? ', (five) => {
+            
+//         rl.question('which sport is your fav? ', (six) => {
+              
+//           rl.question('what is your superpower? in a few words, tell us what you are amazing at! ', (seven) => {
+//             console.log(`The survey persons name is ${one} and that person likes to ${two}, and likes listening to ${three} while doing sports. The persons favourite meal is ${four} and loves eating ${five} for that meal. The persons absolute favourite sport is ${six}, and the persons superpower is ${seven}.`)                  
+//             rl.close();
+//           });
+//         });
+//       });
+//     });
+//   });
+// });

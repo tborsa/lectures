@@ -63,8 +63,11 @@ How do we communicate what the request is for??
 
 ![webserver](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpmTJYUfjQOz7d9Cz8xDXGQYQFKBRG1dzMzGpNPpGFbQUUK9EO)
 
-
+CRUD; it stands for "Create", "Read", "Update", "Delete"
 BREAD; it stands for "browse, read, edit, add, delete". 
+
+
+Routes + Data + Views
 
 # Express Review
 ![Express](https://raw.githubusercontent.com/tborsa/lectures/master/week3/day1/assets/express.jpg)
@@ -143,8 +146,6 @@ In these cases, we'd like to have a **"template"** system that lets us specify t
         ---> RETURNS AN HTML FILE EVENTUALLY
     
 The template engine we're using is EJS. EJS lets us embed arbitrary Javascript expressions, and it also lets up easily pass in template variables into the render function. Take a look at the `views` folder in the `express_demo` project to see examples of using EJS.
-
-Here's a bit of a cheat sheet:
 
 ```
 <h1><%= hello %></h1>
