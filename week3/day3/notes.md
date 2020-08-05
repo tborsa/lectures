@@ -15,12 +15,10 @@ The notes that we wrote in class can be found in the `notes.md` file.
 ![goldfish](https://raw.githubusercontent.com/tborsa/lectures/master/week3/day1/assets/goldfish.webp)
 
 ```
-waiting for something to happen
-Forgets things that have happened.
-Not part of the protocol to record the state of transactions. 
-Include all the needed information in a http request
-
-
+- forgets everything 
+- fresh interaction each time
+- No ongoing communication
+- no state information is stored 
 
 
 
@@ -71,10 +69,10 @@ Our login has many security vulnerabilities.
 
 What are some of them?
 ```
-Passwords were plaintext
-Cookies are editable and viewable by the user
-User are rewritten on register
-
+- cookie is stored in plaintext (not encoded)
+- we can modify it bc we can understand it
+- you can impersonate other users with the cookie
+- stored passwords as plain text
 
 
 
