@@ -31,9 +31,9 @@ min-height: 100%;
 ## me?
 - Travis Borsa
     - Studied Computer Science at SFU
+    - Web developer
     - Computer Graphics!
     - Hobbyist Game Developer
-    - Web developer
     - 🧗 Like rock climbing
 
 ---

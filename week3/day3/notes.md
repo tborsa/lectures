@@ -3,7 +3,7 @@
 # W3D3 - HTTP Cookies & User Authentication
 ![auth](https://raw.githubusercontent.com/tborsa/lectures/master/week3/day3/assets/auth.gif)
 
-Notes and code can be found [Here](https://github.com/tborsa/lectures/tree/master/week3/day1)
+Notes and code can be found [Here](https://github.com/tborsa/lectures/tree/master/week3/day3)
 
 The other notes I mentioned on more auth and encryption [Here](https://github.com/tborsa/LighthouseLabs/blob/master/lectures/Week4/Day5/Lecture/notes.md)
 

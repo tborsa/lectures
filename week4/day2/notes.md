@@ -52,6 +52,17 @@ The document object
 
 Each Object/Node has properties and methods that allow you to programmatically change the style or content of that node. 
 
+tree
+
+- parents and children
+- one parent multiple children
+- one child can have one parent
+
+graph
+
+- child can have many parents
+- parent can have many children
+
 
 ---
 
