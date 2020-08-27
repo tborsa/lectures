@@ -72,7 +72,7 @@ We reviewed the [Profile Generator](https://web.compass.lighthouselabs.ca/c583c1
 
 As another example problem, we want to read lyrics of a song from disk, which, for us is broken into four parts / files: p1.txt, p2.txt, p3.txt, and p4.txt.
 
-See file `lyric_reader_promises.js` for the solution.
+See file `lyric_reader.js` for the solution.
 
 ### 3. Sync flow using Async tasks (with Promises)
 
@@ -80,7 +80,7 @@ We revisited the same File I/O problem using Promises. For this we used the (exp
 
 We were able to avoid the callback hell/waterfall using promises properly.
 
-See `2_promises.js` for the solution we wrote.
+See `lyric_reader_promises.js` for the solution we wrote.
 
 #### Attributes of Promises
 
