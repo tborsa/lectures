@@ -1,44 +1,31 @@
 
-# Custom Hooks and Immutable Data Patterns
+# Data Fetching & Other Side Effects
 
-![custom hooks](https://raw.githubusercontent.com/tborsa/lectures/master/week7/day3/assets/hooks.jpg)
+![Side Effects](https://raw.githubusercontent.com/tborsa/lectures/master/week7/day2/assets/experiment.gif)
 
+Links to Sandboxes of our demos:
+
+[Use Effect with Dependencies](https://codesandbox.io/s/eager-swirles-o3ows)  
+[Use Effect with Cleanup](https://codesandbox.io/s/dank-field-46m6d)  
+[Use Effect with Functional setState](https://codesandbox.io/s/focused-kalam-2hdom)  
+[Use Effect with data fetching](https://codesandbox.io/s/react-axios-qosu3)  
+
+Our slick login form can be found [here](https://codesandbox.io/embed/angry-edison-x8o3l)
 
 # Topics📢
 
-Notes can be found [here](https://github.com/tborsa/lectures/tree/master/week7/day3)
-
-Code can be found [here](https://github.com/tborsa/react-week-playground)
-
-We can build components, and we can retrieve and store data. We need to learn how to organize the logic used to perform updates on our data. This lecture provides an overview of the process used to build and use custom Hooks.
-
-- Separating rendering from logic
-- Custom Hook
-- Immutable data patterns with Objects and Arrays
+- hooks review
+- Side Effects
+  - types of side-effects 
+- useEffect
+  - Dependency array
+  - Cleanup
+- Selectors
 
 
 # React Review
 
-const normalVariable = 5;
-
 State?
-
-```
-- Value of our (stateful) variables at a certain moment/render
-- Components & effects (consumers of state)
-- So the changes persist between renders
-- a state change -> a new render (or excution of our function)
-
-
-
-
-
-
-
-
-
-
-```
 
 State as a concept: the remembered information about a system.
 
@@ -47,104 +34,138 @@ State in React: the remembered information about a system + useState & Reacts co
 A new value of state is created every time the component runs and renders.
 Each prop and state is for a particular functional component execution, and they remain the same throughout that render. 
 
-Side effects?
 
+# Side Effects
+
+What are Pure functions?
+
+A Function that doesn't have any side effects.   
+It doesn't perform any mutations.  
+  (changing the global state)  
+Given the same input, returns the same output.  
+
+
+What are Side Effects?
+
+Any function that is not pure has side effects. 
+
+- Depends on external data(outside its local environment, state) 
+- Has an observable effect besides returning a value (often the main effect) 
+
+Primary effect -> side effect. 
+
+Side effects can depend on the history of the application! (what happens before or after the function is run)
+
+Can be hard to debug!
+
+## types of side-effects 
+
+- Setting timers or intervals  
+- Modifying DOM elements not controlled by React  
+- A network request  
+- Connection to a socket server  
+- Adding and removing event listeners  
+- Logging to the console  
+
+# useEffect
+
+## document title demo
+
+Components are functions that take in props & state and return react elements. 
+
+Anything that does not contribute to the output of the functional component (the JSX), should be encapsulated in a useEffect
+
+Anything that does contribute to the output of the functional component, but depends on something external to the functional component should be encapsulated in a useEffect.  
+
+useEffect is necessary for any side effect that occurs when rendering a component (So it is handled properly) 
+
+useEffect lets you synchronize things outside of the React tree according to our props and state. (Dom tree & JSX is already synchronized by react)
+
+What does handle properly mean?
+
+- side effects happen after the primary effect of returning JSX (that is painted to the dom)  
+- synchronization of side effects between functional component calls  
+  - only occurs when the result of the side effect will be different  
+  - don't want redundent function calls  
+  - also don't want to miss a potential new result of the side effect (miss a chance to update the effect)  
+- Result of the SideEffect can be cleaned up when needed  
+
+# How is useEffect called?
+
+Similar to State a new useEffect function is created every time the component runs,
+the component remembers it and then calls the effect after react paints the dom.  
+
+So effects don’t need to block screen updates!
+
+### Conceptually Effects are part of the render result
+
+__React:__ Give me the UI when the state is 0.    
+__Your component:__ Here’s the render result:  
+
+>You clicked 0 times  
+
+__Also remember to run this effect after you’re done:__ () => { document.title = 'You clicked 0 times' }    
+__React:__ Sure. Updating the UI. Hey browser, I’m adding some stuff to the DOM.  
+__Browser:__ Cool, I painted it to the screen.  
+__React:__ OK, now I’m going to run the effect you gave me.   
+
+>Running () => { document.title = 'You clicked 0 times' }.  
+
+all functions within a component have the props, state, and surrounding scope for that functional call baked into them. Snapshot in time. 
+
+# Dependency array
+
+React already handles redundancy in output (shadow dom), but needs to handle side effect redundancy as well. 
+
+## double state count demo 
+
+Tell React only to call our useEffect if particular values change. 
+
+It’s like if we told React: “Hey, I know you can’t see inside this function, but I promise it only uses name and nothing else from the render scope.”
+
+
+ANY value useEffect uses outside of the function should be included in the dependency array. 
+
+# Cleanup
+
+```js
+  useEffect(() => {
+    ChatAPI.subscribeToFriendStatus(props.id, handleStatusChange);
+    return () => {
+      ChatAPI.unsubscribeFromFriendStatus(props.id, handleStatusChange);
+    };
+  });
 ```
-- when a function uses something outside of it's scope
-  - dependencies outside of it's parameters.
-  - relying on information/actions outside of it's parameters
-  - (a, b) => c   (a, b) => x
-- (a, b) => c
+Order of cleanup:
+
+React renders UI for {id: 20}.  
+The browser paints. We see the UI for {id: 20} on the screen.  
+React cleans up the effect for {id: 10}.  
+React runs the effect for {id: 20}.  
 
 
-- side effects can access stale (state) previous values of state
-  - Many versions of state.
+# Functional setState
 
-- handle all side effects/functions with side effects in
-useEffect hook.
+A problem with the dependency array? 
 
-- Control a side effects dependancies
-
+```js
 useEffect(() => {
-  // side effects 
+  const id = setInterval(() => {
+    setCount(count + 1);
+  }, 1000);
+  return () => clearInterval(id);
+}, [count]);
+```
+
+To do this, we need to ask ourselves: what are we using count for? It seems like we only use it for the setCount call. In that case, we don’t actually need count in the scope at all. When we want to update state based on the previous state, we can use the functional updater form of setState:
+
+```js
+useEffect(() => {
+  const id = setInterval(() => {
+    setCount(c => c + 1);
+  }, 1000);
+  return () => clearInterval(id);
 }, []);
-
 ```
 
-
-# Rendering vs Logic
-![render](https://raw.githubusercontent.com/tborsa/lectures/master/week7/day3/assets/render.jpg)
-
-
-React allows us to break up our html & Dom rendering into components. 
-Break down a complex render into smaller more manageable renders. 
-
-Business logic or domain logic is the part of the program which encodes the real-world business rules that determine how data can be created, stored, and changed.
-
-So far rendering and domain logic has been paired together in a component. Because our components are modular as a side effect our logic is also somewhat modular. 
-
-But what if the logic in a component grows too large?
-What if we want to use the same logic across multiple components?
-
-🎣
-
-# Custom Hooks
-
-Seperate modules that include component logic. 
-
-
-We can use other hooks in a custom hook (useState, useEffect, ect.)
-
-
-# Immutable Data Paterns
-![immutable](https://raw.githubusercontent.com/tborsa/lectures/master/week7/day3/assets/immutable.jpg)
-
-what?
-
-How do we get a new updated version of our data without modifying the original source. 
-
-
-obj add
-```
-const state = {stuff}
-const new = {...stuff, b: 'new'}
-```
-
-
-obj remove
-```
-const state = {stuff}
-const copy = Object.assign({}, state)
-delete copy.thing
-
-//or
-
-const {thing, ...new} = state;
-
-```
-
-
-array add
-```
-const state = []
-const new = [...state, newElement]
-```
-
-array remove
-```
-const state = []
-const new = state.slice(0);
-//pop shift splice
-new.splice(#,1)
-
-//or
-
-
-const state = [];
-
-const new = state.filter(elem => elem === 'remove');
-
-```
-
-
-Multidiimension arrays? nested objects?
+minimize the information needed in a component & within useEffect.
