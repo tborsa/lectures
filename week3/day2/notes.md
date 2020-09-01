@@ -1,7 +1,7 @@
 # W3D2 - CRUD with EXPRESS
 ![webserver](https://raw.githubusercontent.com/tborsa/lectures/master/week3/day1/assets/server.gif)
 
-Notes and code can be found [Here](https://github.com/tborsa/lectures/tree/master/week3/day1)
+Notes and code can be found [Here](https://github.com/tborsa/lectures/tree/master/week3/day2)
 
 The notes that we wrote in class can be found in the `notes.md` file.
 

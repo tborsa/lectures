@@ -1,50 +1,48 @@
 
-$(document).ready(()=>{
 
-  console.log("i am external");
+$(document).ready(() =>{
   
-  let boxelements = $('#create');
-  console.log(boxelements);
-  
-  let pets = [
-    {
-      name: 'Dingo',
-      type: 'dog',
-      age: 1
-    },
-    {
-      name: 'Kongo',
-      type: 'snake',
-      age: 3
-    },
-    {
-      name: 'Meowngo',
-      type: 'cat',
-      age: 2
-    },
-    {
-      name: 'Bongo',
-      type: 'dog',
-      age: 2
-    }
-  ]
+  console.log('this is from script js');
+  document.getElementById('test').style.color = 'purple';
 
-  $('#create').click((event)=>{
-    // let box = document.createElement("div");
-    for (let pet of pets ) {
-      let box = $(`<div class="tweet">${pet.name}</div>`);
-      let header = $(`<header> age: ${pet.age}, type: ${pet.type}</header>`);
-      header.addClass('test');
-      box.append(header);
-      $('.container').append(box);
-    }
-
-    // document.getElementsByClassName('container')[0].appendChild(box);
+  $('h2').click((event) => {
+    console.log(event);
+    $('ul li').css('font-size', '40px');
   });
 
-  $('.box').on('mouseover', function() {
-    console.log('herere');
-    $(this).css("background-color", 'pink');
+  $('h2').hover((event) => {
+    console.log('i was hovered');
   });
 
-})
+  $('h2').on('mouseover', (event) => {
+    console.log('i was hovered with on');
+  });
+
+  const pets = [
+    {name: 'slither', type: 'snake', age: 1}
+  ];
+
+  $('button').on('click', (event) => {
+    let pet = pets[0];
+    const newPet = $('<li></li>');
+    newPet.html(`
+      <strong>name:</strong> 
+      ${pet.name}, 
+      type: ${pet.type}, 
+      age: ${pet.age}
+    `);
+    // newPet.append('name: ');
+    // newPet.append(pet.name);
+    // newPet.append(' type: ');
+    // newPet.append(pet.type);
+    // newPet.append(' age: ');
+    // newPet.append(pet.age);
+    // newPet.addClass('pet');
+
+    $('ul').append(newPet);
+  });
+  
+  console.log($('ul li'));
+
+});
+

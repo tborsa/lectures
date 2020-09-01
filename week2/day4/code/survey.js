@@ -8,6 +8,9 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
+// when we have many async things we have to do in order risk of callback hell
+// forcing synchronous execution
+
 rl.question('what is your name?', (one) => {
   // recursive call
   rl.question('what\'s an activity you like doing? ', (two) => {

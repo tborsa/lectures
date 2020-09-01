@@ -1,7 +1,9 @@
 # Featrue testing w/ RSPEC 👊
 
 For feature/E2E tests we are using a combination of RSPEC,
-Capybara, PhantomJS, poltergeist, and database_cleaner. 
+Capybara, PhantomJS, poltergeist, and database_cleaner.
+
+Notes and code [here](https://github.com/tborsa/lectures/tree/master/week10/day2)
 
 # Capybara 🐭
 

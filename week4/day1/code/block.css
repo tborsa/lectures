@@ -8,7 +8,15 @@ span{
   width: 100%;
   background-color: wheat;
 }
-div{
+
+div.plusclass{
+  height: 300px;
+  width: 300px;
+  background-image: url("./block.png");
+  background-size: contain;
+}
+
+div a.special{
   height: 300px;
   width: 300px;
   background-image: url("./block.png");

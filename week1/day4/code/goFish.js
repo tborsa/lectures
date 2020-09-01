@@ -5,59 +5,56 @@
 
 // .
 // You Caught ...
-// 🎣xx
+// 🎣 🐠
 // .
 
-// check if input matches a fish/thing
-// tell them what they have caught 
-// print the number of fish to guess ex 10 fish x
-// get the input from user x
-// print ocean x
-  // sometimes print ocean
-  // sometimes print fisher
-
+// the different types of 'fish' that can appear in the water.
 const fishOptions = ['🐟','🐟','🐠','xx','🥡 ','🐡','🦞 ','🐚'];
+// an array of fish that have been added to the water (starts empty)
 const fishInWater = [];
 
+// generate a rancom number from 0 to range
 const randomNumber = (range) => {
-  return Math.floor(Math.random() * range);
+  return Math.round(Math.random() * range);
 };
 
-const printFish = (number) => {
-  const fish = fishOptions[number];
+// uses fishOptions and random number to return a random fish
+// also adds the fish to fishInWater so we remember what fish have been picked
+const getRandomFish = () => {
+  const fish = fishOptions[randomNumber(fishOptions.length - 1)];
   fishInWater.push(fish);
-  process.stdout.write(fish);
+  return fish;
 };
 
-const printOcean = (index, userInput) => {
-  // call 1 scope: index, userInput + scope of doXtimes call 1  + global
-  if (index === userInput) {
-    process.stdout.write("🚣‍♂️");
+// return a boat if it is the square the user wants to fish on
+// return a ocean otherwise
+const getOcean = (cast, oceanSquare) => {
+  if (cast === oceanSquare) {
+    return '🚣‍♂️';
   } else {
-    process.stdout.write("🌊");
+    return '🌊';
   }
 };
 
-const printRandomFish = () => {
-  const number = randomNumber(fishOptions.length);
-  printFish(number);
-};
-
-const doXTimes = (times, callback, userInput) => {
-  // call 1 scope: times, callback, userInput  + global
-  for (let i = 0; i < times; i ++) {
-    callback(i, userInput);
+// do a thing/function/behaviour x number of times
+const printXTimes = (behaviour, times, cast) => {
+  console.log('first');
+  for (let i = 0; i < times; i++) { // 0,1,2,3,4,5 ... times
+    process.stdout.write(behaviour(cast, i));
   }
+  console.log('');
 };
 
-let userInput = (process.argv[2] - 1);
-doXTimes(10, printOcean, userInput); //function call 1
-console.log('');
-doXTimes(10, printRandomFish, userInput); // function call 2
-console.log('');
+// get user input
+const cast = process.argv[2] - 1;
+// const length = process.argv[3];
 
-const match = fishInWater[userInput];
-console.log('✨');
-console.log(`You Caught! : ${match}`);
-console.log('✨');
+printXTimes(getOcean, 9, cast);
+printXTimes(getRandomFish, 9, cast);
+
+// print the result
+console.log(".");
+console.log("You Caught ...");
+console.log("🎣 ", fishInWater[cast]);
+console.log(".");
 

@@ -4,16 +4,13 @@
 ![end to end](https://raw.githubusercontent.com/tborsa/lectures/master/week8/day2/assets/endtoend.gif)
 
 Notes can be found [here](https://github.com/tborsa/lectures/tree/master/week8/day2)
+Code can be found [here](https://github.com/tborsa/moaiaxetree)
 
 # Topics📢
 
 - Unit and End to End Testing
 - Cypress
 - Jest vs Cypress
-
-We went through the installation of Cypress into a project
-We wrote our first end to end cypress test using the  basic API for Cypress 
-And We broke into groups to design and create E2E tests for Wikipedia.
 
 
 # Unit Testing Vs. End to End Testing

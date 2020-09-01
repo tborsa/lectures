@@ -1,22 +1,45 @@
-// higher order function
-const sumAndPrint = (num1, num2, print) => {
-  const sum = num1 + num2;
-  print(sum);
+// Callback Review
+
+// - function that is passed as a parameter
+// - helper function that you wait to use.
+// - can return a value, but don't typically (especially when used asynchronously)
+// - Asynchronous
+  // - happens simultaneously* (Js does one thing at a time, but the OS can make progress on other things)
+  // - Executes after code has run
+  // - non blocking
+  // - runs code that we can complete without waiting for the code we can't
+
+// Advantages of Callbacks
+  // - Code is more modular
+  // - only way (currently) to handle async code
+
+// Disadvantages
+  // - Breaks our brains it's confusing to write 
+  // - Susceptable to callback hell
+
+
+const add = (num1, num2) => {
+  return num1 + num2;
 };
 
-sumAndPrint(5, 8, (sum) => {
-  console.log(sum);
-});
+const subtract = (num1, num2) => {
+  return num1 - num2;
+};
 
-sumAndPrint(5, 8, (sum) => {
-  console.log(`The sum of your values is: ${sum}`);
-});
+const multiply = (num1, num2) => {
+  return num1 * num2;
+};
 
-// Why do we use callbacks?
-// 1. Our function has 1 concern, specific.
-// 2. Modular/easier to test
-// 3. Allows us to work with asynchronous flow. 
-// 4. Easier to write and read*
-// 5. Easier to debug. 
+// ... + other  math functions
 
-// Non Blocking/Async
+// does some math on 2 numbers and prints output
+const mathAndPrint = (num1, num2, cb) => { //cb is the math function to run on the numbers
+  console.log(cb);
+  console.log(`the math on ${num1} and ${num2} resulted in: `, cb(num1, num2));
+};
+
+mathAndPrint(5, 8, add);
+
+mathAndPrint(5, 8, subtract);
+
+mathAndPrint(5, 8, multiply);

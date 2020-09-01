@@ -2,7 +2,7 @@
   "name": "code",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "data-helpers.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
@@ -10,13 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^3.0.8",
-    "cookie-parser": "^1.4.4",
+    "bcrypt": "^5.0.0",
+    "cookie-parser": "^1.4.5",
     "cookie-session": "^1.4.0",
-    "ejs": "^3.0.1",
+    "ejs": "^3.1.3",
     "express": "^4.17.1",
-    "http": "0.0.0",
-    "nodemon": "^2.0.2",
-    "say": "^0.16.0"
+    "nodemon": "^2.0.4"
   }
 }

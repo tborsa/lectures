@@ -1,30 +1,46 @@
+// created a list of variables and function
+//functional declaration (hoisted)
 
-// functional declaration
-function howdy(){
-  console.log("hey there pardner");
-}
+function howdy(num) {
+  console.log("hows it going?" + num);
+  return 5;
+};
+
+//use it
+// howdy();
 
 // functional expression
 const howdyTwo = function() {
-  console.log("hey there pardner again");
+  console.log('hows it going again?');
 };
 
-// arrow function
-const arrowFunc = () => {
+// howdyTwo();
 
+// function expression using arrow function syntax (not hoisted)
+const howdyThree = () => {
+  console.log("howdy for the third");
 };
 
+// howdyThree();
 
-// anonymous function
-function() {
-  console.log("some stuff");
-}
-
-// anonymous arrow function
-
-() => {
-
+// this function should recieve 1 parameter which should be a function
+const higherOrderFunction = (callback) => {
+  console.log(callback);
+  callback();
 };
+
+// console.log("what is this howdy", howdy);// reference to the function object
+// console.log("what is this howdy()", howdy());
+
+// higherOrderFunction(howdy); // passing the reference/function obj to the higher order function
+
+const arr = [1,3,4,5];
+
+const multiplication = (elem) => {
+  console.log('square :', elem * elem);
+};
+
+arr.forEach(multiplication);
 
 let classes = [
   {name: 'wizard', primaryAbility: 'intelligence'}, 
@@ -34,66 +50,40 @@ let classes = [
   {name: 'druid', primaryAbility: 'wisdom'}
 ];
 
-const printClassDetails = (dndClass) => {
-  console.log(classes);
-  return dndClass.name + ' primary ability is ' + dndClass.primaryAbility;
+let printClassDetails = (classInfo) => {
+  console.log(classInfo.name + ' primary ability is ' + classInfo.primaryAbility);
 };
 
-const printClassName = (dndClass, index) => {
-  console.log(`${index} : ${dndClass.name}`);
+let printClassName = (classInfo) => {
+  console.log('The Class name is: ', classInfo.name);
 };
 
-classes.forEach(printClassDetails);
+const ourForEach = (callback, array) => {
+  for (let elem of array) {
+    callback(elem);
+  }
+};
+
+[1,2,3].forEach((elem => console.log('square : ', elem * elem));
+
+// ourForEach((elem) => console.log("the info: ", elem), classes);
+// // can't call the the info function
+// console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+// // ourForEach(printClassName, classes);
 
 
-const assertEqual = (actual, expected, isEqual) => {
-
-  if (isEqual(actual, expected)) {
-
+const assertEqual = (value1, value2, comparison) =>{
+  if (comparison(value1, value2)) {
+    console.log('true');
   } else {
-
+    console.log('false');
   }
 }
 
-assertEqual([1,2,3], [1,5,4], eqArrays);
+assertEqual(1,3, (value1, value2) => {
+  return value1 === value2;
+});
 
-assertEqual({}, {}, eqObject);
+assertEqual([1,2,3], [1,3,4], arraysEq);
 
-
-const ourForEach = (classList, printCallback) =>{
-  let arrOutputs = [];
-  for (let classInfo of classList) {
-    arrOutputs.push(printCallback(classInfo, 5)); // = printClassName({name: 'wizard', primaryAbility: 'intelligence'})
-  }
-  console.log(arrOutputs);
-};
-
-ourForEach(classes, printClassDetails);
-// console.log("SECOND FOR EACH CALL");
-// ourForEach(classes, printClassName);
-
-
-const global = "everyone can use this";
-
-const functionOne = () => {
-  const localOne = "Everything  inside functionONe can use this";
-  console.log("scope of function one", localOne, global);
-  const functionTwo = () => {
-    const localTwo = "EVeryting inside functionTwo can use this";
-    console.log("scope of functionTwo", localTwo, localOne, global);
-    const functionThree = () => {
-      const localThree = "EVeryting inside functionTwo can use this";
-      console.log('can i see local 4');
-      console.log("scope of functionTwo", localThree, localTwo, localOne, global);
-    };
-    functionThree();
-  };
-
-  functionTwo();
-
-};
-
-
-
-
-functionOne();
+assertEqual({one: 1}, {two: 2}, objEqual);
