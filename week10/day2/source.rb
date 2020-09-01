@@ -2,7 +2,7 @@ npm install -g phantomjs
 
 group :development, :test do
   #add
-  gem 'capybara'
+  gem 'capybara' 
   gem 'poltergeist'
   gem 'database_cleaner'
 end
@@ -43,7 +43,7 @@ rspec
 # bin/rails generate rspec:feature <feature_name>
 
 require 'rails_helper'
-
+# page.save_screenshot()
 RSpec.feature "Visitor orders a product", type: :feature, js: true do
 
   scenario "They complete an order while logged in" do

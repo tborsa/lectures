@@ -14,6 +14,9 @@ const PORT = 3000;
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true })); // this gives us req.body
 
+app.listen(PORT, () => {
+  console.log(`Listening on ${PORT}`);
+});
 // Server 2 server request:
 // this server is making a request to google.com's server
 // request.get('google.com', (err, response, body) => {
@@ -68,6 +71,3 @@ app.get('/questions/:id', (request, response) => {
   response.render('show', { question });
 });
 
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Listening on ${PORT}`);
-});

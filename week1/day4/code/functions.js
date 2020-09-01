@@ -1,30 +1,30 @@
 
-// // functional declaration
-// function howdy(){
-//   console.log("hey there pardner");
-// }
+// functional declaration
+function howdy(){
+  console.log("hey there pardner");
+}
 
-// // functional expression
-// const howdyTwo = function() {
-//   console.log("hey there pardner again");
-// };
+// functional expression
+const howdyTwo = function() {
+  console.log("hey there pardner again");
+};
 
-// // arrow function
-// const arrowFunc = () => {
+// arrow function
+const arrowFunc = () => {
 
-// };
+};
 
 
-// // anonymous function
-// function() {
-//   console.log("some stuff");
-// }
+// anonymous function
+function() {
+  console.log("some stuff");
+}
 
-// // anonymous arrow function
+// anonymous arrow function
 
-// () => {
+() => {
 
-// };
+};
 
 let classes = [
   {name: 'wizard', primaryAbility: 'intelligence'}, 
@@ -43,21 +43,21 @@ const printClassName = (dndClass, index) => {
   console.log(`${index} : ${dndClass.name}`);
 };
 
-// classes.forEach(printClassDetails);
+classes.forEach(printClassDetails);
 
 
-// const assertEqual = (actual, expected, isEqual) => {
+const assertEqual = (actual, expected, isEqual) => {
 
-//   if (isEqual(actual, expected)) {
+  if (isEqual(actual, expected)) {
 
-//   } else {
+  } else {
 
-//   }
-// }
+  }
+}
 
-// assertEqual([1,2,3], [1,5,4], eqArrays);
+assertEqual([1,2,3], [1,5,4], eqArrays);
 
-// assertEqual({}, {}, eqObject);
+assertEqual({}, {}, eqObject);
 
 
 const ourForEach = (classList, printCallback) =>{

@@ -50,7 +50,6 @@ server.get('/me', (req,res) => {
 //bcrypt=========================================================bcrypt
 
 
-//cookie session
 const bcrypt = require('bcrypt');
 //register
 bcrypt.hash(req.body.password, 1, function(err, hash) {
