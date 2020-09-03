@@ -1,29 +1,90 @@
 //react router
+// react is almost done you have learned a lot,
+// today is focused on the next steps of your
+// react journey
+// we can guide this lecture somewhat based on What
+// you are interested in.
+// the first next step should be to review what you
+// already know and reflect on what you have learned
+// dan abramov has some great articles to look at
+// particularly the complete guide to use effect
+// helps build an understanding of the render cycle
 
-import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
-import commonroutes from './bundles/common/routes';
+// go over scheduler and see if you can draw a 
+// component tree of the structure
 
+// new things
+// - other hooks
+// - react router
+// - useful libraries for react
+// - styled components
+// - component libraries
+
+// dont make stuff that others have made
+
+// demo problem with scheduler
+
+// 
+{
+  "compilerOptions": {
+    "baseUrl": "src"
+  },
+  "include": ["src"]
+}
 
 import React from 'react';
 import { Route } from 'react-router-dom';
 import Creation from '../components/Creation';
-
-export default [
-  <Route key="creation" exact path="/creation" component={Creation} >
-  </Route>,
-];
-
-<Router>
-  <Route></Route>
-</Router>
-
+ // USE ROUTER
+<Router/>
+// USE ROUTE
+<Route path="/dog" ><Dog/></Route>
+// SWITCH
 <Switch>
-  {[
-    ...commonroutes
-  ]}
+  // EXACT PATH
+  <Route exact path="/cat" ><Cat/></Route>
 </Switch>
+// LINKS vs A tags
+<Link to="/dog">dog</Link>
+<Link to="/cat">cat</Link>
+<a href="/dog">a dog</a>
+<a href="/cat">a cat</a>
+<Screens/>
 
-//Create the context
+// PARAMS
+<Route path="/dog/:id" ><Dog/></Route>
+
+// SCREENS COMPONENT
+const index = () => {
+  return (
+    <Switch>
+      {
+        [
+          ...About,
+        ]
+      }
+      // default route
+      <Route path="/"><Cat/></Route>
+    </Switch>
+  );
+};
+
+// SCREEN ROUTE
+export default [
+  <Route key="about" path="/about">
+    <About/>
+  </Route>,
+]
+
+// ROUTER HOOKS
+const history = useHistory();
+
+const showCat = () => {
+  history.push('/cat');
+}
+// SERVER ROUTES VS FRONT END ROUTES
+
+//CONTEXT
 
 import {createContext} from 'react';
 

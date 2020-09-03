@@ -1,35 +1,35 @@
+const dogs = { bacon: 'excitable doggie', fluffers: 'a good boi', layla: 'a sweet girl', rover: 'good listener', userInput: 'this is not what you want'};
 
-const createArtists = function(name, genre) {
-  let artist = {};
-  artist.name = name;
-  artist.genre = genre;
-  return artist;
+const userInput = process.argv[2]; //=> 'bacon'
+
+const description = dogs[userInput];
+
+if (description) {
+  console.log(`The info on dog ${userInput} is ${description}`);
+} else {
+  console.log(`That was not a valid dog name try one of these`, Object.keys(dogs));
+}
+
+// primitive vs reference example
+
+const changeReference = function(obj) {
+  //overwritting the pointer with a primative
+  //stays the same
+  return obj = 5;
 };
 
-let kendrick = createArtists('kendrick lamar', 'rap');
-
-const createAlbum = function(name, year) {
-  let album = {name: name, year: year};
-  return album;
+const changeValue = function(obj) {
+  obj[0] = 5;
+  obj = 10;
 };
 
-const artistDetails = function(artist, field) {
-  console.log(`the ${field} of ${artist.name} is `, artist[field]);
-};
+let myObj = {one: 1, two:2};
 
-const addAlbumToArtist = function(artist, album) {
-  if (!artist.albums) {
-    artist.albums = [];
-  }
-  artist.albums.push(album);
-};
+let copy = myObj;
 
-let damn = createAlbum('DAMN', 2018);
 
-addAlbumToArtist(kendrick, damn);
+console.log(myObj);
+changeValue(myObj);
+console.log(myObj);
 
-console.log(kendrick);
 
-artistDetails(kendrick, 'albums');
-
-//change add artist and artists details to be methods of artist

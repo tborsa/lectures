@@ -11,22 +11,23 @@ $(document).ready(() => {
   //=========UPDATE DOM ===>
   const updatePokedex = (pokemon) => {
     console.log(pokemon)
-    $("#image").attr("src", pokemon.image);
-    $("#description").text(pokemon.description);
-    $("#name").text(pokemon.name);
+    $(".pokedex .screen img").attr("src", pokemon.image);
+    $(".pokedex header h2").text(pokemon.description);
+    $(".pokedex footer p").text(pokemon.name);
   };
 
   //=========AJAX REQUEST ===>
   const getPokemon = (search) => {
-    let pokemon = {};
-    $.ajax({url: `${ROOT_URL}pokemon/${search}`, headers: {'Access-Control-Allow-Origin': '*'}})
+    let pokemon = {name: '', description: '', image: ''};
+    $.ajax({url: `${ROOT_URL}pokemon/${search}`})
       .then((res)=>{
         pokemon.name = res.name;
         pokemon.image = res.sprites.front_default;
-        return $.ajax({url: `${ROOT_URL}characteristic/${res.id}` , headers: {'Access-Control-Allow-Origin': '*'}});
+        const speciesUrl = response.species.url;
+        return $.ajax({url: speciesUrl });
       })
       .then((descRes)=>{
-        pokemon.description = descRes.descriptions[descRes.descriptions.length - 1 ].description;
+        pokemon.description = descRes.flavor_text_entries[2].flavor_text;
         updatePokedex(pokemon);
       })
       .fail((err)=>{
@@ -43,6 +44,9 @@ $(document).ready(() => {
   getPokemon(25);
   
 });
+// <form id="search">
+// <input id="search-input"/>
+// <input type="submit" value="search"/>
 
 //=========ADD CAUGHT POKEMON ========>
 

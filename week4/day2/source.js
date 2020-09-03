@@ -1,4 +1,16 @@
-<link src="script.js"></link>
+window
+BatteryManager
+navigator.geolocation.getCurrentPosition();
+
+// look at dom tree
+
+const li = document.getElementById('n-randompage');
+const random = li.childNodes[0].click()
+
+// objects on window object
+
+<link rel="stylesheet" href=""/>
+<script src="script.js"></script>
 
 <script>
 document.getElementById("demo").innerHTML = "Hello JavaScript!";

@@ -1,11 +1,22 @@
 //SETUP
 //===================================================
 
-// npm install cypress
+// local
+npm install cypress --save-dev
+npm install -g cypress
+
 $(npm bin)/cypress open
 
 // add to package
 "cypress:open": "cypress open"
+
+
+//  config cypress.json
+{
+  "baseUrl": 'http://localhost:3000',
+  "viewportWidth0": 1280,
+  "viewportHeight": 1200
+}
 
 //first passing test
 describe('My First Test', function() {

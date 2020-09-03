@@ -33,3 +33,5 @@ const arguments = getArguments();
 console.log(loopArguments(arguments));
 
 //commit
+
+// --inspect
