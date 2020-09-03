@@ -15,16 +15,37 @@ The notes that we wrote in class can be found in the `notes.md` file.
 ![goldfish](https://raw.githubusercontent.com/tborsa/lectures/master/week3/day1/assets/goldfish.webp)
 
 ```
-- forgets everything 
-- fresh interaction each time
-- No ongoing communication
-- no state information is stored 
+
+- Doesn't store anything
+- doesn't save any state
+- same request multiple times it should have the same response
+
+
 
 
 
 
 
 ```
+
+
+
+# Cookies Review 🍪
+![cookies](https://raw.githubusercontent.com/tborsa/lectures/master/week3/day3/assets/cookiemonster.gif)
+
+
+
+__How they solve the "state" problem?__
+
+- they are saved in the browser (outside of the request response cycle)
+- cookie crumbs of what a specific user does
+- key value pairs
+- sent with every request as a header to the server
+- server can request the browser to set a cookie
+
+
+
+
 
 ## Authentication vs Authorization  
 
@@ -46,15 +67,6 @@ Purpose: to transform data to a usable state.
 
 __Encryption:__ transforms data into another format in such a way that only specific individual(s) can reverse the transformation.  
 Purpose: to obscure the data.
-
-
-# Cookies Review 🍪
-![cookies](https://raw.githubusercontent.com/tborsa/lectures/master/week3/day3/assets/cookiemonster.gif)
-
-
-
-__How they solve the "state" problem?__
-
 
 <small>LIVE CODE DEMO</small>
 

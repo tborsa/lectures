@@ -1,8 +1,4 @@
 <h1>Home Page</h1>
-<ul>
-  <% for(let questionId in questions) { %>
-    <li>
-      <a href="/questions/<%= questionId %>"><%= questionId %></a>
-    </li>
-  <% } %>
-</ul>
+<% if (username) { %>
+  <h2> User is logged in as: <%= username %></h2>
+<% } %>

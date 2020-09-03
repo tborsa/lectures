@@ -3,18 +3,11 @@
 
 ![Side Effects](https://raw.githubusercontent.com/tborsa/lectures/master/week7/day2/assets/experiment.gif)
 
-Links to Sandboxes of our demos:
+Notes can be found [here](https://github.com/tborsa/lectures/tree/master/week7/day3)
 
-[Use Effect with Dependencies](https://codesandbox.io/s/eager-swirles-o3ows)  
-[Use Effect with Cleanup](https://codesandbox.io/s/dank-field-46m6d)  
-[Use Effect with Functional setState](https://codesandbox.io/s/focused-kalam-2hdom)  
-[Use Effect with data fetching](https://codesandbox.io/s/react-axios-qosu3)  
-
-Our slick login form can be found [here](https://codesandbox.io/embed/angry-edison-x8o3l)
 
 # Topics📢
 
-- hooks review
 - Side Effects
   - types of side-effects 
 - useEffect
@@ -38,7 +31,19 @@ Each prop and state is for a particular functional component execution, and they
 # Side Effects
 
 What are Pure functions?
+```
 
+- functions without side effects
+- has a single purpose does not require extra(beyond it's parameters) info from outside
+- Always has a return value.
+- Given the same input it will always return the same output.
+
+
+
+
+
+
+```
 A Function that doesn't have any side effects.   
 It doesn't perform any mutations.  
   (changing the global state)  
@@ -47,6 +52,20 @@ Given the same input, returns the same output.
 
 What are Side Effects?
 
+```
+- Can have differing results.
+- It effects state or variables outside the scope of the function.
+- 
+
+
+
+
+
+
+
+
+
+```
 Any function that is not pure has side effects. 
 
 - Depends on external data(outside its local environment, state) 
@@ -64,8 +83,8 @@ Can be hard to debug!
 - Modifying DOM elements not controlled by React  
 - A network request  
 - Connection to a socket server  
-- Adding and removing event listeners  
-- Logging to the console  
+- Adding and removing event listeners
+- Logging to the console
 
 # useEffect
 
@@ -93,7 +112,14 @@ What does handle properly mean?
 # How is useEffect called?
 
 Similar to State a new useEffect function is created every time the component runs,
-the component remembers it and then calls the effect after react paints the dom.  
+the component remembers it and then calls the effect after react paints the dom.
+
+useEffect Flow
+1. React turns your JSX into HTML (client-side rendering) and updates the DOM
+2. The browser responds to the change by updating the UI
+3. Any cleanup for effects from the previous render are performed
+4. New effects for the current render are performed
+
 
 So effects don’t need to block screen updates!
 
