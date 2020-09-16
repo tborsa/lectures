@@ -1,23 +1,25 @@
 
 
 
-const changeReference = function(value) {
-  console.log('in function before assign: ', value);
-  value.addedInFunction = "will this affect ref";
-  console.log('in function after assign: ', value);
+// let someValue = obj;
+const updateValue = function(someValue) {
+  console.log('someValue before func assign', someValue); //{ stuff: 'things' }
+  someValue[4] = "something new"; // does affect the data outside
+  
+  // someValue = "something new"; //does not affect the data outside of the function
+  console.log('someValue after func assign', someValue); //{ stuff: 'things', new: 'something new' }
 };
-// could be a pointer?
-// direct copy
-  // primitive would be a copy of the value
-  // ref would be a copy of the reference
-
-const primitive = 5;
-const ref = {one: 1, two: 2};
 
 
-// changeReference(primitive);
-// console.log('after ', primitive); // new
+let num = 5;
 
-console.log("ref before function call: ", ref);
-changeReference(ref);
-console.log("ref after function call: ", ref); //same
+let arr = [1,2,3,4];
+
+// create a new empty arr
+// loop through the old arr and add the key value pairs to the new  empty;
+
+
+
+console.log('arr before func call', arr); //{ stuff: 'things' }
+updateValue(arr); //what happens?
+console.log('arr after func call', arr); // { stuff: 'things', new: 'something new' }

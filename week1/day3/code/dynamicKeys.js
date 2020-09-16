@@ -1,8 +1,5 @@
-let books = {fantasy: {"Patrick Rothfuss": "Name of the wind", "Tolkein": "The Fellowship of the Ring"}, "sci-fi": "Hyperion", "non-fiction": "The dragons of Eden"};
+const dogs = {charlie: 'a good boi', figgins: 'excitable doggie', huckleberry: 'adventours gal', dogFromUser: 'this is not a real dog'};
 
-const userInput = process.argv[2];
+const dogFromUser = process.argv[2];
 
-
-const pet = {name: 'roofus', age: 5, petDOBandLastAppointment: {}};
-
-console.log(`You should read`,  books[userInput]);
+console.log(`${dogFromUser} is ${dogs[dogFromUser]}`); //=>dogs["charlie"] => dogs.charlie => "a good boi"
