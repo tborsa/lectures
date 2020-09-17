@@ -10,51 +10,48 @@
 
 // the different types of 'fish' that can appear in the water.
 const fishOptions = ['🐟','🐟','🐠','xx','🥡 ','🐡','🦞 ','🐚'];
-// an array of fish that have been added to the water (starts empty)
-const fishInWater = [];
+const printedFish = [];
 
-// generate a rancom number from 0 to range
-const randomNumber = (range) => {
-  return Math.round(Math.random() * range);
+// get random number
+const randomNumber = () => {
+  return Math.floor(Math.random() * fishOptions.length);
 };
 
-// uses fishOptions and random number to return a random fish
-// also adds the fish to fishInWater so we remember what fish have been picked
-const getRandomFish = () => {
-  const fish = fishOptions[randomNumber(fishOptions.length - 1)];
-  fishInWater.push(fish);
-  return fish;
+// print a random fish
+const printRandomFish = () => {
+  const fish = fishOptions[randomNumber()];
+  printedFish.push(fish);
+  process.stdout.write(fish);
 };
 
-// return a boat if it is the square the user wants to fish on
-// return a ocean otherwise
-const getOcean = (cast, oceanSquare) => {
-  if (cast === oceanSquare) {
-    return '🚣‍♂️';
+// print some ocean 
+const printOcean = (oceanCount, userInput) => {
+  // when printUi runs print ocean what is the scope
+  if (oceanCount == userInput) {
+    process.stdout.write('🚣‍♀️');
   } else {
-    return '🌊';
+    process.stdout.write('🌊');
   }
 };
 
-// do a thing/function/behaviour x number of times
-const printXTimes = (behaviour, times, cast) => {
-  console.log('first');
-  for (let i = 0; i < times; i++) { // 0,1,2,3,4,5 ... times
-    process.stdout.write(behaviour(cast, i));
+// prints out ocean/fish some # of times
+const printUI = (oceanWidth, userInput, UIFunction) => {
+  for (let oceanCount = 1; oceanCount <= oceanWidth; oceanCount ++) {
+    UIFunction(oceanCount, userInput);
   }
   console.log('');
 };
 
-// get user input
-const cast = process.argv[2] - 1;
-// const length = process.argv[3];
+const userInput = process.argv[2];
 
-printXTimes(getOcean, 9, cast);
-printXTimes(getRandomFish, 9, cast);
+printUI(10, userInput, printOcean);
+printUI(10, userInput, printRandomFish);
 
-// print the result
-console.log(".");
-console.log("You Caught ...");
-console.log("🎣 ", fishInWater[cast]);
-console.log(".");
+// given user Input the fish printed at user input space is?
+console.log('~~~~~');
+console.log("you caught... ", printedFish[userInput - 1]);
+console.log('~~~~~');
 
+// get input from user
+
+// print the results

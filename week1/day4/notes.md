@@ -69,7 +69,7 @@ In both cases you can access the function by the name __howdy__ and call the fun
 
 The is one difference between function declarations and function expressions is...
 
->Functional expressions don't get hoisted.
+>You can't use a hoisted Functional expression.
 
   Meaning you cannot call a functional expression before it is declared. 
 

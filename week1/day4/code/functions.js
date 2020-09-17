@@ -1,46 +1,59 @@
-// created a list of variables and function
-//functional declaration (hoisted)
+// Higher Order Howdy~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-function howdy(num) {
-  console.log("hows it going?" + num);
-  return 5;
+function howdy(param) {
+  console.log("hey there", param);
 };
 
-//use it
-// howdy();
-
-// functional expression
-const howdyTwo = function() {
-  console.log('hows it going again?');
+const howdyAgain = function(param) {
+  console.log('hows it going again', param);
 };
 
-// howdyTwo();
-
-// function expression using arrow function syntax (not hoisted)
-const howdyThree = () => {
-  console.log("howdy for the third");
+const howdyTheThird = (param) => {
+  console.log("hey some more", param);
 };
 
-// howdyThree();
+const funcCopy = howdyTheThird;
 
-// this function should recieve 1 parameter which should be a function
-const higherOrderFunction = (callback) => {
-  console.log(callback);
-  callback();
+funcCopy.thing = "stuff";
+
+const higherOrderHowdy = (howdyFunction) => {
+  console.log('Howdy starting in 3, 2, 1...');
+  // console.log("what is howdyFunction", howdyFunction);
+  howdyFunction();
 };
 
-// console.log("what is this howdy", howdy);// reference to the function object
-// console.log("what is this howdy()", howdy());
+// higherOrderHowdy(howdy);
+// higherOrderHowdy(howdyAgain);
+// higherOrderHowdy(howdyTheThird);
 
-// higherOrderFunction(howdy); // passing the reference/function obj to the higher order function
+// For Each~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-const arr = [1,3,4,5];
+let arr = ['dog','dino','snake',4,5];
 
-const multiplication = (elem) => {
-  console.log('square :', elem * elem);
+const printNum = (num) => {
+  console.log('printing: ', num);
 };
 
-arr.forEach(multiplication);
+const numSquared = (num) => {
+  console.log('squared: ', num * num);
+};
+
+// s
+// Assert Equal~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+const assertEqual = (value1, value2, comparisonFunction) => {
+  if (comparisonFunction(value1, value2)) {
+    console.log('👍');
+  } else {
+    console.log('👎');
+  }
+};
+
+// assertEqual([1,3,4], [1,3,4], eqArrays);
+// assertEqual({one: 1}, {one: 1}, eqObjects);
+
+// Class info ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 let classes = [
   {name: 'wizard', primaryAbility: 'intelligence'}, 
@@ -50,40 +63,40 @@ let classes = [
   {name: 'druid', primaryAbility: 'wisdom'}
 ];
 
-let printClassDetails = (classInfo) => {
-  console.log(classInfo.name + ' primary ability is ' + classInfo.primaryAbility);
+let printClassDetails = (charClass) => {
+  console.log(charClass.name + ' primary ability is ' + charClass.primaryAbility);
 };
 
-let printClassName = (classInfo) => {
-  console.log('The Class name is: ', classInfo.name);
+// classes.forEach(printClassDetails);
+
+// const forEach = (callback) {
+//   for (let element of arr) {
+//     callback(1, 2, 3);
+//   }
+// }
+
+
+// classes.forEach((charClass) => {
+//   console.log('class name is:', charClass.name);
+// });
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+const globalVar = 5;
+
+const makeFunction = () => {
+  const localMakeFunction = 6;
+  const babyFunction = () => {
+    const localBabyVariable = 7; // localBabyVariable + localMakeFunction + globalVar
+    console.log('the scope:', localBabyVariable, localMakeFunction, globalVar);
+  };
+  return babyFunction;
 };
 
-const ourForEach = (callback, array) => {
-  for (let elem of array) {
-    callback(elem);
-  }
-};
+let returnOfMakeFunction = makeFunction();
 
-[1,2,3].forEach((elem => console.log('square : ', elem * elem));
-
-// ourForEach((elem) => console.log("the info: ", elem), classes);
-// // can't call the the info function
-// console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-// // ourForEach(printClassName, classes);
+console.log('return', returnOfMakeFunction);
+returnOfMakeFunction();
 
 
-const assertEqual = (value1, value2, comparison) =>{
-  if (comparison(value1, value2)) {
-    console.log('true');
-  } else {
-    console.log('false');
-  }
-}
-
-assertEqual(1,3, (value1, value2) => {
-  return value1 === value2;
-});
-
-assertEqual([1,2,3], [1,3,4], arraysEq);
-
-assertEqual({one: 1}, {two: 2}, objEqual);
