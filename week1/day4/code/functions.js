@@ -38,7 +38,15 @@ const numSquared = (num) => {
   console.log('squared: ', num * num);
 };
 
-// s
+arr.forEach(printNum);
+
+arr.forEach(numSquared);
+
+arr.forEach((element) => {
+  console.log(element);// log each thing in the array
+});
+
+
 // Assert Equal~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 const assertEqual = (value1, value2, comparisonFunction) => {
