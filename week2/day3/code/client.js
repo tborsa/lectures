@@ -1,24 +1,29 @@
 const net = require('net');
 const stdin = process.stdin;
-stdin.resume();
+
 stdin.setEncoding('utf8');
+stdin.resume();
 
 const client = net.createConnection({
-  host: '0.tcp.ngrok.io',
-  port: 11890
+  host: "2.tcp.ngrok.io",
+  port: 16543
+});
+
+stdin.on('data', (data) => {
+  if (data === '\\q\n') {
+    process.exit();
+  }
+  client.write(data);
 });
 
 client.setEncoding('utf8');
 
-client.on('connect', () =>{
-  console.log('I connected to the chat server');
-  client.write('Hellow this is travis');
+client.on('connect', () => {
+  // when a connection is established
+  console.log("successfully connected to server");
+  client.write('hello this travis');
 });
 
-stdin.on('data', (data) =>{
-  client.write(data);
-});
-// ------------
 client.on('data', (data) => {
-  console.log(`-> ${data}`);
+  console.log(`Incomming: ${data}`);
 });

@@ -1,31 +1,32 @@
 const net = require('net');
-const PORT = 3000;
 
 const server = net.createServer();
 
-const connections = [];
-server.on('connection', (conn) => {
-  // everytime someone connects to the server
-  console.log('Someone connected.');
-  conn.setEncoding('utf8');
-  // add the connection to our connections array
+const port = 8080;
 
-  connections.push(conn);
+const clients = [];
 
-  conn.on('data', (data) => {
-    console.log('->', data);
-    // forward this data to all the connections
-    for (let connection of connections) {
+server.on('listening', () => {
+  console.log("Tcp server listening on port:", port);
+});
+
+server.on('connection', (connection) => {
+  // this callback is run on a connection
+  clients.push(connection);
+  console.log('someone connected');
+  connection.setEncoding('utf8');
+  connection.on('data', (data) => {
+    console.log("incomming:" , data);
+    // forward this info to users
+    for (let client of clients) {
       try {
-        connection.write(data);
-      } catch (err) {
-        // recover from the error
-        // console.log('someone disconnected');
+        client.write(data);
+      } catch (error) {
+        // bad stuff
       }
     }
   });
+
 });
 
-server.listen(PORT, () =>{
-  console.log(`server is listening on port: ${PORT}`);
-});
+server.listen(port);

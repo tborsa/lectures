@@ -11,7 +11,7 @@ Notes and code [here](https://github.com/tborsa/lectures/tree/master/week10/day2
 
 >"Capybara helps you test web applications by simulating how a real user would interact with your app. It is agnostic about the driver running your tests and comes with Rack::Test and Selenium support built in."
 
-New DSL!!
+New DSL!! You can view the docs here https://rubydoc.info/github/teamcapybara/capybara/master
 
 __feature__: is equivalent to describe / context  
 __Scenario__: equivalent to it / example.
