@@ -20,37 +20,28 @@ Today we will look at:
 
 What? 
 
-- function that is called within another function (when recieved as a parameter)
+```
 
-- higher order function?
-  - receive or return another function
 
-```js
-const func = () => {};
 
-const func2 = (cb) => {
-  cb();
-};
 
-func2(() => {});
 
-let arr = [1,2,4];
 
-arr.forEach((item) => {
-  // result
-  cb(result);
-})
-
-console.log('after');
 ```
 
 
 Why? 
 
-- the function (cb) that is passed in is used at a later time
-  - asynchronous activity, action that we need to wait for
+```
 
-- Flexible, modular code
+
+
+
+
+
+
+
+```
 
 More about Asynchronous Flow through Promises. We will also spent some time talking about error handling (with promises at least).
 

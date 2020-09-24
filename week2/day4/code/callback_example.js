@@ -1,45 +1,47 @@
 // Callback Review
 
-// - function that is passed as a parameter
-// - helper function that you wait to use.
-// - can return a value, but don't typically (especially when used asynchronously)
-// - Asynchronous
-  // - happens simultaneously* (Js does one thing at a time, but the OS can make progress on other things)
-  // - Executes after code has run
-  // - non blocking
-  // - runs code that we can complete without waiting for the code we can't
+// What is a callback?
 
-// Advantages of Callbacks
-  // - Code is more modular
-  // - only way (currently) to handle async code
+// Higher order function -> a function that takes another function as a parameter
+  // when a function calls another function
+// callback -> is the function run by another function
 
-// Disadvantages
-  // - Breaks our brains it's confusing to write 
-  // - Susceptable to callback hell
+// Why?
+// Make code more modular
+// run async code
+// 'return' retrieve async data
+// 'waiting' for things to finish
+// conditional action
+
+// The Bad?
+// Callback hell
+// code hard to read/understand
+// harder to code async/callbacks
+// can't use traditional return statements
 
 
-const add = (num1, num2) => {
-  return num1 + num2;
+
+const add = (numOne, numTwo) => {
+  return numOne + numTwo;
 };
 
-const subtract = (num1, num2) => {
-  return num1 - num2;
+const subtract = (numOne, numTwo) => {
+  return numOne - numTwo;
 };
 
-const multiply = (num1, num2) => {
-  return num1 * num2;
+const multiply = (numOne, numTwo) => {
+  return numOne * numTwo;
 };
 
-// ... + other  math functions
-
-// does some math on 2 numbers and prints output
-const mathAndPrint = (num1, num2, cb) => { //cb is the math function to run on the numbers
-  console.log(cb);
-  console.log(`the math on ${num1} and ${num2} resulted in: `, cb(num1, num2));
+const mathAndPrint = (numOne, numTwo, doMath) => {
+  const result = doMath(numOne, numTwo);
+  console.log(result);
 };
 
-mathAndPrint(5, 8, add);
+console.log('add: '); 
+mathAndPrint(4, 7, add);
+console.log('subtract: ');
+mathAndPrint(4, 7, subtract);
+console.log('multiply: ');
+mathAndPrint(4, 7, multiply);
 
-mathAndPrint(5, 8, subtract);
-
-mathAndPrint(5, 8, multiply);
