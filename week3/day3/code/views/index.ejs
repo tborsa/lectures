@@ -1,8 +1,18 @@
-<h1>Home Page</h1>
-<ul>
-  <% for(let questionId in questions) { %>
-    <li>
-      <a href="/questions/<%= questionId %>"><%= questionId %></a>
-    </li>
-  <% } %>
-</ul>
+<h1>Welcome to Login APP, the most exciting part of any app</h1>
+
+<% if (user) { %>
+  <p><%= user.username %>'s info</p>
+  <p>password: <%= user.password %></p>
+  <form method="POST" action='/logout'>
+    <input type="submit" name="logut" value="logout"/>
+  </form>
+<% } else {%>
+  <h2>Login</h2>
+  <form method="POST" action="/login" >
+    <label for="username"> username </label>
+    <input id="username" name="username"/>
+    <label for="password"> password </label>
+    <input id="password" name="password" type="password"/>
+    <input type="submit" name="login"/>
+  </form>
+<% } %>

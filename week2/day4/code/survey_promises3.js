@@ -12,12 +12,23 @@ const askQuestion = (questions) => {
   if (questions.length > 0) {
     return rl.questionAsync(questions[0])
       .then((result) => {
-        answer = result;
-        const nextQuestions = questions.slice(1);
+        let nextQuestions;
+        if (<correct answer logic>) {
+          //set answer and ask next question
+          answer = result;
+          nextQuestions = questions.slice(1);
+        } else {
+          // ask same question again
+          nextQuestions = questions;
+        }
         return askQuestion(nextQuestions);
       })
       .then(recievedAnswers => {
-        return [answer, ...recievedAnswers];
+        if (answer) {
+          return [answer, ...recievedAnswers];
+        } else {
+          return [...recievedAnswers];
+        }
       });
   } else {
     return Promise.resolve([]);

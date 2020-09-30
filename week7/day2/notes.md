@@ -26,12 +26,26 @@ Code can be found [here](https://github.com/tborsa/react-week-playground)
 State?
 
 ```
-- Value of our (stateful) variables at a certain moment/render
-- Components (consumers of state)
-- So the changes persist between renders
-- a state change -> a new render (or excution of our function)
-- data that can change
-- data that determines the appearance of a component
+
+- data
+- track/keep hold of something/information
+- makes components smart not dumb
+- we monitor state to make decision on when to re-render
+- current state of data
+- Passed down as props (can only be passed down)
+- Set and retrieve state in react with a hook (useState)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ```

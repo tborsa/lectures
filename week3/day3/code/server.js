@@ -1,176 +1,62 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const bcrypt = require('bcrypt');
-const cookieSession = require('cookie-session');
 
-const { questions, createQuestion } = require('./data-helpers');
-
-const app = express();
-
+// Server Setup -----------------------------------
 const PORT = 3000;
-
-
-
-// use sets up middleware, function that will be run before all requests
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(cookieParser());
-app.use(cookieSession({
-  name: 'session',
-  keys: ['key1', "key2"]
-}));
-
+const app = express();
 app.set('view engine', 'ejs');
 
-app.listen(PORT, () => {
-  console.log(`Listening on Port: ${PORT}`);
-});
+// Middleware
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(cookieParser());
 
-let users = {
+// DATA -----------------------------------
+const users = {
   'tr0vis': {
     username: 'tr0vis',
-    password: 'ilikecats'
+    password: 'password'
   }
-};
+}
 
-// Routes
+// Routes -----------------------------------
+// View
+app.get('/', (request, response) => {
+  console.log('cookies-test:', request.cookies.test.one);
+  console.log('cookies-username:', request.cookies.username);
 
-// USERS
+  const templateVars = {user: null};
+  if (request.cookies.username && users[request.cookies.username]) {
+    //logged in
+    templateVars.user = users[request.cookies.username];
+  }
+  response.render('index', templateVars);
+})
 
-// GET /user/login (login) (get username + password sent in body)
-app.get('/user/login', (request, response) =>{
-  response.render('login');
-});
-// GET /user/register (register)
-app.get('/user/register', (request, response) =>{
-  response.render('register');
-});
+// Action
+app.post('/login', (request, response) => {
+  console.log('body', request.body);
+  const username = request.body.username;
+  const password = request.body.password;
 
-// GET /user/:username (get & show username)
-app.get('/user/:username', (request, response) =>{
-  // get some user info and pass it to the view as template vars
-  const userInfo = users[request.params.username];
-  // check if user is logged in for this oage
-  console.log("these are the cookies:", request.session);
-  let loggedInUsername = request.session.username;
-  if (loggedInUsername === request.params.username) {
-    response.render('user_page', userInfo);
+  if (!username || !password) {
+    response.status(400).json({message: 'Bad Request no username/password provided'});
+  } else if (users[username] && users[username].password === password) {
+    // successfull login
+    response.cookie('username', username);
+    response.cookie('test', {one: 1, two: 2});
+    response.redirect('/');
   } else {
-    response.redirect('/user/login');
+    response.status(403).json({message: 'Incorrect username or password'});
   }
 });
 
-// POST /user/login (login)
-app.post('/user/login', (request, response) =>{
-  const user = request.body;
-  // if user name and password match the user db
-  const dbUser = users[user.username];
-  if (dbUser) {
-    // checking if the password matches
-    bcrypt.compare(user.password, users[user.username].password, (err, result) => {
-      // add value to our users
-      if (result) {
-        request.session.username = user.username;
-        response.redirect(`/user/${user.username}`);
-      } else {
-        response.redirect('/user/register');
-      }
-    });
-  } else {
-    response.redirect('/user/register');
-  }
-});
-
-// POST /user (register create a new usere)
-app.post('/user', (request, response) =>{
-  // get value
-  const user = request.body;
-  // check is user exists & check if value is valid
-  if (user.username && user.password && !users[user.username]) {
-    // add value to our users
-    // logic to test the strength of the password
-    bcrypt.hash(user.password, 1, (err, hash) => {
-      users[user.username] = {
-        username: user.username,
-        password: hash
-      };
-      request.session.username =  user.username;
-      response.redirect(`/user/${user.username}`);
-    });
-  } else {
-    response.redirect('/user/register');
-  }
+app.post('/logout', (request, response) => {
+  response.clearCookie('username');
+  response.redirect('/');
 });
 
 
-// POST /user/logout (logout) (know who the current user is from the cookies)
-app.post('/user/logout', (request, response) =>{
-  request.session.username = null;
-  response.redirect('/user/login');
-});
-
-
-
-// QUESTIONS
-
-// GET /questions/:id/edit form to edit the question (UPDATE)
-app.get('/questions/:id/edit', (request, response) => {
-  // ejs html layout + data
-  response.render('edit');
-});
-
-// GET /questions/new show the form to add a question (CREATE)
-app.get('/questions/new', (request, response) => {
-  // ejs html layout + data
-  response.render('new');
-});
-
-// GET /questions/:id a question (READ)
-app.get('/questions/:id', (request, response) => {
-  // ejs html layout + data
-  const questionId = request.params.id;
-  let question = questions[questionId];
-  response.render('show', {question: question, questionId: questionId});
-});
-
-// GET /questions all questions (BROWSE)
-app.get('/questions', (request, response) => {
-  // ejs html layout + data
-  response.render('index', { questions: questions });
-});
-
-// POST /questions adding a questions (CREATE)
-app.post('/questions', (request, response) => {
-  // ejs html layout + data
-  console.log("a user tried to add a new question");
-  console.log('with the data', request.body);
-  const newQuestionId = createQuestion(request.body);
-  response.redirect(`/questions/${newQuestionId}`);
-});
-
-// (Answer)
-app.post('/questions/:id/answer', (request, response) => {
-  // ejs html layout + data
-  const answer = request.body.answer;
-  const questionId = request.params.id;
-  const question = questions[questionId];
-  if (question.answer === answer) {
-    response.redirect(question.reward);
-  } else {
-    response.redirect('/questions');
-  }
-});
-
-// PUT/POST /questions/:id/edit edits a question (UPDATE)
-app.post('/questions/:id/edit', (request, response) => {
-  // ejs html layout + data
-});
-
-// DELETE /questions delete a question (DELETE)
-app.post('/questions/:id', (request, response) => {
-  // ejs html layout + data
-  console.log("User is trying to delete a question");
-  const questionId = request.params.id;
-  delete questions[questionId];
-  response.redirect('/questions');
-});
+app.listen(PORT, () => {
+  console.log('server listening on port:', PORT);
+})
