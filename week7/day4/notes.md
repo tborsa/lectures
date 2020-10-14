@@ -1,12 +1,11 @@
 
-# Custom Hooks & Immutable Data Patterns
-
-![custom hooks](https://raw.githubusercontent.com/tborsa/lectures/master/week7/day3/assets/hooks.jpg)
+# Custom Hooks
+![custom hooks](https://raw.githubusercontent.com/tborsa/lectures/master/week7/day4/assets/hooks.jpg)
 
 
 # Topics📢
 
-Notes can be found [here](https://github.com/tborsa/lectures/tree/master/week7/day3)
+Notes can be found [here](https://github.com/tborsa/lectures/tree/master/week7/day4)
 
 Code can be found [here](https://github.com/tborsa/react-week-playground)
 
@@ -14,8 +13,6 @@ We can build components, and we can retrieve and store data. We need to learn ho
 
 - Separating rendering from logic
 - Custom Hook
-- Immutable data patterns with Objects and Arrays
-
 
 # React Review
 
@@ -29,15 +26,6 @@ State?
 - So the changes persist between renders
 - a state change -> a new render (or excution of our function)
 
-
-
-
-
-
-
-
-
-
 ```
 
 State as a concept: the remembered information about a system.
@@ -47,33 +35,21 @@ State in React: the remembered information about a system + useState & Reacts co
 A new value of state is created every time the component runs and renders.
 Each prop and state is for a particular functional component execution, and they remain the same throughout that render. 
 
+
 Side effects?
 
 ```
-- when a function uses something outside of it's scope
-  - dependencies outside of it's parameters.
-  - relying on information/actions outside of it's parameters
-  - (a, b) => c   (a, b) => x
-- (a, b) => c
 
-
-- side effects can access stale (state) previous values of state
-  - Many versions of state.
-
-- handle all side effects/functions with side effects in
-useEffect hook.
-
-- Control a side effects dependancies
-
-useEffect(() => {
-  // side effects 
-}, []);
+A result of a function that is not the return value.
+A pure function does not have a side effect.
+A -> B,  A  -> B, || A -> B , A -> C
+Side effects depend (have dependencies) on things other than the parameters.
 
 ```
 
 
 # Rendering vs Logic
-![render](https://raw.githubusercontent.com/tborsa/lectures/master/week7/day3/assets/render.jpg)
+![render](https://raw.githubusercontent.com/tborsa/lectures/master/week7/day4/assets/render.jpg)
 
 
 React allows us to break up our html & Dom rendering into components. 
@@ -96,55 +72,3 @@ Seperate modules that include component logic.
 We can use other hooks in a custom hook (useState, useEffect, ect.)
 
 
-# Immutable Data Paterns
-![immutable](https://raw.githubusercontent.com/tborsa/lectures/master/week7/day3/assets/immutable.jpg)
-
-what?
-
-How do we get a new updated version of our data without modifying the original source. 
-
-
-obj add
-```
-const state = {stuff}
-const new = {...stuff, b: 'new'}
-```
-
-
-obj remove
-```
-const state = {stuff}
-const copy = Object.assign({}, state)
-delete copy.thing
-
-//or
-
-const {thing, ...new} = state;
-
-```
-
-
-array add
-```
-const state = []
-const new = [...state, newElement]
-```
-
-array remove
-```
-const state = []
-const new = state.slice(0);
-//pop shift splice
-new.splice(#,1)
-
-//or
-
-
-const state = [];
-
-const new = state.filter(elem => elem === 'remove');
-
-```
-
-
-Multidiimension arrays? nested objects?

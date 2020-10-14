@@ -1,26 +1,39 @@
 # Next Steps For React
 
-- Review Scheduler
-  - Draw out a component tree (including props)
+- Review scheduler
+  - Make a component diagram (heirarchy how state is passed)
 
-- OverReacted complete guide to use effect
+- Readings 
+  - https://overreacted.io/a-complete-guide-to-useeffect/
 
-- Final Projects ^
+- 
 
-# New React Things
 
-- Class based/ OOP React (4/5)
+# New Things
 
-- New Hooks
-  - useRef
-  - useContext
+- new react hooks
+  - useRef (refs)
+  - useReducer (when to use vs. State)
+  - context (explain) <- 
 
-- React Native
-  - React for mobile development
-  - 
+- react libraries
+  - redux
+  - styled components 
+  - material UI
+  - React-Spring
+  - React Router 
+  (serving a specific purpose)
 
-- React Router
- - front end routes for react
- - 
+- React CLI
 
-- React Project Structure
+- JSX Linting
+
+- react patterns
+  - lifecycle events, Class based components/old react
+
+
+- Testing 
+  - webdriver
+
+
+

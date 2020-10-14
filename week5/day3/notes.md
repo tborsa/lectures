@@ -10,13 +10,13 @@ We tried to modularize our application so that the code was separated by differe
 
 As such we had modules for:
 
-The database connection: database-connection.js
-Database query functions: data-helpers.js
-Backend routes: birdz-routes.js
+The database connection: db-connection.js
+Database query functions: animal-helpers.js
+Backend routes: animals-routes.js
 
 Initially, we delivered the data to our client as JSON, but towards the end, we made some EJS templates to better display the information.
 
-We demonstrated an SQL injectin attack using only the browser to drop the entire birdz table, demonstrating why we have to be extra careful when receiving data from the user.
+We demonstrated an SQL injectin attack using only the browser to drop the entire animals table, demonstrating why we have to be extra careful when receiving data from the user.
 
 We then looked at how to protect against such an attack.
 
@@ -43,14 +43,14 @@ Then we used that connection in a data-helpers module to create a function for t
 
 ```js
 module.exports = (db) =>{
-  const getAllbirdz=5 = () =>{
-    return db.query(`SELECT * FROM birdz;`)
+  const getAllanimals=5 = () =>{
+    return db.query(`SELECT * FROM animals;`)
       .then((response)=>{
         return response.rows;
       });
   };
   return {
-    getAllbirdz
+    getAllanimals
   };
 };
 ```
@@ -63,10 +63,10 @@ const router = express.Router();
 
 module.exports = (dataHelpers) =>{
   router.get('/',(req, res)=>{
-    //get a list of all birdz
-    dataHelpers.getAllBirdz()
-      .then((birdz)=>{
-        res.render('index', {birdz: birdz});
+    //get a list of all animals
+    dataHelpers.getAnimals()
+      .then((animals)=>{
+        res.render('index', {animals: animals});
       });
   });
 
