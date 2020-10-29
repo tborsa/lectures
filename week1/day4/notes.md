@@ -4,6 +4,9 @@
 
 [Lecture notes and code](https://github.com/tborsa/lectures/tree/master/week1/day4)
 
+
+[Lecture Playlist](https://open.spotify.com/playlist/5joVb9AC4utsNgcdqGxb7v?si=hEVGu7VXTAyunS2JUPCimg)
+
 # Topics
 - Functions are values
 - Function declaration vs function expression

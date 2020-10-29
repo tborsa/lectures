@@ -1,57 +1,48 @@
-// GO FISH!
+const fishOptions = ['xx','🐟','🐠','🐟','🥡 ','🐡','🦞 ','🐚'];
+const fishInWater = [];
+// 🌊🚣‍♀️🌊🌊🌊🌊🌊🌊🌊
+// 🐠🐟🥡🐠🐟🥡🐠🐟🥡
+// you caught 🎣🐟
 
-// 🌊🌊🌊🚣‍♂️🌊🌊🌊🌊🌊🌊
-// 🦞xx🐟🐠🥡🦞🐡🥡🐟🐠
+// returns a random number from 0 -> max
+const randomNumber = (max) => {
+  return Math.floor(Math.random() * max);
+}
 
-// .
-// You Caught ...
-// 🎣 🐠
-// .
-
-// the different types of 'fish' that can appear in the water.
-const fishOptions = ['🐟','🐟','🐠','xx','🥡 ','🐡','🦞 ','🐚'];
-const printedFish = [];
-
-// get random number
-const randomNumber = () => {
-  return Math.floor(Math.random() * fishOptions.length);
-};
-
-// print a random fish
+// print the fish/underwater
+// print fish tile
 const printRandomFish = () => {
-  const fish = fishOptions[randomNumber()];
-  printedFish.push(fish);
+  // get random number between 0 and fish length
+  const randomFishNumber = randomNumber(fishOptions.length)
+  const fish = fishOptions[randomFishNumber];
+  fishInWater.push(fish);
   process.stdout.write(fish);
-};
+}
 
-// print some ocean 
-const printOcean = (oceanCount, userInput) => {
-  // when printUi runs print ocean what is the scope
-  if (oceanCount == userInput) {
+// print the ocean
+// print an ocean tile
+const printOcean = (input, currentPosition) => {
+  if ((input - 1) == currentPosition) {
     process.stdout.write('🚣‍♀️');
   } else {
     process.stdout.write('🌊');
   }
-};
+}
 
-// prints out ocean/fish some # of times
-const printUI = (oceanWidth, userInput, UIFunction) => {
-  for (let oceanCount = 1; oceanCount <= oceanWidth; oceanCount ++) {
-    UIFunction(oceanCount, userInput);
+// do this x number of times
+// higher order function
+const printTiles = (userInput, oceanWidth, printTile) => {
+  for (let i = 0; i < oceanWidth; i ++) { // x 10
+    // print tiles
+    printTile(userInput, i);
   }
   console.log('');
-};
+}
 
 const userInput = process.argv[2];
+printTiles(userInput, 10, printOcean);
+printTiles(userInput, 10, printRandomFish);
 
-printUI(10, userInput, printOcean);
-printUI(10, userInput, printRandomFish);
+console.log('You caught 🎣:', fishInWater[userInput - 1]);
 
-// given user Input the fish printed at user input space is?
-console.log('~~~~~');
-console.log("you caught... ", printedFish[userInput - 1]);
-console.log('~~~~~');
-
-// get input from user
-
-// print the results
+// print the result (what they caught)

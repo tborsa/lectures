@@ -1,110 +1,101 @@
-// Higher Order Howdy~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// variables exist at this point
 
-function howdy(param) {
-  console.log("hey there", param);
+// function declaration
+function howdy () {
+  console.log("howdy");
 };
 
-const howdyAgain = function(param) {
-  console.log('hows it going again', param);
+// functional expression
+const hey = function () {
+  console.log("hey");
+}
+
+// arrow function (expression)
+// changes how the `this` keyword works
+const hola = () => {
+  console.log("hola");
+  return 'return value from hola';
 };
 
-const howdyTheThird = (param) => {
-  console.log("hey some more", param);
-};
+// callback
+// function passed as a parameter and used by another function
 
-const funcCopy = howdyTheThird;
+// let callback = function howdy () {
+//   console.log("howdy");
+// };
+const sayGreeting = (callback) => {
+  // howdy();
+  console.log("what is the value", callback);
+  callback();
+  callback();
+}
 
-funcCopy.thing = "stuff";
+// 
+// sayGreeting(hola);
+// sayGreeting(hola);
+// sayGreeting(hey);
 
-const higherOrderHowdy = (howdyFunction) => {
-  console.log('Howdy starting in 3, 2, 1...');
-  // console.log("what is howdyFunction", howdyFunction);
-  howdyFunction();
-};
+// hola();
+// hey();
+// howdy();
 
-// higherOrderHowdy(howdy);
-// higherOrderHowdy(howdyAgain);
-// higherOrderHowdy(howdyTheThird);
-
-// For Each~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-let arr = ['dog','dino','snake',4,5];
-
-const printNum = (num) => {
-  console.log('printing: ', num);
-};
-
-const numSquared = (num) => {
-  console.log('squared: ', num * num);
-};
-
-arr.forEach(printNum);
-
-arr.forEach(numSquared);
-
-arr.forEach((element) => {
-  console.log(element);// log each thing in the array
-});
-
-
-// Assert Equal~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-const assertEqual = (value1, value2, comparisonFunction) => {
-  if (comparisonFunction(value1, value2)) {
-    console.log('👍');
-  } else {
-    console.log('👎');
-  }
-};
-
-// assertEqual([1,3,4], [1,3,4], eqArrays);
-// assertEqual({one: 1}, {one: 1}, eqObjects);
-
-// Class info ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// console.log(howdy);
+// console.log(hey);
+// console.log(hola);
 
 
 let classes = [
-  {name: 'wizard', primaryAbility: 'intelligence'}, 
-  {name: 'barbarian', primaryAbility: 'strength'}, 
-  {name: 'bard', primaryAbility: 'charisma'}, 
-  {name: 'rogue', primaryAbility: 'dexterity'}, 
-  {name: 'druid', primaryAbility: 'wisdom'}
+  {name: 'wizard', primaryAbility: 'intelligence'},
+  {name: 'barbarian', primaryAbility: 'strength'},
+  {name: 'bard', primaryAbility: 'charisma'},
+  {name: 'rogue', primaryAbility: 'dexterity'},
+  {name: 'druid', primaryAbility: 'wisdom'},
 ];
 
-let printClassDetails = (charClass) => {
-  console.log(charClass.name + ' primary ability is ' + charClass.primaryAbility);
-};
+let printClassName = (dndClass, index) => {
+  console.log("The Class name is:", dndClass.name);
+}
+
+let printClassDetails = (dndClass, index) => {
+  console.log(`${index} The ${dndClass.name}'s primary ability is ${dndClass.primaryAbility} and ...`);
+}
+
+// higher order print function
+let printClass = (classes, printFunction) => {
+  for (let dndClass of classes) {
+    // custom behaviour
+    printFunction(dndClass);
+  }
+}
+// const indexName = (value, index) => {
+//   console.log(index, ':', value.name);
+// }
+
+classes.forEach(function(value, index){
+  console.log(index, ':', value.name);
+});
 
 // classes.forEach(printClassDetails);
 
-// const forEach = (callback) {
-//   for (let element of arr) {
-//     callback(1, 2, 3);
+// console.log("++++++++++++++++++++++++++++");
+
+// printClass(classes, printClassName);
+// printClass(classes, printClassDetails);
+
+// const primaryEquals = (valueA, valueB) => {}
+// const arrayEquals = (valueA, valueB) => {}
+// const objEquals = (valueA, valueB) => {}
+
+// const assertEquals = (valueA, valueB, comparisonFunction) => {
+//   if (comparisonFunction(valueA, valueB)) {
+//     console.log("PASSED");
+//   } else {
+//     console.log("FAILED")
 //   }
 // }
 
-
-// classes.forEach((charClass) => {
-//   console.log('class name is:', charClass.name);
-// });
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-const globalVar = 5;
-
-const makeFunction = () => {
-  const localMakeFunction = 6;
-  const babyFunction = () => {
-    const localBabyVariable = 7; // localBabyVariable + localMakeFunction + globalVar
-    console.log('the scope:', localBabyVariable, localMakeFunction, globalVar);
-  };
-  return babyFunction;
-};
-
-let returnOfMakeFunction = makeFunction();
-
-console.log('return', returnOfMakeFunction);
-returnOfMakeFunction();
+// assertEquals(3, 4, primaryEquals);
+// assertEquals([1,3,4], [1,3,4], arrayEquals);
+// assertEquals({}, {}, objEquals);
 
 
