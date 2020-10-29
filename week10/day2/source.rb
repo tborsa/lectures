@@ -78,19 +78,20 @@ RSpec.feature "Visitor orders a product", type: :feature, js: true do
   end
 
   def add_product_and_checkout
-    first('article.product').find_link('Add').click
-  
-    visit '/cart'
-  
-    first('button.stripe-button-el').click
-  
-    within_frame 'stripe_checkout_app' do
-      fill_in placeholder: 'Card number', with: '4242424242424242'
-      fill_in placeholder: 'MM / YY', with: "01/#{Date.today.year + 1}"
-      fill_in placeholder: 'CVC', with: '123'
-  
-      click_button 'Pay'
-    end
+    visit '/'
+    # Find a product/first product within that product click the button with add
+    # page change
+    first('article.product').find_button('Add').click
+    
+    # checking if the Nav UI is updated (1)
+    #Clicking on the cart nav button
+    find_link('My Cart (1)').click
+
+    # check if new cart page has product
+    expect(page).to have_content "TOTAL:"
+    expect(page).to have_content "Nividia 3800"
+
+    page.save_screenshot
   end
 
   scenario "They complete an order while not logged in" do

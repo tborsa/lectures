@@ -5,6 +5,8 @@
 
 Notes can be found [here](https://github.com/tborsa/lectures/tree/master/week7/day3)
 
+Code can be found [here](https://github.com/tborsa/react-week-playground/tree/side-effects)
+
 
 # Topics📢
 
@@ -19,7 +21,18 @@ Notes can be found [here](https://github.com/tborsa/lectures/tree/master/week7/d
 # React Review
 
 State?
+```
+- persistance of data between re-renders
+- data within our component (special)
+- Data that you can see on the page (data binding)
+- useState hook to handle our state
+- it tracks our initial state our state changes (looks for a change)
 
+
+
+(state + props)  =>  JSX (dom tree)
+
+```
 State as a concept: the remembered information about a system.
 
 State in React: the remembered information about a system + useState & Reacts conventions for tracking state. 
@@ -33,14 +46,19 @@ Each prop and state is for a particular functional component execution, and they
 What are Pure functions?
 ```
 
-- functions without side effects
-- has a single purpose does not require extra(beyond it's parameters) info from outside
-- Always has a return value.
-- Given the same input it will always return the same output.
+-function with not side-effects
+-one input one output
+given the same input will alwauys produce the same output
+-Purpose is to return a value (nothing else)
+-
 
 
+let a = 4
 
-
+let func = (num) => {
+  a = num;
+  return num * num;
+}
 
 
 ```
@@ -53,9 +71,7 @@ Given the same input, returns the same output.
 What are Side Effects?
 
 ```
-- Can have differing results.
-- It effects state or variables outside the scope of the function.
-- 
+
 
 
 
