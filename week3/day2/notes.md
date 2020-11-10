@@ -64,6 +64,7 @@ How do we communicate what the request is for??
 ![webserver](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpmTJYUfjQOz7d9Cz8xDXGQYQFKBRG1dzMzGpNPpGFbQUUK9EO)
 
 CRUD; it stands for "Create", "Read", "Update", "Delete"
+
 BREAD; it stands for "browse, read, edit, add, delete". 
 
 

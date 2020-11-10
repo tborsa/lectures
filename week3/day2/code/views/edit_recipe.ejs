@@ -1,0 +1,12 @@
+<h2>Edit a recipe</h2>
+<form method="post" action="/recipes/<%= id %>">
+  <label>name</label>
+  <input name="name" value=<%= recipe.name %>>
+  <label>directions</label>
+  <input name="directions" value=<%= recipe.directions %>>
+  <label>cost</label>
+  <input name="cost" value=<%= recipe.cost %>>
+  <label>time</label>
+  <input name="time" value=<%= recipe.time %>>
+  <input type="submit"/>
+</form>

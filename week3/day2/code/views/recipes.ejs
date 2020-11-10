@@ -1,0 +1,15 @@
+<h1>Welcome to <%= appName %></h1>
+<h2>All recipes</h2>
+<a href="/recipes/new">Add a new Recipe</a>
+<% for (let id in recipes) { %>
+  <h3><%= recipes[id].name %></h3>
+  <p><%= recipes[id].directions %></p>
+  <p><%= recipes[id].cost %></p>
+  <p><%= recipes[id].time %></p>
+  <form action="/recipes/<%= id %>/delete" method="post">
+    <input type="submit" value="delete"/>
+  </form>
+  <a href="/recipes/<%= id %>/edit">edit</a>
+  <hr/>
+  <br/>
+<% } %>

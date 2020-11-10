@@ -1,39 +1,41 @@
 # Next Steps For React
 
-- Review scheduler
-  - Make a component diagram (heirarchy how state is passed)
+- Reviewing Scheduler as a project. 
+- Drawing a component tree.
+- Reflect (finals projects)
 
-- Readings 
-  - https://overreacted.io/a-complete-guide-to-useeffect/
-
-- 
-
+- https://iqkui.com/a-complete-guide-to-useeffect/
+- Practice
 
 # New Things
 
-- new react hooks
-  - useRef (refs)
-  - useReducer (when to use vs. State)
-  - context (explain) <- 
+- New Hooks (react supplied)
 
-- react libraries
-  - redux
-  - styled components 
-  - material UI
-  - React-Spring
-  - React Router 
-  (serving a specific purpose)
+- react router (look at this) params with react
 
-- React CLI
+- Redux (helps manage state, global state, asynchronous stat updates)
+- reducers
 
-- JSX Linting
+- body parse **
 
-- react patterns
-  - lifecycle events, Class based components/old react
+- $$
 
+- Angular(MVC)JS vs React(V C)
 
-- Testing 
-  - webdriver
+- Pairing with react,  
+- react w/ express and node
+- react w/ rails (api)
+- react w/ go 
+- react w/ no backend (api's)
+
+- preact
+
+- React Native (handle styling)
+
+- MERN MEAN
+
+- SSR libraries (gatsby)
+- graph ql
 
 
 

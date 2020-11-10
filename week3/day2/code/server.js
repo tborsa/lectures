@@ -1,85 +1,84 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const { questions, createQuestion } = require('./data-helpers');
+const {breadRecipes, addRecipe, deleteRecipe, editRecipe} = require('./data-helpers');
 
 const app = express();
-
 const PORT = 3000;
 
-// use sets up middleware, function that will be run before all requests
-app.use(bodyParser.urlencoded({extended: true}));
+app.set('view engine', 'ejs'); // combine data + html
+app.use(bodyParser.urlencoded());
+// const breadRecipes = dataHelpers.breadRecipes;
 
-app.set('view engine', 'ejs');
+//Bread recipe fetcher
+// BREADITOR
+// Resource is bread recipe && users
+
+// ROUTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// BREAD
+
+// BROWSE (all recipes)
+// GET /recipes nobody
+// GET /
+app.get('/recipes', (req, res) => {
+  console.log('request to browse bread recipes');
+  const templateVars = {
+    appName: 'breaditor',
+    recipes: breadRecipes
+  }
+  res.render("recipes", templateVars);
+})
+
+app.get('/recipes/new', (req, res) => {
+  console.log('add a new recipe');
+  res.render("add_recipe");
+})
+
+app.get('/recipes/:id/edit', (req, res) => {
+  console.log('add a new recipe');
+  const templateVars = {
+    recipe: breadRecipes[req.params.id],
+    id: req.params.id
+  }
+  res.render("edit_recipe", templateVars);
+})
+
+// READ (single recipe)
+// GET /recipes/:id nobody
+app.get('/recipes/:id', (req, res) => {
+  console.log("params", req.params);
+  console.log('request to read a bread recipe');
+  res.send(req.params);
+})
+
+// EDIT
+// PUT /recipes/:id <recipe>
+// POST /recipes/:id <recipe>
+app.post('/recipes/:id', (req, res) => {
+  console.log('request to edit bread recipes', req.body, req.params);
+  editRecipe(req.body, req.params.id);
+  res.redirect("/recipes");
+})
+
+// ADD
+// POST /recipes <recipe>
+app.post('/recipes', (req, res) => {
+  console.log('request to add bread recipes', req.body);
+  // use the body to create a new recipe
+  addRecipe(req.body);
+  res.redirect("/recipes");
+})
+
+// DELETE
+// DELETE /recipes/:id
+// POST /recipes/:id/delete
+app.post('/recipes/:id/delete', (req, res) => {
+  console.log('request to delete bread recipes', req.params);
+  deleteRecipe(req.params.id);
+  res.redirect("/recipes");
+})
 
 app.listen(PORT, () => {
-  console.log(`Listening on Port: ${PORT}`);
-});
-
-
-// ORDER routes from most specific to least specific
-
-// Routes
-// GET /questions/:id/edit form to edit the question (UPDATE)
-app.get('/questions/:id/edit', (request, response) => {
-  // ejs html layout + data
-  response.render('edit');
-});
-
-// GET /questions/new show the form to add a question (CREATE)
-app.get('/questions/new', (request, response) => {
-  // ejs html layout + data
-  response.render('new');
-});
-
-// GET /questions/:id a question (READ)
-app.get('/questions/:id', (request, response) => {
-  // ejs html layout + data
-  const questionId = request.params.id;
-  let question = questions[questionId];
-  response.render('show', {question: question, questionId: questionId});
-});
-
-// GET /questions all questions (BROWSE)
-app.get('/questions', (request, response) => {
-  // ejs html layout + data
-  response.render('index', { questions: questions });
-});
-
-
-
-// POST /questions adding a questions (CREATE)
-app.post('/questions', (request, response) => {
-  // ejs html layout + data
-  console.log("a user tried to add a new question");
-  console.log('with the data', request.body);
-  const newQuestionId = createQuestion(request.body);
-  response.redirect(`/questions/${newQuestionId}`);
-});
-
-// (Answer)
-app.post('/questions/:id/answer', (request, response) => {
-  // ejs html layout + data
-  const answer = request.body.answer;
-  const questionId = request.params.id;
-  const question = questions[questionId];
-  if (question.answer === answer) {
-    response.redirect(question.reward);
-  } else {
-    response.redirect('/questions');
-  }
-});
-
-// PUT/POST /questions/:id/edit edits a question (UPDATE)
-app.post('/questions/:id/edit', (request, response) => {
-  // ejs html layout + data
-});
-
-// DELETE /questions delete a question (DELETE)
-app.post('/questions/:id', (request, response) => {
-  // ejs html layout + data
-  console.log("User is trying to delete a question");
-  const questionId = request.params.id;
-  delete questions[questionId];
-  response.redirect('/questions');
-});
+  console.log('Listening on port:', PORT);
+})
