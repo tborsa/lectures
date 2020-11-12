@@ -1,36 +1,121 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const cookieSession = require('cookie-session');
+const bcrypt = require('bcrypt');
 const {breadRecipes, addRecipe, deleteRecipe, editRecipe} = require('./data-helpers');
 
 const app = express();
 const PORT = 3000;
 
+let users = {
+  'tr0vis': {
+    username: 'tr0vis',
+    password: bcrypt.hashSync('password', 2)
+  }
+}
+
+let authenticateUser = (username, password) => {
+  let user = users[username]; //{username: '', password: ''}
+  if (user && bcrypt.compareSync(password, user.password)) {
+    return true;
+  }
+  return false;
+}
+
 app.set('view engine', 'ejs'); // combine data + html
 app.use(bodyParser.urlencoded());
-// const breadRecipes = dataHelpers.breadRecipes;
+app.use(cookieSession({
+  name: 'session',
+  keys: ['onekey']
+}));
 
-//Bread recipe fetcher
-// BREADITOR
-// Resource is bread recipe && users
+// auth
+// setup template vars
+// formatting
+// error logging
+const customMiddleware = (req, res, next) => {
+  console.log('custom middleware');
+  if (users[req.session.username]) {
+    next();
+  } else {
+    res.status(401).send('not logged in');
+  }
+}
+
+const setTemplateVars = (req, res, next) => {
+  console.log('custom middleware');
+  req.templateVars = {
+    appName: 'breaditor',
+    recipes: breadRecipes,
+    username: req.session.username
+  }
+  next();
+}
+// app.use('/recipes', customMiddleware)
+
+// app.use("/recipes", customMiddleware);
+
 
 // ROUTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-// BREAD
+app.get('/login', (req, res) => {
+  res.render('login');
+});
+
+app.post('/logout', (req, res) => {
+  req.session.username = null;
+  req.session.loggedinat = null;
+  res.redirect('/login');
+});
+
+app.get('/register', (req, res) => {
+  res.render('register');
+});
+
+app.post('/register', (req, res) => {
+  // check if the username & password match 
+  let {username, password} = req.body;
+  if (!users[username]) {
+    // register them
+    const hash = bcrypt.hashSync(password, 2);
+    users[username] = {username: username, password: hash};
+    // setting a cookie
+    console.log('Users', users);
+    req.session.username = username;
+    req.session.loggedinat = new Date();
+    res.redirect('/recipes');
+  } else {
+    res.status(401).send("Username already registered");
+  }
+});
+
+app.post('/login', (req, res) => {
+  // check if the username & password match 
+  let {username, password} = req.body;
+  if (authenticateUser(username, password)) {
+    // setting a cookie
+    req.session.username = username;
+    req.session.loggedinat = new Date();
+    // redirect the user to recipes page
+    res.redirect('/recipes');
+  } else {
+    res.status(401).send("Incorrect username or password");
+  }
+});
 
 // BROWSE (all recipes)
 // GET /recipes nobody
 // GET /
-app.get('/recipes', (req, res) => {
-  console.log('request to browse bread recipes');
-  const templateVars = {
-    appName: 'breaditor',
-    recipes: breadRecipes
+app.get('/recipes', customMiddleware, setTemplateVars, (req, res) => {
+  console.log('request to browse bread recipes', req.session.username);
+  if (req.session.username && users[req.session.username]) {
+    res.render("recipes", req.templateVars);
+  } else {
+    res.redirect('/login');
   }
-  res.render("recipes", templateVars);
 })
 
-app.get('/recipes/new', (req, res) => {
+app.get('/recipes/new', customMiddleware, (req, res) => {
   console.log('add a new recipe');
   res.render("add_recipe");
 })

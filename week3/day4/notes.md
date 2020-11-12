@@ -18,7 +18,7 @@ The notes that we wrote in class can be found in the `notes.md` file.
 
 - Doesn't store anything
 - doesn't save any state
-- same request multiple times it should have the same response
+- All information needed for the request is contained in the request. 
 
 
 
@@ -36,6 +36,17 @@ The notes that we wrote in class can be found in the `notes.md` file.
 
 
 __How they solve the "state" problem?__
+```
+
+
+
+
+
+
+
+
+
+```
 
 - they are saved in the browser (outside of the request response cycle)
 - cookie crumbs of what a specific user does
