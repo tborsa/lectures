@@ -1,48 +1,52 @@
+
 $(document).ready(() => {
 
-  const ROOTURL = 'https://pokeapi.co/api/v2/';
-  // everything in here runs after the page has loaded
+  const PATH = 'https://pokeapi.co/api/v2/pokemon/';
+
+  // dynamically set the pokemon info to the dom
   const updatePokedex = (pokemon) => {
     // update the dom
+    // query the page for name, image, description dom elements
+    // set text or set the src attr
     $('.pokedex header h1').text(pokemon.name);
     $('.pokedex footer p').text(pokemon.description);
     $('.pokedex .screen img').attr('src', pokemon.image);
-  };
-  
-  const getPokemon = (search) => {
-    const pokemon = {name: '?????', description: 'n/a'};
-    $.ajax({url: `${ROOTURL}pokemon/${search}`})
-      .then((res) => {
-        if (!$.isNumeric(search)) {
-          pokemon.name = res.name;
-          $('.pokedex .screen img').removeClass('unidentified');
-        } else {
-          $('.pokedex .screen img').addClass('unidentified');
-        }
-        pokemon.image = res.sprites.front_default;
-        return $.ajax({url: res.species.url})
-      })
-      .then((res) => {
-        if (!$.isNumeric(search)) {
-          pokemon.description = res.flavor_text_entries[0].flavor_text;
-        }
-        updatePokedex(pokemon);
-      })
-      .catch((err) => {
-        pokemon.image = "https://wiki.p-insurgence.com/images/0/09/722.png";
-        pokemon.name = "Missigno."
-        updatePokedex(pokemon);
-      })
-  };
+  }
 
-  $('.pokedex header form').submit(event => {
+  // get the data from the pokemon api
+  // input: pokemon name or #
+  const getPokemon = (input) => {
+    const pokemon = {name: "Missingno.", image: "https://static.wikia.nocookie.net/mcleodgaming/images/d/d8/MissingNo..png/revision/latest?cb=20131108185400", description: "?????"};
+    $.ajax(PATH + input)
+      .then((response) => {
+        pokemon.name = response.name;
+        pokemon.image = response.sprites.front_default;
+        return $.ajax(response.species.url)
+      })
+      .then(response => {
+        pokemon.description = response.flavor_text_entries[1].flavor_text;
+        conso
+        if (Number(input)) {
+          pokemon.name = "????";
+          pokemon.description = "???",
+          $('.pokedex .screen img').addClass('unknown');
+        } else {
+          $('.pokedex .screen img').removeClass('unknown');
+        }
+        updatePokedex(pokemon);
+      })
+      .catch((error) => {
+        // error behaviour
+        $('.pokedex .screen img').removeClass('unknown');
+        updatePokedex(pokemon);
+      })
+  }
+
+  $(".pokedex header form").submit((event) => {
     event.preventDefault();
-    const search = $('#pokemon-search').val();
-    getPokemon(search);
-    $('#pokemon-search').val('');
+    getPokemon($("#search").val());
   })
 
-  // trigger(dom event) to run get pokemon
-  getPokemon('sandslash');
+  getPokemon(29);
 
 })

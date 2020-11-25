@@ -1,24 +1,26 @@
 .pokedex {
-  border-radius: 15px;
-  background-color: #eb5534;
+  background-color: #f54242;
+  margin: auto;
   padding: 20px;
-  margin: 100px;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 30vw;
+  border-radius: 10px;
+  width: 500px;
 }
 
 .pokedex .screen {
-  border-radius: 15px;
-  background-color: #97f786;
-  padding: 20px;
+  background-color: lightgreen;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.pokedex .screen img.unknown{
+  filter: brightness(0%);
 }
 
 .pokedex .screen img {
-  width: 100%;
   height: auto;
+  width: 100%;
 }
 
-.pokedex .screen img.unidentified {
-  filter: brightness(0);
+.pokedex footer {
+  font-size: 24px;
 }

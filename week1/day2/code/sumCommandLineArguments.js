@@ -1,49 +1,47 @@
-// Write a node program that takes in an unlimited number of 
-// command line arguments, goes through each and prints out the 
-// sum of them. If any argument is not a whole number, skip it. 
+// Write a node program that takes in an unlimited number of command 
+// line arguments, goes through each and prints out the sum of them. 
+// If any argument is not a whole number, skip it. 
 // Do support negative numbers though.
 
-// getting command line arguments
+// Parse the command line arguments
+  // exclude non important (pathway) command line arguments
 const getArguments = function() {
-  const arguments = process.argv.slice(2);
-  debugger;
-  return arguments;
-};
+  //takes an existing array cuts off x number of elements and returns
+  // new shortened array.
+  return process.argv.slice(2);
+}
 
-// whole number check
-const checkWholesomeness = function(value) {
-  // check if number
-  const num = Number(value); // return NaN or the number(typed as number)
-  const integer = Number.isInteger(num);
-  if (num && integer) { // NaN is falsey
-    // is integer number
-    // check if that number is interger
+// check if value is an integer
+// make sure they are whole numbers
+const checkForInteger = function(value) {
+  // return true/false if integer
+  const num = Number(value); // return nan or number;
+  const integer = Number.isInteger(num); //returns a boolean true or false;
+  if (num && integer) {
     return num;
   } else {
-    // not number
-    return 0;
+    return 0; // like not adding anything, is a falsey value
   }
 }
 
-// console.log('Test of checkWholesomeness cat', checkWholesomeness('cat'));
-// console.log('Test of checkWholesomeness 5', checkWholesomeness('5'));
-// console.log('Test of checkWholesomeness 3.5', checkWholesomeness('3.5'));
-// console.log('Test of checkWholesomeness 4', checkWholesomeness(4));
-// console.log('Test of checkWholesomeness -4', checkWholesomeness(-4));
-
-// Sum an array of user inputs
-// userInput is an array of user input ['dog', 'cat', 1, 32 , 6]
-const sumUserInputs = function(userInput) {
-  let sum = 0;
-  for (const input of userInput) {
-    // check wholesomeness & sum
-    const numberToSum = checkWholesomeness(input); // returns 0 or a number to sum
-    sum += numberToSum;
+// done in function
+// Sum the integers/whole numbers
+// need to use a loop
+// [1,2,3,4]
+const addArguments = function(arguments) {
+  // return sum of the arguments
+  let total = 0;
+  for (let value of arguments) {
+    total += checkForInteger(value);
   }
-  return sum;
+  return total;
 }
 
-const userArguments = getArguments();
-const sum = sumUserInputs(userArguments);
+const sum = function() {
+  const arguments = getArguments();
+  const total = addArguments(arguments);
+  //print or display information to user
+  console.log('The total of all whole numbers given is: ', total);
+}
 
-console.log('The total sum is:', sum);
+sum();
