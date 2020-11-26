@@ -1,101 +1,130 @@
-// variables exist at this point
-
-// function declaration
-function howdy () {
-  console.log("howdy");
-};
+// functional declaration
+function howdy() {
+  console.log("howdy!");
+  return "howdy's return 1"
+}
 
 // functional expression
-const hey = function () {
-  console.log("hey");
+const howdyTwo = function () {
+  console.log('howdy again');
+  return "howdy's return 2"
 }
 
-// arrow function (expression)
-// changes how the `this` keyword works
-const hola = () => {
-  console.log("hola");
-  return 'return value from hola';
+// functional arrow expression
+const howdyThree = () => {
+  console.log("howdy the third");
+  return "howdy's return 3"
 };
 
-// callback
-// function passed as a parameter and used by another function
+const howdyFour = () => 'return howdy 4';
+// console.log(howdyFour());
 
-// let callback = function howdy () {
-//   console.log("howdy");
-// };
-const sayGreeting = (callback) => {
-  // howdy();
-  console.log("what is the value", callback);
+// anonymous function = function without a name
+
+// takes one parameter a callback
+// const callback = howdy;
+const higherOrderHowdy = (callback) => {
+  console.log('howdy happening in 3...');
+  console.log('...2');
+  console.log('...1');
   callback();
-  callback();
 }
 
-// 
-// sayGreeting(hola);
-// sayGreeting(hola);
-// sayGreeting(hey);
+// higherOrderHowdy(howdy;
+// higherOrderHowdy(howdyTwo);
+// higherOrderHowdy(howdyThree);
 
-// hola();
-// hey();
-// howdy();
+// howdyThree();
+// howdyTwo();
 
-// console.log(howdy);
-// console.log(hey);
-// console.log(hola);
+const classes = [
+  {name: 'wizard', primaryAbility: 'intelligence', spells: ['fireball', 'whichbolt']},
+  {name: 'barbarian', primaryAbility: 'strength', spells: ['fireball', 'whichbolt']},
+  {name: 'bard', primaryAbility: 'charisma', spells: ['fireball', 'whichbolt']},
+  {name: 'rogue', primaryAbility: 'dexterity', spells: ['fireball', 'whichbolt']},
+  {name: 'druid', primaryAbility: 'wisdom', spells: ['fireball', 'whichbolt']},
+]
 
+const printClassName = (dndClass) => {
+  console.log('The class name is: ', dndClass.name);
+};
 
-let classes = [
-  {name: 'wizard', primaryAbility: 'intelligence'},
-  {name: 'barbarian', primaryAbility: 'strength'},
-  {name: 'bard', primaryAbility: 'charisma'},
-  {name: 'rogue', primaryAbility: 'dexterity'},
-  {name: 'druid', primaryAbility: 'wisdom'},
-];
+const printClassDetails = (dndClass) => {
+  console.log(`${dndClass.name}, primary ability: ${dndClass.primaryAbility}, ...`);
+};
 
-let printClassName = (dndClass, index) => {
-  console.log("The Class name is:", dndClass.name);
-}
+// printClassName(classes[0]);
+// printClassDetails(classes[0]);
 
-let printClassDetails = (dndClass, index) => {
-  console.log(`${index} The ${dndClass.name}'s primary ability is ${dndClass.primaryAbility} and ...`);
-}
-
-// higher order print function
-let printClass = (classes, printFunction) => {
+const ourForEach = (classes, printFunction) => {
   for (let dndClass of classes) {
-    // custom behaviour
     printFunction(dndClass);
   }
 }
-// const indexName = (value, index) => {
-//   console.log(index, ':', value.name);
-// }
 
-classes.forEach(function(value, index){
-  console.log(index, ':', value.name);
-});
+// ourForEach(classes, printClassName);
+// ourForEach(classes, printClassDetails);
 
+// classes.forEach(printClassName);
+// console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
 // classes.forEach(printClassDetails);
 
-// console.log("++++++++++++++++++++++++++++");
+// classes.forEach((dndClass) => {
+//   console.log('custom print of class,', dndClass.name);
+// });
 
-// printClass(classes, printClassName);
-// printClass(classes, printClassDetails);
+const primitiveEquals = (val1, val2) => {
+  return val1 === val2;
+}
 
-// const primaryEquals = (valueA, valueB) => {}
-// const arrayEquals = (valueA, valueB) => {}
-// const objEquals = (valueA, valueB) => {}
+const eqArrays = (val1, val2) => {
+  return true;
+}
 
-// const assertEquals = (valueA, valueB, comparisonFunction) => {
-//   if (comparisonFunction(valueA, valueB)) {
-//     console.log("PASSED");
+const eqObjects = (val1, val2) => {
+  return true;
+}
+
+const assertEquals = (valueOne, valueTwo, comparisonFunction) => {
+  console.log('valueone, valuetwo, comparisonfunction', valueOne, valueTwo, comparisonFunction)
+  const result = primitiveEquals(valueOne, valueTwo);
+  if (result) {
+    console.log(`${valueOne} is equal to ${valueTwo}`);
+  } else {
+    console.log(`${valueOne} is not equal to ${valueTwo}`);
+  }
+}
+
+assertEquals(4, 6, primitiveEquals);
+console.log('~~~~~~~~~~~~~~~~~~~~~')
+assertEquals([1,2,3], [1,2,3], eqArrays);
+console.log('~~~~~~~~~~~~~~~~~~~~~')
+assertEquals({one: 1}, {one: 1}, eqObjects);
+console.log('~~~~~~~~~~~~~~~~~~~~~')
+
+// const assertEquals = (valueOne, valueTwo) => {
+//   const result = primitiveEquals(valueOne, valueTwo);
+//   if (result) {
+//     console.log(`${valueOne} is equal to ${valueTwo}`);
 //   } else {
-//     console.log("FAILED")
+//     console.log(`${valueOne} is not equal to ${valueTwo}`);
 //   }
 // }
 
-// assertEquals(3, 4, primaryEquals);
-// assertEquals([1,3,4], [1,3,4], arrayEquals);
-// assertEquals({}, {}, objEquals);
+// const assertArrayEquals = (valueOne, valueTwo) => {
+//   const result = eqArrays(valueOne, valueTwo);
+//   if (result) {
+//     console.log(`${valueOne} is equal to ${valueTwo}`);
+//   } else {
+//     console.log(`${valueOne} is not equal to ${valueTwo}`);
+//   }
+// }
 
-
+// const assertObjectsEquals = (valueOne, valueTwo) => {
+//   const result = eqObject(valueOne, valueTwo);
+//   if (result) {
+//     console.log(`${valueOne} is equal to ${valueTwo}`);
+//   } else {
+//     console.log(`${valueOne} is not equal to ${valueTwo}`);
+//   }
+// }
