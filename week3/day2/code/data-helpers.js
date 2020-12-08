@@ -1,48 +1,72 @@
-const breadRecipes = {
-  1: {
-    ingredients: ['white flour'],
-    name: "White bread",
-    directions: "bake the dough",
-    cost: '$',
-    time: "1hr",
-    yeild: '1',
-    lifestory: "my mum made this"
+// what does our data look
+// Passords
+// - Character restrictions? Regex
+// - option for symbols/numbers Boolean
+// - length restrictions Number
+// - What is the password for  String
+let serialId = 0;
+const passwords = {
+  'passwordId': {
+    restrictions: /[1-9]/,
+    symbols: true,
+    length: 20,
+    domain: 'youtube.com',
+    password: 'kjlksf',
+    userEmail: 'test@gmail.com',
+    id: 'passwordId'
   },
-  2: {
-    ingredients: ['Wholewheat flour'],
-    name: "Wholewheat bread",
-    directions: "bake the dough",
-    cost: '$',
-    time: "1hr",
-    yeild: '1',
-    lifestory: "I was raised by a loaf of bread"
+  'passwordId2': {
+    restrictions: /[1-9]/,
+    symbols: true,
+    length: 20,
+    domain: 'youtube.com',
+    password: 'kjlksf',
+    userEmail: 'test@gmail.com',
+    id: 'passwordId2'
+  },
+  'passwordId3': {
+    restrictions: /[1-9]/,
+    symbols: false,
+    length: 30,
+    domain: 'compass.ca',
+    password: 'sdfsdf',
+    userEmail: 'test2@gmail.com',
+    id: 'passwordId3'
   }
 };
 
+// what actions do we need to do on the data 
 
-const addRecipe = (recipe) => {
-  let ids = Object.keys(breadRecipes)
-  let newId = ids[ids.length - 1] + 1;
-  breadRecipes[newId] = recipe;
+const getPasswords = (email) => {
+  let usersPasswords = [];
+  for(let passwordId in passwords) {
+    if (passwords[passwordId].userEmail === email) {
+      usersPasswords.push(passwords[passwordId]);
+    }
+  }
+  return usersPasswords; //all of a users passwords
 }
 
-const editRecipe = (recipe, id) => {
-  // overwrite
-  breadRecipes[id] = recipe;
-  // selective edit
-  // breadRecipes[id] = {...breadRecipes[id], ...recipe};
+const getPassword = (id) => {
+  return  passwords[id];// return the password object
 }
 
+const addPassword = (password) => {
+  password.userEmail = "test@gmail.com";
+  password.id = serialId;
+  passwords[serialId] = password;
+  serialId ++;
+  return true;
+}
 
-
-const deleteRecipe = (id) => {
-  delete breadRecipes[id];
+const removePassword = (passwordId) => {
+  delete passwords[passwordId];
+  return true;
 }
 
 module.exports = {
-  breadRecipes: breadRecipes, // or breadRecipes
-  addRecipe,
-  deleteRecipe,
-  editRecipe
-  // other helper functions
+  getPassword,
+  getPasswords,
+  addPassword,
+  removePassword,
 }

@@ -1,27 +1,24 @@
 const net = require('net');
-
-const server = net.createServer();
-
 const PORT = 3000;
+const server = net.createServer();
 
 const connections = [];
 
-server.on('listening', () => {
-  console.log('listenting on', PORT);
-});
-
-server.on('connection', (conn) => {
-  conn.setEncoding('utf8');
-  console.log('someone connected');
-  connections.push(conn);
-  conn.on('data', (data) => {
-    console.log('message:', data);
-    for (let user of connections) {
-      if (user.writable){
-        user.write(data);
+server.on('connection', (connection) => {
+  console.log("someone connected");
+  connections.push(connection);
+  connection.setEncoding('utf8');
+  connection.on('data', (data) => {
+    // message from client recieved
+    console.log( data);
+    for (let conn of connections) {
+      if (conn.writable) {
+        conn.write(data);
       }
     }
-  })
-})
+  });
+});
 
-server.listen(PORT);
+server.listen(PORT, () => {
+  console.log("Server listening on port: ", PORT);
+});

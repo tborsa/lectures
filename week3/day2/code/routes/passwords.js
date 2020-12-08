@@ -1,28 +1,3 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const dataHelpers = require('./data-helpers.js');
-
-const app = express();
-const PORT = 3001;
-
-app.use(bodyParser.urlencoded({extended: true}));// urlencoded data => js object
-
-const customMiddleware = (req, res, next) => {
-  console.log('custom middleware: I am run before the route handlers');
-  let loggedin = true;
-  if (!loggedin) {
-    res.send('not authorized', 401);
-  }else {
-    next();
-  }
-};
-
-app.use(customMiddleware)
-
-app.set('view engine', 'ejs'); // pug  html/GUI + data
-
-// BREAD
-
 // BROWSE
 app.get('/passwords',  (req, res) => {
   const passwords = dataHelpers.getPasswords('test@gmail.com');
@@ -69,7 +44,4 @@ app.post('/passwords/:id/delete', (req, res) => {
   }
 })
 
-app.listen(PORT, () => {
-  console.log('Listening on port:', PORT);
-});
-
+module.exports = router;

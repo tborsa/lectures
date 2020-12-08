@@ -1,0 +1,9 @@
+<h1>Passwordasaurus</h1>
+<h2>Your passwords are</h2>
+<% for(let password of passwords) { %>
+  <hr>
+  <a href=<%=`/passwords/${password.id}`%>><p>domain: <%= password.domain %></p></a>
+  <p>symbols: <%= password.symbols %></p>
+  <p>length: <%= password.length %></p>
+  <p>restrictions: <%= password.restrictions %></p>
+<% } %>
