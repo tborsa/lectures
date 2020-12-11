@@ -46,6 +46,8 @@ __How they solve the "state" problem?__
 
 
 
+
+
 ```
 
 - they are saved in the browser (outside of the request response cycle)

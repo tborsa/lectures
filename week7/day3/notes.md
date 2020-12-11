@@ -22,15 +22,22 @@ Code can be found [here](https://github.com/tborsa/react-week-playground/tree/si
 
 State?
 ```
-- persistance of data between re-renders
-- data within our component (special)
-- Data that you can see on the page (data binding)
-- useState hook to handle our state
-- it tracks our initial state our state changes (looks for a change)
+- components internal data
+- const [name, setName] = useState();
+- information stored between renders (react keeps track of it)
+- data that can change
+- can pass state down as props
+
+- changes in state trigger a rerender to the component
+
+- (props, state) => return UI(html/css)
 
 
 
-(state + props)  =>  JSX (dom tree)
+
+
+
+
 
 ```
 State as a concept: the remembered information about a system.
@@ -46,39 +53,34 @@ Each prop and state is for a particular functional component execution, and they
 What are Pure functions?
 ```
 
--function with not side-effects
--one input one output
-given the same input will alwauys produce the same output
--Purpose is to return a value (nothing else)
--
+- Functions without side effects
+- it doesn't use variables outside of function scope
+- Primary return/purpose
+- given a set of inputs it will always return the same output for the same input
 
+(a,b) => c
 
-let a = 4
-
-let func = (num) => {
-  a = num;
-  return num * num;
-}
-
-
-```
-A Function that doesn't have any side effects.   
-It doesn't perform any mutations.  
-  (changing the global state)  
-Given the same input, returns the same output.  
-
+``` 
 
 What are Side Effects?
 
 ```
+- change of global variables <- (external outcome to the function)
+- secondary effect or purpose (other than the return)
+- 
 
 
+let c = 0
 
+let sideEffectAdd = (a,b) => {
+  return a + b + c;
+}
 
+sideEffect(5,6);
 
+c = 6
 
-
-
+sideEffect(5,6);
 
 
 ```
@@ -101,6 +103,8 @@ Can be hard to debug!
 - Connection to a socket server  
 - Adding and removing event listeners
 - Logging to the console
+
+
 
 # useEffect
 

@@ -1,0 +1,10 @@
+<h1>Passwordasaurus</h1>
+<h2>Your password</h2>
+<hr>
+<p>domain: <%= password.domain %></p>
+<p>symbols: <%= password.symbols %></p>
+<p>length: <%= password.length %></p>
+<p>restrictions: <%= password.restrictions %></p>
+<form action=<%= `/passwords/${password.id}/delete` %> method="POST">
+  <input type="submit" value="delete"/>
+</form>

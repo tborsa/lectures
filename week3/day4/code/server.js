@@ -1,169 +1,117 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const dataHelpers = require('./data-helpers.js');
 const cookieSession = require('cookie-session');
-const bcrypt = require('bcrypt');
-const {breadRecipes, addRecipe, deleteRecipe, editRecipe} = require('./data-helpers');
 
 const app = express();
-const PORT = 3000;
+const PORT = 3001;
 
-let users = {
-  'tr0vis': {
-    username: 'tr0vis',
-    password: bcrypt.hashSync('password', 2)
-  }
-}
-
-let authenticateUser = (username, password) => {
-  let user = users[username]; //{username: '', password: ''}
-  if (user && bcrypt.compareSync(password, user.password)) {
-    return true;
-  }
-  return false;
-}
-
-app.set('view engine', 'ejs'); // combine data + html
-app.use(bodyParser.urlencoded());
 app.use(cookieSession({
-  name: 'session',
+  name: 'session', 
   keys: ['onekey']
 }));
 
-// auth
-// setup template vars
-// formatting
-// error logging
-const customMiddleware = (req, res, next) => {
-  console.log('custom middleware');
-  if (users[req.session.username]) {
+app.use(bodyParser.urlencoded({extended: true}));// urlencoded data => js object
+// app.use(cookieParser());
+
+app.set('view engine', 'ejs'); // pug  html/GUI + data
+
+const authorize = (req, res, next) => {
+  if (req.session.username) {
     next();
   } else {
-    res.status(401).send('not logged in');
+    res.redirect('/users/login');s
   }
 }
 
-const setTemplateVars = (req, res, next) => {
-  console.log('custom middleware');
-  req.templateVars = {
-    appName: 'breaditor',
-    recipes: breadRecipes,
-    username: req.session.username
+app.use('/passwords', authorize);
+
+// PASSWORDS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// BROWSE
+app.get('/passwords',  (req, res) => {
+  const passwords = dataHelpers.getPasswords(req.session.username);
+  const templateVars = {passwords: passwords, test: 'this is for test'};
+  res.render('index', templateVars);
+})
+
+// NEW
+app.get('/passwords/new', authorize,  (req, res) => {
+  res.render('new', {});
+});
+
+// pattern matching routes /passwords/***
+app.get('/passwords/:id', (req, res) => {
+  const passwordId = req.params.id;
+  const password = dataHelpers.getPassword(passwordId);
+  if (!password) {
+    res.send('no password found', 404);
+  } else {
+    const templateVars = {
+      password: password,
+    };
+    res.render('show', templateVars);
   }
-  next();
-}
-// app.use('/recipes', customMiddleware)
+})
 
-// app.use("/recipes", customMiddleware);
+// Create/ADD
+app.post('/passwords', (req, res) => {
+  const success = dataHelpers.addPassword(req.body);
+  if (success) {
+    res.redirect('/passwords');
+  } else {
+    res.send("could not add password", 500);
+  }
+})
 
+// Create/ADD
+app.post('/passwords/:id/delete', (req, res) => {
+  const success = dataHelpers.removePassword(req.params.id);
+  if (success) {
+    res.redirect('/passwords');
+  } else {
+    res.send("could not delete password", 500);
+  }
+})
 
-// ROUTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-app.get('/login', (req, res) => {
-  res.render('login');
-});
-
-app.post('/logout', (req, res) => {
-  req.session.username = null;
-  req.session.loggedinat = null;
-  res.redirect('/login');
-});
-
-app.get('/register', (req, res) => {
+// USERS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// register
+app.get('/users/register', (req, res) => {
   res.render('register');
-});
+})
 
-app.post('/register', (req, res) => {
-  // check if the username & password match 
-  let {username, password} = req.body;
-  if (!users[username]) {
-    // register them
-    const hash = bcrypt.hashSync(password, 2);
-    users[username] = {username: username, password: hash};
-    // setting a cookie
-    console.log('Users', users);
-    req.session.username = username;
-    req.session.loggedinat = new Date();
-    res.redirect('/recipes');
+app.post('/users', (req, res) => {
+  if (dataHelpers.addUser(req.body.username, req.body.password)) {
+    // need to set cookie
+    req.session.username = req.body.username;
+    res.redirect('/passwords');
   } else {
-    res.status(401).send("Username already registered");
+    res.send('could not register user', 500);
   }
-});
+})
 
-app.post('/login', (req, res) => {
-  // check if the username & password match 
-  let {username, password} = req.body;
-  if (authenticateUser(username, password)) {
-    // setting a cookie
-    req.session.username = username;
-    req.session.loggedinat = new Date();
-    // redirect the user to recipes page
-    res.redirect('/recipes');
+// login
+app.get('/users/login', (req, res) => {
+  res.render('login', {});
+})
+
+// login
+app.post('/users/login', (req, res) => {
+  if (dataHelpers.authenticateUser(req.body.username, req.body.password)){
+    req.session.username = req.body.username;
+    res.redirect("/passwords");
   } else {
-    res.status(401).send("Incorrect username or password");
-  }
-});
-
-// BROWSE (all recipes)
-// GET /recipes nobody
-// GET /
-app.get('/recipes', customMiddleware, setTemplateVars, (req, res) => {
-  console.log('request to browse bread recipes', req.session.username);
-  if (req.session.username && users[req.session.username]) {
-    res.render("recipes", req.templateVars);
-  } else {
-    res.redirect('/login');
+    res.send('Incorrect username or password', 401);
   }
 })
 
-app.get('/recipes/new', customMiddleware, (req, res) => {
-  console.log('add a new recipe');
-  res.render("add_recipe");
+// logout
+app.post('/users/logout', (req, res) => {
+  req.session.username = null;
+  res.redirect('/users/login');
 })
 
-app.get('/recipes/:id/edit', (req, res) => {
-  console.log('add a new recipe');
-  const templateVars = {
-    recipe: breadRecipes[req.params.id],
-    id: req.params.id
-  }
-  res.render("edit_recipe", templateVars);
-})
-
-// READ (single recipe)
-// GET /recipes/:id nobody
-app.get('/recipes/:id', (req, res) => {
-  console.log("params", req.params);
-  console.log('request to read a bread recipe');
-  res.send(req.params);
-})
-
-// EDIT
-// PUT /recipes/:id <recipe>
-// POST /recipes/:id <recipe>
-app.post('/recipes/:id', (req, res) => {
-  console.log('request to edit bread recipes', req.body, req.params);
-  editRecipe(req.body, req.params.id);
-  res.redirect("/recipes");
-})
-
-// ADD
-// POST /recipes <recipe>
-app.post('/recipes', (req, res) => {
-  console.log('request to add bread recipes', req.body);
-  // use the body to create a new recipe
-  addRecipe(req.body);
-  res.redirect("/recipes");
-})
-
-// DELETE
-// DELETE /recipes/:id
-// POST /recipes/:id/delete
-app.post('/recipes/:id/delete', (req, res) => {
-  console.log('request to delete bread recipes', req.params);
-  deleteRecipe(req.params.id);
-  res.redirect("/recipes");
-})
 
 app.listen(PORT, () => {
-  console.log('Listening on port:', PORT);
-})
+});
+
