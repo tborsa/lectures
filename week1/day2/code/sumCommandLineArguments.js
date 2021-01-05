@@ -1,47 +1,42 @@
-// Write a node program that takes in an unlimited number of command 
-// line arguments, goes through each and prints out the sum of them. 
-// If any argument is not a whole number, skip it. 
-// Do support negative numbers though.
+// Write a node program that takes in an unlimited number of command line arguments, 
+// goes through each and prints out the sum of them. If any argument is not a whole 
+// number, skip it. Do support negative numbers though.
 
-// Parse the command line arguments
-  // exclude non important (pathway) command line arguments
+// user has to enter agruments
+// we need to read the argumetns
+// (remove uneeded info)
+// do we need this as a function?
 const getArguments = function() {
-  //takes an existing array cuts off x number of elements and returns
-  // new shortened array.
-  return process.argv.slice(2);
-}
+    // console.log('process: ', process.argv.slice(2));
+    return process.argv.slice(2);
+};
 
-// check if value is an integer
-// make sure they are whole numbers
-const checkForInteger = function(value) {
-  // return true/false if integer
-  const num = Number(value); // return nan or number;
-  const integer = Number.isInteger(num); //returns a boolean true or false;
-  if (num && integer) {
+// check if number is a whole number
+const checkWholesomeness = function(input) {
+  // convert strings to numbers
+  // google a lot of these things
+  const num = Number(input); //either return a number or NaN
+  const isInteger = Number.isInteger(num); //true or false
+  // debugger;
+  if (isInteger) {
     return num;
   } else {
-    return 0; // like not adding anything, is a falsey value
+    return 0;
   }
-}
+};
 
-// done in function
-// Sum the integers/whole numbers
-// need to use a loop
-// [1,2,3,4]
+// loop through arguments
+// sum (Make sure Number)
 const addArguments = function(arguments) {
-  // return sum of the arguments
-  let total = 0;
-  for (let value of arguments) {
-    total += checkForInteger(value);
+  let sum = 0;
+
+  for (let [index, value] of arguments.entries()) {
+    let wholeNumber = checkWholesomeness(argument);
+    sum += wholeNumber;
   }
-  return total;
+  return sum;
 }
 
-const sum = function() {
-  const arguments = getArguments();
-  const total = addArguments(arguments);
-  //print or display information to user
-  console.log('The total of all whole numbers given is: ', total);
-}
-
-sum();
+const arguments = getArguments();
+const total = addArguments(arguments);
+console.log('Your total is:', total);
