@@ -1,21 +1,24 @@
+const castFireball =  function() {
+  this.mana -= 2;
+  console.log('🔥');
+}
+
 const mage = {
-  hp: 10, 
-  intellect: 15,
-  mana: 5, 
-  castFireball: function () {
-    this.mana --;
-    console.log('🔥');
-  },
-  playerSummary: function() {
-    console.log('what is this', this);
-    console.log(`hp: ${this.hp}, intellect: ${this.intellect}, mana: ${this.mana}`);
+  mana: 10, 
+  health: 5, 
+  name: 'grogar the wise', 
+  castFireball: castFireball,
+  summary: function() {
+    console.log(`the mage ${this.name} has ${this.mana} mana, ${this.health} health`)
   }
 }
 
-// console.log('global scope this', this);
+//this
+mage.summary();
+mage.castFireball(); //this = mage
+mage.summary();
 
-const playerSummaryCopy = mage.playerSummary;
-playerSummaryCopy();
+// const cast = mage.castFireball;
 
-mage.castFireball();
-mage.playerSummary();
+// cast(); // this = global object
+
