@@ -1,59 +1,54 @@
-const fishOptions = ['xx','🐟','🐠','🐟','🥡 ','🐡','🦞 ','🐚'];
+const fishOptions = ['xx','🐟','🐠','🐟','🥡','🐡','🦞','🐚'];
+
+// node goFish.js 2
 
 // 🌊🚣‍♀️🌊🌊🌊🌊🌊🌊🌊
 // 🐠🐟🥡🐠🐟🥡🐠🐟🥡
 // you caught 🎣🐟
 
-const fishInWater = [];
+const fishLayer = [];
 
-const getRandomNumber = (max) => {
-  return Math.floor(Math.random() * (max + 1));
+const randomNumber = (range) =>{
+  return Math.floor(Math.random() * range);
 }
 
-// print out the fish layer
-const printRandomFish = () => {
-  const randomNumber = getRandomNumber(7);
-  let fish = fishOptions[randomNumber];
-  fishInWater.push(fish);
-  process.stdout.write(fish);
+// print the underwater
+// print a fish tile do x times
+// remember in an  array
+const printFish = () => {
+  // randomly select a fish from the fish options and print it
+  const randomFish = fishOptions[randomNumber(fishOptions.length-1)];
+  fishLayer.push(randomFish);
+  process.stdout.write(randomFish);
 }
 
-// print out the ocean layer
-const printOcean = (tilePosition, userInput) => {
-  if (tilePosition == userInput) {
-    process.stdout.write("🚣‍♀️");
+// print ocean
+// print an ocean tile do x times
+// need a user input to ask user what boat
+const printOcean = (userInput, index) => {
+  if (userInput === index) {
+    process.stdout.write('⛵');
   } else {
-    process.stdout.write("🌊");
+    process.stdout.write('🌊');
   }
 }
 
-// (boat or ocean)* number of tiles
-// print a random fish * number of tiles
-const printUi = (oceanSize, userInput, tilePrint) => {
-  for (let i = 1; i <= oceanSize; i++) {
-    tilePrint(i, userInput);
+
+const printRow = (userInput, oceanWidth, tilePrinter) => {
+  for (let i = 0; i < oceanWidth; i++) {
+    // print a tile
+    tilePrinter(userInput, i);
   }
   console.log('');
-}
+};
 
-const userInput = process.argv[2];
-printUi(10, userInput, printOcean);
-printUi(10, userInput, printRandomFish);
+// display outcome
+const userInput = process.argv[2] - 1; //2
+printRow(userInput,8,printOcean);
+printRow(userInput,8,printFish);
 
-// print the result
-// get user input
-console.log('**~~~~~~~~~~~~~~~~~~**');
-console.log('you caught 🎣', fishInWater[userInput - 1]);
-console.log('**~~~~~~~~~~~~~~~~~~**');
+console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+console.log('you caught 🎣' + fishLayer[userInput]);
+console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
 
-// validate user input
-  // give a nice message
-
-// Object for fish so we can store more information
-
-// store what fish you have caught
-
-// each fish score value
-
-// actions for certain fish (shark is a problem)
-
+// repeat
