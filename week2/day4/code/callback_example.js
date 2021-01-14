@@ -1,24 +1,13 @@
-// Callback Review
+const fs = require('fs');
+// Callbacks PRo
+// DRY, more generic and reusable
+// asynchronous code
 
-// What is a callback?
-
-// Higher order function -> a function that takes another function as a parameter
-  // when a function calls another function
-// callback -> is the function run by another function
-
-// Why?
-// Make code more modular
-// run async code
-// 'return' retrieve async data
-// 'waiting' for things to finish
-// conditional action
-
-// The Bad?
-// Callback hell
-// code hard to read/understand
-// harder to code async/callbacks
-// can't use traditional return statements
-
+// Callback Cons
+// hurt the brain
+// execution flow is hard to track
+// less readable
+// callback hell
 
 
 const add = (numOne, numTwo) => {
@@ -38,10 +27,19 @@ const mathAndPrint = (numOne, numTwo, doMath) => {
   console.log(result);
 };
 
-console.log('add: '); 
-mathAndPrint(4, 7, add);
-console.log('subtract: ');
-mathAndPrint(4, 7, subtract);
-console.log('multiply: ');
-mathAndPrint(4, 7, multiply);
+// console.log('add: '); 
+// mathAndPrint(4, 7, add);
+// console.log('subtract: ');
+// mathAndPrint(4, 7, subtract);
+// console.log('multiply: ');
+// mathAndPrint(4, 7, multiply);
+
+console.log('before readfile');
+fs.readFile('./chorus.txt', 'utf8', (err, data) => {
+  if(err) {
+    console.log('there was an error', err);
+  }
+  console.log('the contents of the file are:', data);
+  console.log('after readfile');
+});
 
