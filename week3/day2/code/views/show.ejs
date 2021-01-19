@@ -1,10 +1,22 @@
-<h1>Passwordasaurus</h1>
-<h2>Your password</h2>
-<hr>
-<p>domain: <%= password.domain %></p>
-<p>symbols: <%= password.symbols %></p>
-<p>length: <%= password.length %></p>
-<p>restrictions: <%= password.restrictions %></p>
-<form action=<%= `/passwords/${password.id}/delete` %> method="POST">
-  <input type="submit" value="delete"/>
-</form>
+<!-- {meme: meme, greeting: 'hello world', users: 5};
+const meme = meme;
+const greeting = greeting;
+const users = 5 -->
+<h1>Welcome to meme-ory</h1>
+<h2>Here is a memes</h2>
+<a href="/memes/new">Add a meme</a>
+<p><%= greeting %></p>
+<p>users: <%= users %></p>
+<br></br>
+
+
+<br></br>
+<% if (meme) { %>
+    <form action="/memes/<%= meme.id %>/delete" method="post">
+        <input type="submit" value="delete meme">
+    </form>
+    <img src=<%= meme.image %> style="width: auto; height: 200px;" >
+        <p style="position: absolute; margin-top: -220px;"><%= meme.topText %></p>
+        <p style="position: absolute;"><%= meme.bottomText %></p>
+    </img>
+<% } %>

@@ -1,15 +1,12 @@
-<h1>Passwordasaurus</h1>
-<h2>Add a new password</h2>
-<form action="/passwords" method="POST">
-  <label>Restrictions</label>
-  <input name="restrictions"/>
-  <label>symbols</label>
-  <input name="symbols"/>
-  <label>length</label>
-  <input type="number" name="length"/>
-  <label>domain</label>
-  <input name="domain"/>
-  <label>password</label>
-  <input type="password" name="password"/>
-  <input type="submit" value="Add Password"/>
+<h1>Welcome to meme-ory</h1>
+<h2>Post Your Meme</h2>
+
+<form action="/memes" method="post" >
+    <label>Top Text</label>
+    <input name="topText" type="text"/>
+    <label>bottom Text</label>
+    <input name="bottomText" type="text"/>
+    <label>Image</label>
+    <input name="image" type="text"/>
+    <input type="submit" value="add a dank me me"/>
 </form>

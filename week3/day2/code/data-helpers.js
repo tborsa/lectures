@@ -1,104 +1,55 @@
-const bcrypt = require('bcrypt');
-
-// what does our data look
-// Passords
-// - Character restrictions? Regex
-// - option for symbols/numbers Boolean
-// - length restrictions Number
-// - What is the password for  String
-let serialId = 0;
-const passwords = {
-  'passwordId': {
-    restrictions: /[1-9]/,
-    symbols: true,
-    length: 20,
-    domain: 'youtube.com',
-    password: 'kjlksf',
-    username: 'test@gmail.com',
-    id: 'passwordId'
-  },
-  'passwordId2': {
-    restrictions: /[1-9]/,
-    symbols: true,
-    length: 20,
-    domain: 'youtube.com',
-    password: 'kjlksf',
-    username: 'test@gmail.com',
-    id: 'passwordId2'
-  },
-  'passwordId3': {
-    restrictions: /[1-9]/,
-    symbols: false,
-    length: 30,
-    domain: 'compass.ca',
-    password: 'sdfsdf',
-    username: 'tr0vis',
-    id: 'passwordId3'
-  }
-};
-
-const users = {
-  'tr0vis': {
-    username: 'tr0vis',
-    password: bcrypt.hashSync('iliketurtles', 2)
-  }
+// Resource memes
+// meme-ory
+// image
+// top-text
+// bottom -text
+// description/title
+// setup server
+const memes = {
+    1: {
+        id: 1,
+        topText: 'when it rains all winter',
+        bottomText: 'and you get the first sunny day',
+        image: 'https://previews.123rf.com/images/ericulla/ericulla1003/ericulla100300009/6591046-happy-sun-with-glasses.jpg'
+    },
+    2: {
+        id: 2,
+        topText: 'when your all out of sunny d',
+        bottomText: 'but you find the last bottle in the back of the fridge',
+        image: 'https://previews.123rf.com/images/ericulla/ericulla1003/ericulla100300009/6591046-happy-sun-with-glasses.jpg'
+    },
 }
 
-// what actions do we need to do on the data 
+let idCount = 3;
 
-const getPasswords = (email) => {
-  let usersPasswords = [];
-  for(let passwordId in passwords) {
-    if (passwords[passwordId].username === email) {
-      usersPasswords.push(passwords[passwordId]);
+// BREAD
+const getAllMemes = () => {
+    return memes;
+}
+
+const getAMeme = (id) => {
+    return memes[id];
+}
+
+// adding a meme
+const addMeme = (topText, bottomText, image) => {
+    memes[idCount] = {
+        topText,
+        bottomText,
+        image,
+        id: idCount
     }
-  }
-  return usersPasswords; //all of a users passwords
+    idCount ++;
 }
 
-const getPassword = (id) => {
-  return  passwords[id];// return the password object
-}
-
-const addPassword = (password) => {
-  password.username = "test@gmail.com";
-  password.id = serialId;
-  passwords[serialId] = password;
-  serialId ++;
-  return true;
-}
-
-const removePassword = (passwordId) => {
-  delete passwords[passwordId];
-  return true;
-}
-
-// USER HELPERS
-
-const authenticateUser = (username, password) => {
-  return users[username] && bcrypt.compareSync(password, users[username].password);
-}
-
-const addUser = (username, password) => {
-  if (!users[username]) {
-    // add the user
-    // do any validation
-    users[username] = {
-      username, 
-      password: bcrypt.hashSync(password, 2)
-    };
-    return true;
-  } else {
-    return false;
-  }
-
+// deleting a meme
+const deleteMeme = (id) => {
+    delete memes[id];
 }
 
 module.exports = {
-  getPassword,
-  getPasswords,
-  addPassword,
-  removePassword,
-  authenticateUser,
-  addUser
+    getAllMemes,
+    getAMeme,
+    addMeme,
+    deleteMeme
 }

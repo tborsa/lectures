@@ -1,12 +1,16 @@
-<h1>Passwordasaurus</h1>
-<form action="/users/logout" method="POST">
-  <input type="submit" value="logout"/>
-</form>
-<h2>Your passwords are</h2>
-<% for(let password of passwords) { %>
-  <hr>
-  <a href=<%=`/passwords/${password.id}`%>><p>domain: <%= password.domain %></p></a>
-  <p>symbols: <%= password.symbols %></p>
-  <p>length: <%= password.length %></p>
-  <p>restrictions: <%= password.restrictions %></p>
+<h1>Welcome to meme-ory</h1>
+<h2>Here are some memes</h2>
+<a href="/memes/new">Add a meme</a>
+<br></br>
+<!-- go through the list of memes -->
+<% for(let key in memes) { %>
+    <a href="/memes/<%= memes[key].id%>">
+        <img src=<%= memes[key].image %> style="width: auto; height: 200px;" >
+            <p style="position: absolute; margin-top: -220px;"><%= memes[key].topText %></p>
+            <p style="position: absolute;"><%= memes[key].bottomText %></p>
+        </img>
+    </a>
+    <br></br>
+    <br></br>
+    <br></br>
 <% } %>
