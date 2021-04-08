@@ -1,35 +1,48 @@
-const fs = require('fs').promises; // handle the async with callbacks or promises
+const fsPromises = require('fs').promises;
 
-// Promises an agreement to do some async stuff
-// What are they?
+// Promise?
 
-// Something your going to stick to 
-// Commitment to do something
-// I owe u
-// Can break promises (not deliver on)
-// will be resolved broken or fufilled
-// promises are between two parties
-// promises involve some time
-// Future
+// boundaries
+// state rules and abide by rules
+// making a gaurantee
+// Something to keep up with in the future
+// expectation
+// duty to fufill
+// fufill promise/ break promise
 
-// will now return a promise
-// promise has 2 attributes
-// promise state: pending, fufilled, rejected
-// promise resovle value: <any js value>
+// WHY PROMISES?
 
-// state: pending, resolve value: undefined
-const prom = fs.readFile('./choruss.txt', 'utf8');
+// automatically seperate success/fail code
+// handle different execution paths
+// avoid callback hell/waterfall
+// graceful way of handling multiple async action in order
 
-// state: fufilled, resolve value: file data
-prom.then((data) => {
-  // catch fufilled promise :)
-  console.log('the file was read');
-  console.log('the data passed', data);
+fs.readFile('./verse1.txt', 'utf8', (err, data) => {
+    if (err) {
+
+    } else {
+        console.log('this is the file data', data);
+    }
 });
 
-// state: rejected, resolve value: error
-prom.catch((err) => {
-  // catch rejected promise :(
-  console.log('something went wrong');
-  console.log('the error was', err);
-})
+let promise = fsPromises.readFile('./verse1.txt', 'utf8'); //returns the promise
+promise.then((result) => {
+    // runs when/if promise resolves
+    console.log('promise succeeded', result);
+});
+
+promise.catch((error) => {
+    // runs when/if promise rejected/fails
+    console.log('promise failed', error);
+});
+
+fsPromises.readFile('./verse1.txt', 'utf8')
+    .then((result) => {
+        // runs when/if promise resolves
+        console.log('promise succeeded', result);
+    })
+    .catch((error) => {
+        // runs when/if promise rejected/fails
+        console.log('promise failed', error);
+    });
+

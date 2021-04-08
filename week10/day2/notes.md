@@ -3,7 +3,8 @@
 For feature/E2E tests we are using a combination of RSPEC,
 Capybara, PhantomJS, poltergeist, and database_cleaner.
 
-Notes and code [here](https://github.com/tborsa/lectures/tree/master/week10/day2)
+Notes [here](https://github.com/tborsa/lectures/tree/master/week10/day2)
+Code [here] (https://github.com/tborsa/Jungle)
 
 # Capybara 🐭
 

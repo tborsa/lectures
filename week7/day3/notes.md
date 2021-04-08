@@ -7,6 +7,7 @@ Notes can be found [here](https://github.com/tborsa/lectures/tree/master/week7/d
 
 Code can be found [here](https://github.com/tborsa/react-week-playground/tree/side-effects)
 
+Good article on useEffect https://overreacted.io/a-complete-guide-to-useeffect/
 
 # Topics📢
 
@@ -22,21 +23,25 @@ Code can be found [here](https://github.com/tborsa/react-week-playground/tree/si
 
 State?
 ```
-- components internal data
-- const [name, setName] = useState();
-- information stored between renders (react keeps track of it)
-- data that can change
-- can pass state down as props
 
-- changes in state trigger a rerender to the component
+State drill down (pass down) and up (component tree)
+Keep track of variables between renders
+local to component
+manages changes in data
+keep track of user input
 
-- (props, state) => return UI(html/css)
+const MyComponent = () => {
+  let [username, setUsername] = useState('travis');
+  let username = "travis";
 
+  ...
+  setUsername('Tr0vis'); //data binding
 
-
-
-
-
+  return (
+    <h1>hello world</h1>
+    <p>{username}</p>
+  )
+}
 
 
 ```
@@ -44,44 +49,65 @@ State as a concept: the remembered information about a system.
 
 State in React: the remembered information about a system + useState & Reacts conventions for tracking state. 
 
-A new value of state is created every time the component runs and renders.
+A new "snapshot" of state is created every time the component runs and renders.
 Each prop and state is for a particular functional component execution, and they remain the same throughout that render. 
-
 
 # Side Effects
 
 What are Pure functions?
 ```
 
-- Functions without side effects
-- it doesn't use variables outside of function scope
-- Primary return/purpose
-- given a set of inputs it will always return the same output for the same input
+-Main purpose is what it returns
+-Rely only on the functions input or function scoped variables
+-one that doesn't have side effects
+- given the same input -> always return the same output
 
-(a,b) => c
+Pure
+
+let sum = (num1, num2) => {
+  <!-- let offset = 1; -->
+  return num1 + num2 + offset;
+}
+
+sum(5, 8) -> 13
+
+Unpure function
+
+let num3 = 10;
+
+let sum = (num1, num2) => {
+  return num1 + num2 + num3;
+}
+
+sum(5, 8) -> 23
+
+num3 = "string";
+
+sum(5,8) -> 33
+
 
 ``` 
 
 What are Side Effects?
 
+
+
+- console logs
+- data fetching (axios request)
+- async (input/output) read files, writing, timers
+- infinite loops can result
+
+
+a b -> c
+a b -> d
+
+
 ```
-- change of global variables <- (external outcome to the function)
-- secondary effect or purpose (other than the return)
-- 
 
-
-let c = 0
-
-let sideEffectAdd = (a,b) => {
-  return a + b + c;
-}
-
-sideEffect(5,6);
-
-c = 6
-
-sideEffect(5,6);
-
+-if output is not consistent there must be a side effect
+-(changing global scope)
+-Unintended consequences? (sometimes)
+-hard to debug
 
 ```
 Any function that is not pure has side effects. 

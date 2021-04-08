@@ -1,43 +1,73 @@
-// Fun Profile Generator - W2D2 Challenge 
-// https://web.compass.lighthouselabs.ca/days/w02d2/activities/867
 
-readline = require('readline-promise').default
+const readline = require('readline-promise').default;
 
-const rl = readline.createInterface({
+const rlp = readline.createInterface({
   input: process.stdin,
-  output: process.stdout
+  output: process.stdout,
+  terminal: true
 });
+
+let bar = null;
+
+let questionLookup = [
+    'what is your name?',
+    'what\'s an activity you like doing? ',
+    'what do you listen to while doing that? '
+]
+let questionPosition = 0;
+
+let askQuestion = (answer) => {
+    if (answer) {
+        console.log('you answered:', answer);
+    }
+    if (questionPosition === questionLookup.length) {
+        // print all answers nicely together
+        rlp.close();
+    } else {
+        questionPosition ++;
+        return rlp.questionAsync(questionLookup[questionPosition - 1]);
+    }
+}
+
+// askQuestion()
+//     .then(askQuestion)
+//     .then(askQuestion)
+//     .then(askQuestion)
+//     .catch(err => {
+//         console.log('something went wrong', err);
+//     })
+
+let answers = [];
+
+// how do we do two promises in order
+// How many promises are there?
+//then and catch are methods of a promsie
+
+// <THING>.then then <THING> must be a promise
+
+rlp.questionAsync('what is your name?') // promise 1
+    .then(answer => {
+        // know that the question will have been answered
+        answers.push(answer);
+        console.log('your name is:', answer);
+        return rlp.questionAsync('what\'s an activity you like doing? '); //promise 2
+    }) 
+    .then(answer => {
+        answers.push(answer);
+        console.log('your favourite hobby is:', answer);
+        return rlp.questionAsync('what do you listen to while doing that? ') //promise 3
+    }) 
+    .then(answer => {
+        answers.push(answer);
+        console.log('music:', answer);
+        console.log(`The survey persons name is ${answers[0]} and that person likes to ${answers[1]}, and likes listening to ${answers[2]} while doing sports.`)                  
+    }) 
+    .catch(err => {
+        console.log('something went wrong', err);
+    }) 
 
 // when we have many async things we have to do in order risk of callback hell
 // forcing synchronous execution
-
-const answers = [];
-
-const askAndStore = (answer, question) => {
-  if(answer){
-    answers.push(answer);
-  }
-  if (question) {
-    rl.questionAsync(question) // promise
-  } else {
-    console.log('answers', answers);
-    rl.close();
-  }
-}
-
-promisequestion1
-  .then((answer) => {
-    return askAndStore(answer,'what\'s an activity you like doing? ') //returns promise question 2
-  })
-  .then((answer) => askAndStore(answer,'which meal is your favourite(dinner, brunch)? '))
-  .then((answer) => askAndStore(answer,'whats your fav thing to eat for that meal? '))
-  .then((answer) => askAndStore(answer,'which sport is your fav? '))
-  .then((answer) => askAndStore(answer))
-  .catch((err) => {
-    console.log('somethign went wrong');
-  })
-
-  
 
 // rl.question('what is your name?', (one) => {
 //   // recursive call
@@ -61,3 +91,27 @@ promisequestion1
 //     });
 //   });
 // });
+
+
+
+const promise1 = rlp.questionAsync('what is your name?') 
+const promise2 = promise1.then(answer => {
+        answers.push(answer);
+        console.log('your name is:', answer);
+        const promise6 = rlp.questionAsync('what\'s an activity you like doing? ');
+        return promise6;
+    }) 
+const promise3 = promise2.then(answer => {
+        answers.push(answer);
+        console.log('your favourite hobby is:', answer);
+        const promise7 =  rlp.questionAsync('what do you listen to while doing that? ') ;
+        return promise7;
+    }) 
+const promise4 = promise3.then(answer => {
+        answers.push(answer);
+        console.log('music:', answer);
+        console.log(`The survey persons name is ${answers[0]} and that person likes to ${answers[1]}, and likes listening to ${answers[2]} while doing sports.`)                  
+    }) 
+const promise5 = promise4.catch(err => {
+        console.log('something went wrong', err);
+    }) 
